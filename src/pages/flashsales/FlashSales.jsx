@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
+import { products } from "../../constants/Products";
 
 const strongElements = document.querySelectorAll("#timeContainer strong");
 
@@ -33,8 +34,6 @@ const FlashSales = () => {
               </div>
             </div>
 
-           
-
             <div
               className="flex justify-between w-full sm:w-[250px] md:w-[302px] h-[50px] pt-4 sm:pt-6 md:pt-8 gap-x-2 md:gap-x-4"
               id="timeContainer"
@@ -62,10 +61,8 @@ const FlashSales = () => {
                 <strong className="text-3xl md:text-2xl">56</strong>
               </div>
             </div>
-
-           
           </div>
-         
+
           <div className="flex gap-5 mt-4 md:mt-0 pt-6 md:pt-0">
             <Link to="#" className="bg-[#F5F5F5] border rounded-full p-2 ">
               <FaArrowLeft className="h-4 w-4 text-black" />
@@ -74,52 +71,9 @@ const FlashSales = () => {
               <FaArrowRight className="h-4 w-4 text-black" />
             </Link>
           </div>
-        
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
-          {[
-            {
-              src: "src/assets/images/gamepad@2.png",
-              title: "HAVIT HV-G92 Gamepad",
-              price: "$120",
-              originalPrice: "$160",
-              rating: 5,
-              reviews: 88,
-            },
-            {
-              src: "src/assets/images/keyboard@2.png",
-              title: "AK-900 Wired Keyboard",
-              price: "$960",
-              originalPrice: "$1160",
-              rating: 4.5,
-              reviews: 75,
-              hasCartButton: true,
-            },
-            {
-              src: "src/assets/images/monitor@2.png",
-              title: "IPS LCD Gaming Monitor",
-              price: "$370",
-              originalPrice: "$400",
-              rating: 5,
-              reviews: 99,
-            },
-            {
-              src: "src/assets/images/chair@2.png",
-              title: "S-Series Comfort Chair",
-              price: "$375",
-              originalPrice: "$400",
-              rating: 5,
-              reviews: 99,
-            },
-            {
-              src: "src/assets/images/ideapad-gaming-3i-01-500x500 1@2.png",
-              title: "ASUS FHD Gaming Laptop",
-              price: "$120",
-              originalPrice: "$160",
-              rating: 5,
-              reviews: 88,
-            },
-          ].map((item, index) => (
+          {products?.map((item, index) => (
             <div key={index}>
               <div className="bg-[#F5F5F5] rounded p-4 relative">
                 <div className="flex items-center justify-between mb-4">

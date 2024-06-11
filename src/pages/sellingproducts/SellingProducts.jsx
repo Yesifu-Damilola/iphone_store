@@ -1,6 +1,7 @@
 import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { sellingProducts } from "../../constants/Products";
 
 const SellingProducts = () => {
   return (
@@ -29,47 +30,7 @@ const SellingProducts = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
-        {[
-          {
-            src: "src/assets/images/Gucci-coat 1@2.png",
-            title: "The north coat",
-            price: "$260",
-            originalPrice: "$360",
-            rating: 5,
-            reviews: 65,
-          },
-          {
-            src: "src/assets/images/duffle-bag 1@2.png",
-            title: "Gucci duffle bag",
-            price: "$960",
-            originalPrice: "$1160",
-            rating: 4.5,
-            reviews: 65,
-          },
-          {
-            src: "src/assets/images/gammaxx-1@2.png",
-            title: "RGB liquid CPU Cooler",
-            price: "$160",
-            originalPrice: "$170",
-            rating: 4.5,
-            reviews: 65,
-          },
-          {
-            src: "src/assets/images/sam-moghadam-1@2.png",
-            title: "Small BookSelf",
-            price: "$360",
-            rating: 5,
-            reviews: 65,
-          },
-          {
-            src: "src/assets/images/satin-jacket 1@2.png",
-            title: "Quilted Satin Jacket",
-            price: "$750",
-            originalPrice: "$550",
-            rating: 5,
-            reviews: 65,
-          },
-        ].map((item, index) => (
+        {sellingProducts?.map((item, index) => (
           <div key={index}>
             <div className="bg-[#F5F5F5] rounded p-4 relative">
               <div className="top-0 right-0 space-y-2 mb-4 flex flex-col items-end">

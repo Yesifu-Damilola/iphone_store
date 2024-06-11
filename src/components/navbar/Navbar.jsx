@@ -40,7 +40,7 @@ export const Navbar = () => {
               />
 
               <Link to="" className="absolute top-0 right-0 p-2 ">
-                <SearchIcon className="h-6 w-5 text-black bg-white" />
+                <SearchIcon className="h-6 w-5 text-[#F5F5F5]" />
               </Link>
             </div>
 

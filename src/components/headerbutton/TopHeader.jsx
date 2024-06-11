@@ -1,8 +1,6 @@
-
-
 export const TopHeader = () => {
   return (
-    <header className="bg-black py-2 w-full sticky top-0 z-20 md:py-6 md:px-4 px-2">
+    <header className="bg-black py-4 w-full sticky top-0 z-20 md:py-6 md:px-4 px-2">
       <div className="container mx-auto flex flex-col md:flex-row text-center justify-center">
         <div className="flex-1">
           <p className="text-white">

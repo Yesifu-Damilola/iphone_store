@@ -1,3 +1,5 @@
+import BOOMBOX from "../../assets/images/BOOMBOX_1@2.png";
+
 const MusicExperience = () => {
   return (
     <div className="container mx-auto md:p-4">
@@ -11,7 +13,6 @@ const MusicExperience = () => {
             Enhance Your Music Experience
           </p>
 
-          
           <div className="flex flex-wrap justify-between mt-8">
             <div className="flex w-1/2 md:w-1/4 justify-center mb-4">
               <button className="text-[#000000] border rounded-full w-[62px] h-[62px] bg-white flex flex-col items-center justify-center">
@@ -47,7 +48,7 @@ const MusicExperience = () => {
         </div>
         <div className="mt-8 lg:mt-0 w-full lg:w-[600px] flex justify-center lg:justify-end">
           <img
-            src="src/assets/images/BOOMBOX_1@2.png"
+            src={BOOMBOX}
             alt="boombox"
             className="w-full lg:w-[568px] h-auto"
           />

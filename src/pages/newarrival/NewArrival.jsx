@@ -2,6 +2,10 @@ import { FaTruckFast } from "react-icons/fa6";
 import { MdOutlineHeadsetMic } from "react-icons/md";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import playstation from "../../assets/images/ps5-slim-goedkope-playstation_large 1@2.png";
+import womanwearing from "../../assets/images/attractive-woman-wearing-hat-posing-black-background 1@2.png";
+import transparentamazon from "../../assets/images/69-694768_amazon-echo-png-clipart-transparent-amazon-echo-png 1@2.png";
+import perfume from "../../assets/images/652e82cd70aa6522dd785109a455904c@2.png";
 
 const NewArrival = () => {
   return (
@@ -23,7 +27,7 @@ const NewArrival = () => {
       <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-x-12 my-10 w-full max-w-[1280px] mx-auto">
         <div className="bg-[#000000] relative rounded w-full lg:w-[570px] h-auto lg:h-[600px]">
           <img
-            src="src/assets/images/ps5-slim-goedkope-playstation_large 1@2.png"
+            src={playstation}
             alt="PS5"
             className="w-full h-auto lg:w-[511px] lg:h-[511px]"
           />
@@ -46,7 +50,7 @@ const NewArrival = () => {
         <div className="w-full lg:w-auto">
           <div className="relative bg-[#000000] rounded w-full lg:w-[570px] h-auto lg:h-[284px]">
             <img
-              src="src/assets/images/attractive-woman-wearing-hat-posing-black-background 1@2.png"
+              src={womanwearing}
               alt="woman-wearing-hat"
               className="w-full h-auto lg:w-[472px] lg:h-[284px]"
             />
@@ -70,7 +74,7 @@ const NewArrival = () => {
             <div className="bg-[#000000] relative rounded w-full sm:w-[270px] h-auto sm:h-[284px]">
               <div className="w-full h-auto flex items-center justify-center p-4">
                 <img
-                  src="src/assets/images/69-694768_amazon-echo-png-clipart-transparent-amazon-echo-png 1@2.png"
+                  src={transparentamazon}
                   alt="echo"
                   className="w-full h-auto max-w-[190px]"
                 />
@@ -93,7 +97,7 @@ const NewArrival = () => {
             <div className="bg-[#000000] relative rounded w-full sm:w-[270px] h-auto sm:h-[284px]">
               <div className="w-full h-auto flex items-center justify-center p-4">
                 <img
-                  src="src/assets/images/652e82cd70aa6522dd785109a455904c@2.png"
+                  src={perfume}
                   alt="perfume"
                   className="w-full h-auto max-w-[201px]"
                 />
@@ -116,46 +120,6 @@ const NewArrival = () => {
           </div>
         </div>
       </div>
-
-      {/* <div className="flex items-center justify-center gap-14 m-auto">
-        <div className="">
-          <button className=" bg-[#000000] border-8 rounded-full border-violet-200 h-20 w-20 ml-16 my-6">
-            <FaTruckFast className="text-[#FAFAFA]   w-10 h-10 ml-3" />
-          </button>
-
-          <div className="">
-            <h5 className="text-base/5 font-semibold pb-1">
-              FREE AND FAST DELIVERY
-            </h5>
-            <p className="text-sm/4 ">Free delivery for all orders over $140</p>
-          </div>
-        </div>
-        <div>
-          <button className=" bg-[#000000] border-8 rounded-full border-violet-200 h-20 w-20 ml-16 my-6">
-            <MdOutlineHeadsetMic className="text-[#FAFAFA] w-10 h-10 ml-3" />
-          </button>
-          <div className="">
-            <h5 className="text-base/5 font-semibold pb-1">
-              24/7 CUSTOMER SERVICE
-            </h5>
-            <p className="text-sm/4">Friendly 24/7 customer support</p>
-          </div>
-        </div>
-        <div>
-          <button className=" bg-[#000000] border-8 rounded-full border-violet-200 h-20 w-20 ml-16 my-6">
-            <IoShieldCheckmarkOutline
-              className="text-[#FAFAFA] w-10 h-10
-            ml-3"
-            />
-          </button>
-          <div>
-            <h5 className="text-base/5 font-semibold pb-1">
-              MONEY BACK GUARANTEE
-            </h5>
-            <p className="text-sm/4">We reurn money within 30 days</p>
-          </div>
-        </div>
-      </div> */}
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-14 m-auto px-4 sm:px-0">
         <div className="flex flex-col items-center sm:items-start">

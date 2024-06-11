@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const Category = () => {
   return (
-    <>
+    <main>
       <div className="container mx-auto p-4">
         <div className="flex gap-x-4 items-center">
           <button className="bg-[#DB4444] border-0 rounded-sm w-5 h-10"></button>
@@ -44,7 +44,7 @@ const Category = () => {
             <HiOutlineComputerDesktop className="text-6xl" />
             <p className="text-base mt-4">Computers</p>
           </div>
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px]">
+          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px">
             <TbDeviceWatchStats className="text-6xl" />
             <p className="text-base mt-4">SmartWatch</p>
           </div>
@@ -65,7 +65,7 @@ const Category = () => {
       <div className="w-full mt-4 mb-6">
         <hr className="border-t border-gray-300 w-full  sm:w-full md:w-[1440] lg:w-full mx-auto" />
       </div>
-    </>
+    </main>
   );
 };
 

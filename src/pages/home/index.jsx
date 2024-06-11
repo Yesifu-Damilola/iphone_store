@@ -7,6 +7,8 @@ import SellingProducts from "../sellingproducts/SellingProducts";
 import MusicExperience from "../musicexperience/MusicExperience";
 import ExploreProducts from "../exploreproducts/ExploreProducts";
 import NewArrival from "../newarrival/NewArrival";
+import apple from "../../assets/images/1200px-Apple_gray_logo 1@2.png";
+import horeiphone from "../../assets/images/hero_endframe__cvklg0xk3w6e_large 2@2.png";
 
 const Home = () => {
   return (
@@ -30,13 +32,14 @@ const Home = () => {
             <p>Baby’s & Toys</p>
             <p>Groceries & Pets</p>
             <p>Health & Beauty</p>
+           
           </div>
           <div className="hidden md:block h-32 md:h-48 lg:h-72 xl:h-96 border-l-2 border-gray-300 mr-1 ml-10"></div>
           <div className="flex flex-col md:flex-row items-center justify-center px-1 w-full md:w-auto pt-8">
             <div className="bg-black text-center md:text-left w-full md:w-[600px] h-auto md:h-[344px] p-4">
               <div className="flex flex-col md:flex-row items-center md:items-start text-white text-base gap-6 mx-4 md:mx-[70px] my-4 md:my-[40px]">
                 <img
-                  src="src/assets/images/1200px-Apple_gray_logo 1@2.png"
+                  src={apple}
                   alt="apple_logo"
                   className="w-[40px] h-[49px]"
                 />
@@ -59,7 +62,7 @@ const Home = () => {
             </div>
             <div className="bg-cover w-full md:w-auto md:py-0">
               <img
-                src="src/assets/images/hero_endframe__cvklg0xk3w6e_large 2@2.png"
+                src={horeiphone}
                 alt="iphone_hero"
                 className="max-w-full w-full md:w-[550px] h-auto md:h-[344px]"
               />
