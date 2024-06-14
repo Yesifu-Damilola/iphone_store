@@ -16,14 +16,14 @@ export const Navbar = () => {
       <nav className="container mx-auto p-4">
         <div className="flex justify-between items-center">
           <div className="p-auto">
-            <Link to="#" className="text-black font-bold text-2xl">
+            <Link to="/" className="text-black font-bold text-2xl">
               Exclusive
             </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-6 mx-2">
             <Link
-              to="/home"
+              to="/"
               className="text-black hover:text-gray-700 text-base underline"
             >
               Home
