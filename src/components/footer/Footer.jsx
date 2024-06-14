@@ -25,8 +25,8 @@ export const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Support</h4>
             <p>111 Bijoy Sarani, Dhaka, DH 1515, Bangladesh.</p>
-            <p>Email: exclusive@gmail.com</p>
-            <p>+88015-88888-9999</p>
+            <p>Email: yesifudammy@gmail.com</p>
+            <p>+234-806-294-1097</p>
           </div>
 
           <div>

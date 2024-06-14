@@ -9,30 +9,53 @@ import ExploreProducts from "../exploreproducts/ExploreProducts";
 import NewArrival from "../newarrival/NewArrival";
 import apple from "../../assets/images/1200px-Apple_gray_logo 1@2.png";
 import horeiphone from "../../assets/images/hero_endframe__cvklg0xk3w6e_large 2@2.png";
+import { useState } from "react";
+
+const categories = [
+  { name: "Woman’s Fashion", link: "/" },
+  { name: "Men’s Fashion", link: "/" },
+  { name: "Electronics" },
+  { name: "Home & Lifestyle" },
+  { name: "Medicine" },
+  { name: "Sports & Outdoor" },
+  { name: "Baby’s & Toys" },
+  { name: "Groceries & Pets" },
+  { name: "Health & Beauty" },
+];
 
 const Home = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleList = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       <main className="container mx-auto flex flex-col items-center justify-center px-4 mb-16 ">
         <div className="flex flex-col md:flex-row gap-11  w-full">
-          <div className="text-black text-base space-y-4 w-full md:w-auto pt-8">
-            <Link to="#" className="flex items-center gap-x-4 md:gap-x-5">
-              Woman’s Fashion <FaAngleRight className="ml-2 md:ml-4" />
-            </Link>
-            <Link
-              to=""
-              className="flex items-center text-lg gap-x-4 md:gap-x-8"
-            >
-              Men’s Fashion <FaAngleRight className="ml-2 md:ml-4" />
-            </Link>
-            <p>Electronics</p>
-            <p>Home & Lifestyle</p>
-            <p>Medicine</p>
-            <p>Sports & Outdoor</p>
-            <p>Baby’s & Toys</p>
-            <p>Groceries & Pets</p>
-            <p>Health & Beauty</p>
-           
+          <button
+            className="md:hidden bg-[#DB4444] text-white px-4 py-2 rounded"
+            onClick={toggleList}
+          >
+            {isOpen ? "Hide Categories" : "show Categories"}
+          </button>
+          <div className={`${isOpen ? "block" : "hidden"} md:block`}>
+            <div className="text-black text-base space-y-4 w-full md:w-auto pt-8">
+              {categories.map((items, index) =>
+                items.link ? (
+                  <Link
+                    key={index}
+                    to={items.link}
+                    className="flex items-center gap-x-4 md:gap-x-5"
+                  >
+                    {items.name} <FaAngleRight className="ml-2 md:ml-4" />
+                  </Link>
+                ) : (
+                  <p key={index}>{items.name}</p>
+                )
+              )}
+            </div>
           </div>
           <div className="hidden md:block h-32 md:h-48 lg:h-72 xl:h-96 border-l-2 border-gray-300 mr-1 ml-10"></div>
           <div className="flex flex-col md:flex-row items-center justify-center px-1 w-full md:w-auto pt-8">
