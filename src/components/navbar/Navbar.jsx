@@ -47,7 +47,7 @@ export const Navbar = () => {
               <input
                 type="text"
                 placeholder="What are you looking for?"
-                className="text-xs pr-12 py-3 pl-3 bg-[#F5F5F5] text-left w-auto"
+                className="text-xs pr-12 py-3 pl-3 bg-[#F5F5F5] text-left w-auto focus:outline-none"
               />
               <Link to="" className="absolute top-0 right-0 p-2">
                 <SearchIcon className="h-6 w-5 text-black" />
@@ -84,7 +84,7 @@ export const Navbar = () => {
 
         <div className={`${isOpen ? "block" : "hidden"} md:hidden mt-4`}>
           <Link
-            to="/home"
+            to="/"
             className="block text-black hover:text-gray-700 text-base underline"
           >
             Home

@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import phonetrolly from "../../../assets/images/phone&trolly@2.png";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -48,7 +48,7 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 py-2"
+              className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:outline-none  py-2"
             />
           </div>
           <div>
@@ -60,15 +60,15 @@ const Login = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 py-2"
+              className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:outline-none  py-2"
             />
           </div>
-          <div className="flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0 text-center lg:text-left">
+          <div className="flex items-center justify-between m-auto">
             <div className="bg-[#DB4444] rounded">
-              <button className="px-4 my-4 text-[#FAFAFA]">Log In</button>
+              <button className="px-4 my-3 text-[#FAFAFA]">Log In</button>
             </div>
             <div>
-              <Link to="" className="pl-2">
+              <Link to="/" className="pl-2">
                 Forget Password?
               </Link>
             </div>

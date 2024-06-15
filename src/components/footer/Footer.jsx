@@ -33,22 +33,22 @@ export const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">My Account</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="hover:underline">
+                <Link to="/Login" className="hover:underline">
                   Login / Register
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:underline">
+                <Link to="#" className="hover:underline">
                   Cart
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:underline">
+                <Link to="#" className="hover:underline">
                   Wishlist
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:underline">
+                <Link to="#" className="hover:underline">
                   Shop
                 </Link>
               </li>
@@ -65,17 +65,17 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:underline">
+                <Link to="#" className="hover:underline">
                   Terms Of Use
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:underline">
+                <Link to="#" className="hover:underline">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:underline">
+                <Link to="#" className="hover:underline">
                   Contact
                 </Link>
               </li>
@@ -86,7 +86,7 @@ export const Footer = () => {
 
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="hover:underline">
+                <Link to="#" className="hover:underline">
                   Save $3 with App New User Only
                 </Link>
               </li>

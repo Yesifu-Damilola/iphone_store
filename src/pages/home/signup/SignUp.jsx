@@ -50,7 +50,7 @@ const SignUp = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 py-2"
+              className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:outline-none py-2"
             />
           </div>
           <div>
@@ -62,7 +62,7 @@ const SignUp = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 py-2"
+              className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:outline-none py-2"
             />
           </div>
           <div>
@@ -74,11 +74,11 @@ const SignUp = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 py-2"
+              className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:outline-none py-2"
             />
           </div>
-          <div className="space-y-4 text-center lg:text-left">
-            <div className="bg-[#DB4444] rounded">
+          <div className="space-y-4 text-center justify-center">
+            <div className="bg-[#DB4444] rounded  ">
               <input
                 type="submit"
                 value="Create Account"
@@ -86,7 +86,7 @@ const SignUp = () => {
               />
             </div>
 
-            <div className="flex text-center justify-center lg:justify-start px-5 gap-2 border py-2">
+            <div className="flex text-center justify-center px-5 gap-2 border py-2">
               <div className="pt-1">
                 <FcGoogle className="size-4" />
               </div>
