@@ -90,28 +90,28 @@ export const Navbar = () => {
           </button>
         </div>
 
-        {/* <div className={`${isOpen ? "block" : "hidden"} md:hidden mt-4`}>
+        <div className={`${isOpen ? "block" : "hidden"} md:hidden mt-4`}>
           <Link
             to="/"
-            className="block text-black hover:text-gray-700 text-base underline"
+            className="block text-black hover:text-gray-700 text-base hover:underline"
           >
             Home
           </Link>
           <Link
-            to="#"
-            className="block text-black hover:text-gray-700 text-base mt-2"
+            to="/contact"
+            className="block text-black hover:text-gray-700 text-base mt-2 hover:underline"
           >
             Contact
           </Link>
           <Link
-            to="#"
-            className="block text-black hover:text-gray-700 text-base mt-2"
+            to="/about"
+            className="block text-black hover:text-gray-700 text-base mt-2 hover:underline"
           >
             About
           </Link>
           <Link
             to="/signup"
-            className="block text-black hover:text-gray-700 text-base mt-2"
+            className="block text-black hover:text-gray-700 text-base mt-2 hover:underline"
           >
             Sign Up
           </Link>
@@ -126,14 +126,14 @@ export const Navbar = () => {
             </Link>
           </div>
           <div className="flex mt-4 space-x-2">
-            <Link to="" className="p-2">
+            <Link to="/heart" className="p-2">
               <Heart className="h-6 w-6 text-black" />
             </Link>
-            <Link to="" className="p-2">
+            <Link to="/cart" className="p-2">
               <Cart className="h-6 w-6 text-black" />
             </Link>
           </div>
-        </div> */}
+        </div>
       </nav>
       <hr className="w-full md:w-[1440px]" />
     </header>

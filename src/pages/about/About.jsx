@@ -3,7 +3,7 @@ import holdingshoppingbags from "../../assets/images/holdingshoppingbags@3.png";
 const About = () => {
   return (
     <section className="container mx-auto py-8">
-      <div className="flex flex-col sm:flex-row items-start sm:items-start mb-4 py-8 lg:px-0">
+      <div className="flex flex-col sm:flex-row items-start sm:items-start mb-4 py-8 lg:px-0 ml-4">
         <Link
           to="/"
           className="text-sm text-black hover:underline mb-2 sm:mb-0 sm:mr-2"
