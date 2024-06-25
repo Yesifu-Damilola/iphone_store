@@ -1,22 +1,20 @@
-import gamepad from "../assets/images/gamepad@2.png";
-import keyboard from "../assets/images/keyboard@2.png";
-import monitor from "../assets/images/monitor@2.png";
+import gamepad from "../assets/images/gamepad@3.png";
+import keyboard from "../assets/images/keyboard@3.png";
+import gaming_monitor from "../assets/images/gaming_monitor@3.png";
 import chair from "../assets/images/chair@2.png";
-import Laptop from "../assets/images/ideapad-gaming-3i-01-500x500 1@2.png";
-import Gucci from "../assets/images/Gucci-coat 1@2.png";
-import bag from "../assets/images/duffle-bag 1@2.png";
-import gammaxx from "../assets/images/gammaxx-1@2.png";
-import BookSelf from "../assets/images/sam-moghadam-1@2.png";
-import Jacket from "../assets/images/satin-jacket 1@2.png";
-import dogfood from "../assets/images/dog food@2 (1).png";
-import Camera from "../assets/images/camon_camera@2.png";
-import monitorScreen from "../assets/images/monitor@2.png";
-import gaminglaptop from "../assets/images/ideapad-gaming-3i-01-500x500 1@2.png";
-import curologyproduct from "../assets/images/curology-j7pKVQrTUsM-unsplash 1@2.png";
-import ElectricToyCar from "../assets/images/Electric-Toy-Car 1@2.png";
-import SoccerSense from "../assets/images/Soccer_Sense 1@2.png";
-import ShooterUSB from "../assets/images/USB gamepad@2.png";
-import BoxSpeaker from "../assets/images/BOOMBOX_1@2.png";
+import gaming_laptop from "../assets/images/gaming_laptop@3.png";
+import coat from "../assets/images/coat@3.png";
+import duffle_bag from "../assets/images/duffle_bag@3.png";
+import cpu_cooler from "../assets/images/cpu_cooler@3.png";
+import bookself from "../assets/images/bookself@3.png";
+import jacket from "../assets/images/jacket@3.png";
+import dogfood from "../assets/images/dogfood@3.png";
+import camera from "../assets/images/camera@3.png";
+import curologyproducts from "../assets/images/curologyproducts@3.png";
+import electric_car from "../assets/images/electric_car@3.png";
+import soccer_boot from "../assets/images/soccer_boot@3.png";
+import game_pad from "../assets/images/game_pad@3.png";
+import boombox from "../assets/images/boombox@3.png";
 
 export const products = [
   {
@@ -37,7 +35,7 @@ export const products = [
     hasCartButton: true,
   },
   {
-    src: monitor,
+    src: gaming_monitor,
     title: "IPS LCD Gaming Monitor",
     price: "$370",
     originalPrice: "$400",
@@ -53,7 +51,7 @@ export const products = [
     reviews: 99,
   },
   {
-    src: Laptop,
+    src: gaming_laptop,
     title: "ASUS FHD Gaming Laptop",
     price: "$120",
     originalPrice: "$160",
@@ -64,7 +62,7 @@ export const products = [
 
 export const sellingProducts = [
   {
-    src: Gucci,
+    src: coat,
     title: "The north coat",
     price: "$260",
     originalPrice: "$360",
@@ -72,7 +70,7 @@ export const sellingProducts = [
     reviews: 65,
   },
   {
-    src: bag,
+    src: duffle_bag,
     title: "Gucci duffle bag",
     price: "$960",
     originalPrice: "$1160",
@@ -80,7 +78,7 @@ export const sellingProducts = [
     reviews: 65,
   },
   {
-    src: gammaxx,
+    src: cpu_cooler,
     title: "RGB liquid CPU Cooler",
     price: "$160",
     originalPrice: "$170",
@@ -88,14 +86,14 @@ export const sellingProducts = [
     reviews: 65,
   },
   {
-    src: BookSelf,
+    src: bookself,
     title: "Small BookSelf",
     price: "$360",
     rating: 5,
     reviews: 65,
   },
   {
-    src: Jacket,
+    src: jacket,
     title: "Quilted Satin Jacket",
     price: "$750",
     originalPrice: "$550",
@@ -114,7 +112,7 @@ export const exploreProducts = [
   },
 
   {
-    src: Camera,
+    src: camera,
     title: "CANON EOS DSLR Camera",
     price: "$360",
     rating: 4.5,
@@ -122,21 +120,21 @@ export const exploreProducts = [
     hasCartButton: true,
   },
   {
-    src: monitorScreen,
+    src: gaming_monitor,
     title: "Monitor Smart Screen",
     price: "$800",
     rating: 4.5,
     reviews: 95,
   },
   {
-    src: gaminglaptop,
+    src: gaming_laptop,
     title: "ASUS FHD Gaming Laptop",
     price: "$700",
     rating: 5,
     reviews: 325,
   },
   {
-    src: curologyproduct,
+    src: curologyproducts,
     title: "Curology Product Set",
     price: "$500",
     rating: 5,
@@ -144,21 +142,21 @@ export const exploreProducts = [
   },
   {
     products: "New",
-    src: ElectricToyCar,
+    src: electric_car,
     title: "Kids Electric Car",
     price: "$960",
     rating: 5,
     reviews: 65,
   },
   {
-    src: SoccerSense,
+    src: soccer_boot,
     title: "Jr.Zoom Soccer Cleats",
     price: "$1160",
     rating: 5,
     reviews: 35,
   },
   {
-    src: ShooterUSB,
+    src: game_pad,
     title: "GP11 Shooter USB Gamepad",
     price: "$660",
     rating: 5,
@@ -166,14 +164,14 @@ export const exploreProducts = [
   },
   {
     products: "New",
-    src: Jacket,
+    src: jacket,
     title: "Quilted Satin Jacket",
     price: "$660",
     rating: 5,
     reviews: 65,
   },
   {
-    src: BoxSpeaker,
+    src: boombox,
     title: "Boom Box Speaker",
     price: "$350",
     rating: 5,

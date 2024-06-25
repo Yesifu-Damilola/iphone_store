@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { TopHeader } from "../../components/headerbutton/TopHeader";
-import { Navbar } from "../../components/navbar/Navbar";
-import { Footer } from "../../components/footer/Footer";
+import { Navbar } from "../../components/layout/navbar/Navbar";
+import { Footer } from "./../../components/layout/footer/Footer";
 
 const Root = () => {
   return (
@@ -9,7 +9,7 @@ const Root = () => {
       <TopHeader />
       <Navbar />
       <Outlet />
-      <Footer/>
+      <Footer />
     </>
   );
 };
