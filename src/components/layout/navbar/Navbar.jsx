@@ -135,7 +135,9 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
-      <hr className="w-full md:w-[1440px]" />
+      <div className="w-full">
+        <hr className="w-full sm:w-full lg:w-full mx-auto" />
+      </div>
     </header>
   );
 };

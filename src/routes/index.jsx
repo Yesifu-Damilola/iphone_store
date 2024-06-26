@@ -7,6 +7,7 @@ import Contact from "../pages/contact/Contact";
 import About from "../pages/about/About";
 import MyAccount from "../pages/myaccount/MyAccount";
 import Cart from "../pages/cart/Cart";
+import WishList from "../pages/wishlist/WishList";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "wishlist",
+        element: <WishList />,
       },
     ],
   },

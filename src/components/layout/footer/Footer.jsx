@@ -50,7 +50,7 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:underline">
+                <Link to="/wishlist" className="hover:underline">
                   Wishlist
                 </Link>
               </li>

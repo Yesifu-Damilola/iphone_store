@@ -5,7 +5,6 @@ import { FaStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
 import { products } from "../../../constants/Products";
-
 import { useRedirect } from "./../../../hooks/useRedirect";
 import { CustomButton } from "./../../custombutton/CustomButton";
 

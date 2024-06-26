@@ -178,3 +178,33 @@ export const exploreProducts = [
     reviews: 65,
   },
 ];
+
+export const WishList = [
+  {
+    id: 1,
+    src: duffle_bag,
+    title: "Gucci duffle bag",
+    price: "$960",
+    originalPrice: "$1160",
+    discount: "-30%",
+  },
+  {
+    id: 2,
+    src: cpu_cooler,
+    title: "RGB liquid CPU Cooler",
+    price: "$1960",
+    discount: "",
+  },
+  {
+    id: 3,
+    src: game_pad,
+    title: "GP11 Shooter USB Gamepad",
+    price: "$550",
+  },
+  {
+    id: 4,
+    src: jacket,
+    title: "Quilted Satin Jacket",
+    price: "$750",
+  },
+];
