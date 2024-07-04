@@ -1,11 +1,10 @@
-import { FaTruckFast } from "react-icons/fa6";
-import { MdOutlineHeadsetMic } from "react-icons/md";
-import { IoShieldCheckmarkOutline } from "react-icons/io5";
+
 import { Link } from "react-router-dom";
 import playstation from "../../../assets/images/playstation@3.png";
 import womanwearinghat from "../../../assets/images/womanwearinghat@3.png";
 import transparentamazonecho from "../../../assets/images/transparentamazonecho@3.png";
 import perfume from "../../../assets/images/perfume@3.png";
+import { NewArrivalItem } from "../NewArrivalItem";
 
 export const NewArrival = () => {
   return (
@@ -121,41 +120,7 @@ export const NewArrival = () => {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-14 m-auto px-4 sm:px-0">
-        <div className="flex flex-col items-center sm:items-start">
-          <button className="bg-[#000000] border-8 rounded-full border-violet-200 h-20 w-20 my-6">
-            <FaTruckFast className="text-[#FAFAFA] w-10 h-10 m-auto" />
-          </button>
-          <div className="text-center sm:text-left">
-            <h5 className="text-base font-semibold pb-1">
-              FREE AND FAST DELIVERY
-            </h5>
-            <p className="text-sm">Free delivery for all orders over $140</p>
-          </div>
-        </div>
-        <div className="flex flex-col items-center sm:items-start">
-          <button className="bg-[#000000] border-8 rounded-full border-violet-200 h-20 w-20 my-6">
-            <MdOutlineHeadsetMic className="text-[#FAFAFA] w-10 h-10 m-auto" />
-          </button>
-          <div className="text-center sm:text-left">
-            <h5 className="text-base font-semibold pb-1">
-              24/7 CUSTOMER SERVICE
-            </h5>
-            <p className="text-sm">Friendly 24/7 customer support</p>
-          </div>
-        </div>
-        <div className="flex flex-col items-center sm:items-start">
-          <button className="bg-[#000000] border-8 rounded-full border-violet-200 h-20 w-20 my-6">
-            <IoShieldCheckmarkOutline className="text-[#FAFAFA] w-10 h-10 m-auto" />
-          </button>
-          <div className="text-center sm:text-left">
-            <h5 className="text-base font-semibold pb-1">
-              MONEY BACK GUARANTEE
-            </h5>
-            <p className="text-sm">We return money within 30 days</p>
-          </div>
-        </div>
-      </div>
+      <NewArrivalItem />
     </div>
   );
 };

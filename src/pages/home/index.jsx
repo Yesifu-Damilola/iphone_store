@@ -5,13 +5,18 @@ import { SellingProducts } from "./../../components/features/home/SellingProduct
 import { MusicExperience } from "./../../components/features/home/MusicExperience";
 import { ExploreProducts } from "./../../components/features/home/ExploreProducts";
 import { NewArrival } from "./../../components/features/home/NewArrival";
+import { products } from "../../constants/Products";
 
 const Home = () => {
   return (
     <>
       <ShowCase />
-      <FlashSales />
-      <Category />
+      <FlashSales
+        title={"Today’s"}
+        subTitle="Flash Sales"
+        products={products}
+      />
+      <Category products={products} />
       <SellingProducts />
       <MusicExperience />
       <ExploreProducts />

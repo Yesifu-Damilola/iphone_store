@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import holdingshoppingbags from "../../assets/images/holdingshoppingbags@3.png";
+import { AboutItem } from "./AboutItem";
+import { AboutAuthor } from "./AboutAuthor";
+import { NewArrivalItem } from "../../components/features/NewArrivalItem";
+
 const About = () => {
   return (
-    <section className="container mx-auto py-8">
+    <section className="container mx-auto py-8 ">
       <div className="flex flex-col sm:flex-row items-start sm:items-start mb-4 py-8 lg:px-0 ml-4">
         <Link
           to="/"
@@ -43,6 +47,11 @@ const About = () => {
             className="w-full h-auto lg:w-[837px] lg:h-[609px]"
           />
         </div>
+      </div>
+      <AboutItem />
+      <AboutAuthor />
+      <div className="py-8">
+        <NewArrivalItem />
       </div>
     </section>
   );

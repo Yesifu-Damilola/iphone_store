@@ -8,6 +8,10 @@ import About from "../pages/about/About";
 import MyAccount from "../pages/myaccount/MyAccount";
 import Cart from "../pages/cart/Cart";
 import WishList from "../pages/wishlist/WishList";
+import NotFound from "../pages/notfound/NotFound";
+import GamePad from "../pages/gamepad/GamePad";
+import ProductRoot from "../pages/products/Root";
+import Products from "../pages/products";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +50,28 @@ export const router = createBrowserRouter([
         path: "wishlist",
         element: <WishList />,
       },
+      {
+        path: "products",
+        element: <ProductRoot />,
+        children: [
+          {
+            index: true,
+            element: <Products />,
+          },
+          {
+            path: ":id",
+            element: <GamePad />,
+          },
+        ],
+      },
     ],
+  },
+  {
+    path: "gamepad",
+    element: <GamePad />,
+  },
+  {
+    path: "*",
+    element: <NotFound showHeaderFooter={true} />,
   },
 ]);
