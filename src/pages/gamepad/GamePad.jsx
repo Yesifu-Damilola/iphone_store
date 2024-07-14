@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 
-
 import GamepadItem from "./GamepadItem";
 
 const GamePad = () => {
   return (
-    <div className="container m-auto px-1">
+    <div>
       <div className="flex flex-col sm:flex-row items-center sm:items-start mb-4 lg:mb-0 lg:px-4 py-10">
         <Link
           to="/"
@@ -29,7 +28,6 @@ const GamePad = () => {
         </Link>
       </div>
       <GamepadItem />
-      
     </div>
   );
 };
