@@ -11,6 +11,7 @@ const GamepadItem = () => {
   const [count, setCount] = useState(2);
   const [liked, setLiked] = useState(false);
   const [selectedColor, setSelectedColor] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
 
   const handleDecrease = () => {
     setCount((prevCount) => Math.max(prevCount - 1, 0));
@@ -26,6 +27,10 @@ const GamepadItem = () => {
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
+  };
+
+  const handleSizeChange = (size) => {
+    setSelectedSize(size);
   };
 
   return (
@@ -102,13 +107,17 @@ const GamepadItem = () => {
             </div>
             <div className="flex flex-col md:flex-row md:items-center gap-3 mt-2">
               <p className="text-xl text-left">Size:</p>
-              <button className="border px-3 py-1 rounded text-sm">XS</button>
-              <button className="border px-3 py-1 rounded text-sm">S</button>
-              <button className="text-white border px-3 py-1 rounded bg-primary text-sm">
-                M
-              </button>
-              <button className="border px-3 py-1 rounded text-sm">L</button>
-              <button className="border px-3 py-1 rounded text-sm">XL</button>
+              {["XS", "S", "M", "L", "XL"].map((size) => (
+                <button
+                  key={size}
+                  className={`border px-3 py-1 rounded text-sm ${
+                    selectedSize === size ? "bg-primary text-white" : ""
+                  }`}
+                  onClick={() => handleSizeChange(size)}
+                >
+                  {size}
+                </button>
+              ))}
             </div>
             <div className="flex gap-3 py-3">
               <div className="space-x-3 flex items-center justify-between p-2">
