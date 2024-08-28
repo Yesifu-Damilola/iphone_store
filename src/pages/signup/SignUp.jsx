@@ -21,7 +21,16 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDafault();
-    console.log("Form submitted:", formData);
+    console.log("Account created with:", formData);
+
+    localStorage.setItem("user", JSON.stringify(formData));
+    alert("Account created successfullty!");
+
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -84,7 +93,8 @@ const SignUp = () => {
                 className="text-base py-3 sm:px-8 sm:py-3 md:px-10 md:py-4 lg:px-10 lg:py-3 px-5 text-[#FAFAFA]"
                 text="Create Account"
                 value="Create Account"
-                onClick={() => Link("/CreateAccount")}
+                type={"submit"}
+                // onClick={() => Link("/CreateAccount")}
               />
             </div>
 

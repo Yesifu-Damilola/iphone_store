@@ -5,22 +5,32 @@ import { Link } from "react-router-dom";
 import { CustomButton } from "../../components/custombutton/CustomButton";
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    contact: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState({});
 
   const handleSubmit = (e) => {
-    e.preventDafault();
-    console.log("Form submitted:", formData);
+    e.preventDefault();
+
+    if (email.trim() === "")
+      return setError({
+        email: "Email is required",
+      });
+
+    if (password.trim() === "" && email)
+      return setError({
+        password: "Password is required",
+        email: "",
+      });
+    const data = {
+      email,
+      password,
+    };
+    alert("login successfully");
+    localStorage.setItem("auth", JSON.stringify(data));
+    setError({});
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -44,32 +54,33 @@ const Login = () => {
           <div>
             <input
               type="email"
-              id="email"
-              name="email"
-              placeholder="Email or Phone Number"
-              value={formData.email}
-              onChange={handleChange}
-              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
               className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:outline-none  py-2"
             />
+            {error.email && (
+              <small className="text-red-500">{error?.email}</small>
+            )}
           </div>
           <div>
             <input
               type="password"
               id="password"
-              name="password"
-              placeholder="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
+              value={password}
+              placeholder="Enter your password"
+              onChange={(e) => setPassword(e.target.value)}
               className="text-base mt-1 block w-full border-0 border-b-2 border-gray-300 focus:outline-none  py-2"
             />
+            {error.password && (
+              <small className="text-red-500">{error?.password}</small>
+            )}
           </div>
           <div className="flex items-center justify-between m-auto">
             <CustomButton
-              className="text-base text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 lg:px-10 lg:py-4"
               text="Log In"
-              onClick={() => Link("/LogIn")}
+              type={"submit"}
+              className="text-base text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 lg:px-10 lg:py-4"
             />
             <div>
               <Link to="/" className="pl-2">

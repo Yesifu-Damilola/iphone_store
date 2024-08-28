@@ -13,6 +13,7 @@ import GamePad from "../pages/gamepad/GamePad";
 import ProductRoot from "../pages/products/Root";
 import Products from "../pages/products";
 
+
 export const router = createBrowserRouter([
   {
     path: "/",

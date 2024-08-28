@@ -9,8 +9,8 @@ export default {
         },
         secondary: {
           DEFAULT: "#F5F5F5",
+          white: "FAFAFA",
         },
-       
       },
     },
   },
