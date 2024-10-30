@@ -33,28 +33,28 @@ export const Category = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8 pt-14 pb-6">
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8 pt-14 pb-6 ">
+          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
             <CiMobile4 className="text-6xl" />
             <p className="mt-4 text-base">Phones</p>
           </div>
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px]">
+          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
             <HiOutlineComputerDesktop className="text-6xl" />
             <p className="text-base mt-4">Computers</p>
           </div>
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px">
+          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px hover:bg-primary transform transition-transform duration-300 hover:scale-105">
             <TbDeviceWatchStats className="text-6xl" />
             <p className="text-base mt-4">SmartWatch</p>
           </div>
-          <div className=" rounded p-4 flex flex-col items-center w-full h-[145px] text-white bg-[#DB4444]">
+          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
             <FiCamera className="text-6xl" />
             <p className="text-base mt-4">Camera</p>
           </div>
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px]">
+          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
             <CiHeadphones className="text-6xl" />
             <p className="text-base mt-4">HeadPhones</p>
           </div>
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px]">
+          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
             <TbDeviceGamepad className="text-6xl" />
             <p className="text-base mt-4 ">Gaming</p>
           </div>

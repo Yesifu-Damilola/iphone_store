@@ -8,7 +8,8 @@ export const Logout = ({ email, onLogout }) => {
       <p>You are logged in as {email}</p>
       <CustomButton
         onClick={onLogout}
-        className="bg-red-500 text-white py-2 px-4 rounded w-full mt-4"
+        className="bg-red-500 text-white py-2 px-4 rounded
+         w-full mt-4"
       />
       Logout
     </div>

@@ -6,7 +6,7 @@ import { NewArrivalItem } from "../../components/features/NewArrivalItem";
 
 const About = () => {
   return (
-    <section className="container mx-auto py-8 ">
+    <section className="container mx-auto py-8 px-4">
       <div className="flex flex-col sm:flex-row items-start sm:items-start mb-4 py-8 lg:px-0 ml-4">
         <Link
           to="/"

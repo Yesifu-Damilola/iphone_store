@@ -6,7 +6,7 @@ const CustomSearch = () => {
       <input
         type="text"
         placeholder="What are you looking for?"
-        className="text-xs py-3 px-6 flex-1   focus:outline-none border-none bg-transparent"
+        className="text-xs py-3 px-6 flex-1 focus:outline-none border-none bg-transparent"
       />
       <div className="p-2 ">
         <SearchIcon className="h-6 w-5 text-black" />

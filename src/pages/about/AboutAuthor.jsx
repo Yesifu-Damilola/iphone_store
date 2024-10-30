@@ -12,7 +12,7 @@ export const AboutAuthor = () => {
             <img src={Matlab} alt="Matlab" className=" w-full h-full " />
           </div>
           <h2 className="text-3xl/8 font-medium text-left pt-2 pb-1">
-            Yesifu Matlab
+           Damilola Yesifu
           </h2>
           <p className="text-base text-left ">Founder & Chairman</p>
           <div className="flex md:justify-start gap-4 py-1">
