@@ -1,12 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { useRedirect } from "./../../../hooks/useRedirect";
-import { CustomButton } from "./../../custombutton/CustomButton";
+// import { useRedirect } from "./../../../hooks/useRedirect";
 import { FlashSalesItem } from "./FlashSalesItem";
-
-
+import { Link, useNavigate } from "react-router-dom";
+import { CustomButton } from "../../../components/custombutton/CustomButton";
 
 const strongElements = document.querySelectorAll("#timeContainer strong");
 
@@ -22,9 +21,10 @@ export const FlashSales = ({
   type = "home",
   className = "lg:grid-cols-5 my-10",
   products,
-  showCatIcon = false,
+  showCartIcon,
 }) => {
-  const link = useRedirect();
+  const navigate = useNavigate();
+  // const Link = useRedirect();
   return (
     <>
       <div className="container mx-auto p-4">
@@ -88,7 +88,11 @@ export const FlashSales = ({
         </div>
         <div className={`grid grid-cols-1 sm:grid-cols-2  gap-4 ${className}`}>
           {products?.map((item, index) => (
-            <FlashSalesItem item={item} key={index} showCatIcon={showCatIcon} />
+            <FlashSalesItem
+              item={item}
+              key={index}
+              showCartIcon={showCartIcon}
+            />
           ))}
         </div>
 
@@ -96,8 +100,8 @@ export const FlashSales = ({
           <div className="flex m-auto items-center justify-center py-6">
             <CustomButton
               className="text-sm text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 lg:px-10 lg:py-4"
-              text=" View All Products"
-              onClick={() => link("/products")}
+              text="View All Products"
+              onClick={() => navigate("/products")}
             />
           </div>
         ) : null}

@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
-import { Account } from "../../../pages/account/Account";
+import Account from "../../account/Account";
 import CustomSearch from "../../customsearch/CustomSearch";
 import { navRoutes, subMenuLists } from "../../../constants/navbar";
+import { useCurrentUser } from "../../../hooks/auth/useCurrentUser";
+import { Users } from "../../../assets/icons/Users";
 
 export const Navbar = () => {
+  const { user } = useCurrentUser();
+  console.log(user);
   const [profileVisible, setProfileVisible] = useState(false);
 
   const toggleVisibility = () => {
@@ -29,7 +32,6 @@ export const Navbar = () => {
               Exclusive
             </Link>
           </div>
-
           <div className="hidden md:flex items-center gap-6 ">
             {navRoutes.map((route, i) => (
               <Link
@@ -40,31 +42,38 @@ export const Navbar = () => {
                 {route?.name}
               </Link>
             ))}
+            {!user && (
+              <Link
+                to={"/signup"}
+                className="text-black hover:text-gray-700 text-base hover:underline"
+              >
+                SignUp
+              </Link>
+            )}
           </div>
-
           <div className="md:flex hidden  items-center">
             <CustomSearch />
-            {subMenuLists?.map((menu) => {
-              return menu?.name === "users" ? (
-                <div className="p-2">
-                  <menu.icon
-                    className="h-6 w-6 over:underline"
-                    onClick={toggleVisibility}
-                  />
-                  {profileVisible && <Account />}
-                </div>
-              ) : (
-                <Link to={menu?.path} className="p-2">
-                  <menu.icon className="h-6 w-6 text-black hover:underline" />
-                </Link>
-              );
-            })}
+            {subMenuLists?.map((menu) => (
+              <Link to={menu?.path} className="p-2" key={menu.path}>
+                <menu.icon className="h-6 w-6 text-black hover:underline" />
+              </Link>
+            ))}
+            {user && (
+              <div className="p-2">
+                <Users
+                  className="h-6 w-6 over:underline"
+                  onClick={toggleVisibility}
+                />
+                {profileVisible && <Account />}
+              </div>
+            )}
           </div>
+
           <div className="md:hidden flex  gap-3">
             <div className="flex items-center">
               {subMenuLists?.map((menu) => {
                 return menu?.name === "users" ? (
-                  <div className="p-2">
+                  <div className="p-2" key={menu.name}>
                     <menu.icon
                       className="h-6 w-6 over:underline"
                       onClick={toggleVisibility}
@@ -99,7 +108,6 @@ export const Navbar = () => {
             </button>
           </div>
         </div>
-        {/* Mobile Response */}
         <div className={`${isOpen ? "block" : "hidden"} md:hidden mt-4`}>
           {navRoutes.map((route, i) => (
             <Link

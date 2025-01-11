@@ -1,13 +1,14 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
-import { AddToCatButton } from "../../AddToCatButton";
 import { Link } from "react-router-dom";
+import { AddToCartButton } from "../../AddToCartButton";
 
-export const FlashSalesItem = ({ item, showCatIcon }) => {
+export const FlashSalesItem = ({ item, handleAddToCart, showCartIcon }) => {
   return (
     <div>
-      <div className="bg-[#F5F5F5] rounded p-4 relative">
+      <div className="group bg-[#F5F5F5] rounded p-4 relative">
         <div className="flex items-center justify-between mb-4">
           <div>
             <span className="bg-[#DB4444] text-white text-xs px-2 py-1 rounded">
@@ -19,14 +20,19 @@ export const FlashSalesItem = ({ item, showCatIcon }) => {
             <FiEye className="bg-white border rounded-full text-xl p-1" />
           </div>
         </div>
-        <Link to={`/products/${4}`} className="w-[180px] h-[190px] mx-auto">
+        <Link to={`/products/${4}`} className="w-[180px] h-[190px] mx-auto ">
           <img
             src={item.src}
             alt={item.title}
-            className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto"
+            className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto pb-5"
           />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ">
+            <AddToCartButton
+              handleAddToCart={handleAddToCart}
+              showCartIcon={showCartIcon}
+            />
+          </div>
         </Link>
-        {item.hasCartButton && <AddToCatButton showCartIcon={showCatIcon} />}
       </div>
       <p className="mt-4 text-base font-semibold">{item.title}</p>
       <p className="mt-2 text-sm">

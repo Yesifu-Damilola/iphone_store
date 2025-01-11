@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { exploreProducts } from "../../../constants/Products";
 import { CustomButton } from "../../custombutton/CustomButton";
+import { AddToCartButton } from "../../AddToCartButton";
 
-
-export const ExploreProducts = () => {
+export const ExploreProducts = ({ handleAddToCart }) => {
   return (
     <>
       <div className="container mx-auto p-4 pt-10">
@@ -34,7 +35,7 @@ export const ExploreProducts = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
           {exploreProducts?.map((item, index, arr) => (
             <div key={index}>
-              <div className="bg-[#F5F5F5] rounded p-4 relative">
+              <div className="group bg-[#F5F5F5] rounded p-4 relative">
                 <div className="flex items-center justify-between mb-4">
                   {item.products && (
                     <div>
@@ -57,15 +58,13 @@ export const ExploreProducts = () => {
                     alt={item.title}
                     className="w-full h-auto md:w-[140px] md:h-[160px] mx-auto"
                   />
-                </div>
-                {item.hasCartButton && (
                   <Link
                     to="#"
-                    className="absolute inset-x-0 bottom-0 bg-[#000000] text-[#ffffff] text-center text-sm py-2 w-full rounded-b-md"
+                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 "
                   >
-                    Add To Cart
+                    <AddToCartButton handleAddToCart={handleAddToCart} />
                   </Link>
-                )}
+                </div>
               </div>
               <p className="mt-4 text-base font-semibold">{item.title}</p>
               <p className="mt-2 text-sm">

@@ -1,6 +1,6 @@
 import { Cart } from "../assets/icons/Cart";
 import { Heart } from "../assets/icons/Heart";
-import { Users } from "../assets/icons/Users";
+
 export const navRoutes = [
   {
     name: "Home",
@@ -14,10 +14,6 @@ export const navRoutes = [
     name: "About",
     path: "./about",
   },
-  {
-    name: "SignUp",
-    path: "/signup",
-  },
 ];
 
 export const subMenuLists = [
@@ -30,9 +26,5 @@ export const subMenuLists = [
     name: "cart",
     icon: Cart,
     path: "/cart",
-  },
-  {
-    name: "users",
-    icon: Users,
   },
 ];
