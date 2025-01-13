@@ -13,7 +13,7 @@ const SignUp = () => {
       subtitle={"Enter your details below"}
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
-        <div>
+        <div>  
           <input
             {...register("fullName", { required: true })}
             aria-invalid={errors.fullName ? "true" : "false"}

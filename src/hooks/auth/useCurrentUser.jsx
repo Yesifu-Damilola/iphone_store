@@ -15,7 +15,7 @@ export const useCurrentUser = () => {
       setUser(data);
     }
   }, [data, status, setUser]);
-  console.log(user);
+
   return {
     user,
     isLoading,

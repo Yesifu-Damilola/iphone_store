@@ -1,4 +1,3 @@
-import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import { CustomButton } from "../../components/custombutton/CustomButton";
 import { useSignIn } from "../../hooks/auth/useSignIn";
@@ -50,7 +49,6 @@ const Login = () => {
             className="text-base text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 lg:px-10 lg:py-4"
           />
 
-          <ToastContainer />
           <div>
             <Link to="/" className="pl-2">
               Forget Password?

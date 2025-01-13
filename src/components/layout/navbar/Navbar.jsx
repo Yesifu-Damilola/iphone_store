@@ -8,6 +8,7 @@ import { Users } from "../../../assets/icons/Users";
 
 export const Navbar = () => {
   const { user } = useCurrentUser();
+
   console.log(user);
   const [profileVisible, setProfileVisible] = useState(false);
 
@@ -58,7 +59,7 @@ export const Navbar = () => {
                 <menu.icon className="h-6 w-6 text-black hover:underline" />
               </Link>
             ))}
-            {user && (
+            {user?.email && (
               <div className="p-2">
                 <Users
                   className="h-6 w-6 over:underline"

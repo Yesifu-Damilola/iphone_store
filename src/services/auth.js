@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { supabase } from "../supabase/supabaseClients";
+
 // REgister User API
 export const signUp = async (values) => {
   const { fullName, email, password } = values;
@@ -25,6 +26,7 @@ export const signUp = async (values) => {
     return userProfileData;
   }
 };
+
 // Get Current User
 export const getCurrentUser = async () => {
   const {
@@ -45,6 +47,7 @@ export const getCurrentUser = async () => {
     return profile;
   }
 };
+
 // SignIn API
 export const signIn = async (values) => {
   const { email, password } = values;
@@ -73,4 +76,15 @@ export const signIn = async (values) => {
 
     return profile;
   }
+};
+
+// SignOut Api
+export const logOut = async () => {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    return toast.error(`LogOut failed: ${error.message}`);
+  }
+
+  return toast.success("You have been logged out successfully.");
 };

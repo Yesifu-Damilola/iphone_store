@@ -20,6 +20,7 @@ export const useSignUp = () => {
       password: "",
     },
   });
+
   const { isPending, mutate } = useMutation({
     mutationFn: signUp,
     onSuccess: (data) => {

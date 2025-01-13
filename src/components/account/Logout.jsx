@@ -1,23 +1,30 @@
-import { useNavigate } from "react-router-dom";
 import { Logouticon } from "../../assets/icons/Logouticon";
+import { useLogout } from "../../hooks/auth/useLogout";
 
 export const Logout = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
-
+  // const handleLogout = async () => {
+  //   try {
+  //     await logOut();
+  //     localStorage.clear();
+  //     navigate("/");
+  //     console.log("Navigating to Home...");
+  //   } catch (error) {
+  //     console.error("Logout error:", error);
+  //   }
+  // };
+  const { isPending, mutate } = useLogout();
   return (
-    <div
+    <button
       className="flex gap-3 md:flex-row md:gap-x-4 py-2 cursor-pointer"
-      onClick={handleLogout}
+      onClick={() => mutate()}
+      disabled={isPending}
     >
-      <span>
-        <Logouticon />
+      <Logouticon />
+      <span className="text-white text-sm md:text-base">
+        {isPending ? "logging out..." : "logout"}
       </span>
-      <h4 className="text-white text-sm md:text-base">logout</h4>
-    </div>
+    </button>
   );
 };
