@@ -52,7 +52,7 @@ export const ShowCase = () => {
             </div>
           </div>
           <div className="hidden md:block h-32 md:h-48 lg:h-72 xl:h-96 border-l-2 border-gray-300 mr-1 ml-10"></div>
-          <div className="flex flex-col md:flex-row items-center justify-center px-1 w-full md:w-auto pt-8 bg-black">
+          <div className="flex flex-col md:flex-row items-center justify-center px-1 w-full md:w-auto bg-black mt-8">
             <div className="text-center md:text-left w-full md:w-[600px] h-auto md:h-[344px] p-4 ">
               <div className="flex flex-col md:flex-row items-center md:items-start text-white text-base gap-6 mx-4 md:mx-[70px] my-4 md:my-[40px]">
                 <img
