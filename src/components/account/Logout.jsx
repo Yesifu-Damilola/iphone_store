@@ -2,18 +2,6 @@ import { Logouticon } from "../../assets/icons/Logouticon";
 import { useLogout } from "../../hooks/auth/useLogout";
 
 export const Logout = () => {
-  // const navigate = useNavigate();
-
-  // const handleLogout = async () => {
-  //   try {
-  //     await logOut();
-  //     localStorage.clear();
-  //     navigate("/");
-  //     console.log("Navigating to Home...");
-  //   } catch (error) {
-  //     console.error("Logout error:", error);
-  //   }
-  // };
   const { isPending, mutate } = useLogout();
   return (
     <button

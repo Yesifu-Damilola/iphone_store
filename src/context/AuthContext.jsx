@@ -13,7 +13,7 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(getUser ? JSON.parse(getUser) : null);
   const setLogout = () => {
     setUser(null);
-    localStorage.clear();
+    localStorage.clear(); 
   };
   useEffect(() => {
     if (user) {
