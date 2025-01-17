@@ -22,7 +22,7 @@ export const FlashSales = ({
   className = "lg:grid-cols-5 my-10",
   products,
   showCartIcon,
-  targetDate = "2025-01-20T12:00:00Z",
+  targetDate = "2025-01-18T12:00:00Z",
 }) => {
   const navigate = useNavigate();
 

@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import playstation from "../../../assets/images/playstation@3.png";
 import womanwearinghat from "../../../assets/images/womanwearinghat@3.png";
@@ -106,7 +105,7 @@ export const NewArrival = () => {
                   Perfume
                 </h4>
                 <p className="mt-2 text-sm text-left text-[#FAFAFA]">
-                  GUCCI INTENSE OUD EDP
+                  Gucci Intense oud edp
                 </p>
                 <Link
                   to="/"
