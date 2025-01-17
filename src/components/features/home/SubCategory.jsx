@@ -7,7 +7,7 @@ import { TbDeviceGamepad } from "react-icons/tb";
 import { TbDeviceWatchStats } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
-export const Category = () => {
+export const SubCategory = () => {
   return (
     <main>
       <div className="container mx-auto p-4">

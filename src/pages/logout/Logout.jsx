@@ -17,7 +17,7 @@ export const Logout = ({ email, Logout }) => {
   };
 
   return (
-    <div className=" p-6 rounded shadow-md w-80">
+    <div className="p-6 rounded shadow-md w-80">
       <h2 className="text-2xl font-semibold mb-4">Welcome back!</h2>
       <p>You are logged in as {email}</p>
       <CustomButton

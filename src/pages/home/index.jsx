@@ -1,6 +1,6 @@
 import { ShowCase } from "../../components/features/home/ShowCase";
 import { FlashSales } from "./../../components/features/home/FlashSales";
-import { Category } from "./../../components/features/home/Category";
+import { SubCategory } from "./../../components/features/home/SubCategory";
 import { SellingProducts } from "./../../components/features/home/SellingProducts";
 import { MusicExperience } from "./../../components/features/home/MusicExperience";
 import { ExploreProducts } from "./../../components/features/home/ExploreProducts";
@@ -16,7 +16,7 @@ const Home = () => {
         subTitle="Flash Sales"
         products={products}
       />
-      <Category products={products} />
+      <SubCategory products={products} />
       <SellingProducts />
       <MusicExperience />
       <ExploreProducts />

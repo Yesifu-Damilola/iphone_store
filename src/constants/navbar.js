@@ -14,6 +14,10 @@ export const navRoutes = [
     name: "About",
     path: "./about",
   },
+  // {
+  //   name: "SignUp",
+  //   path: "./signup",
+  // },
 ];
 
 export const subMenuLists = [

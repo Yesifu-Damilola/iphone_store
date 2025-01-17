@@ -3,26 +3,36 @@ import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import apple from "../../../assets/images/Applelogo@3.png";
 import heroiphone from "../../../assets/images/heroiphone2@3.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "./../../../supabase/supabaseClients";
 
-const categories = [
-  { name: "Woman’s Fashion", link: "/" },
-  { name: "Men’s Fashion", link: "/" },
-  { name: "Electronics" },
-  { name: "Home & Lifestyle" },
-  { name: "Medicine" },
-  { name: "Sports & Outdoor" },
-  { name: "Baby’s & Toys" },
-  { name: "Groceries & Pets" },
-  { name: "Health & Beauty" },
-];
+
 
 export const ShowCase = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   const toggleList = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data: categories, error } = await supabase
+        .from("categories")
+        .select("*");
+
+      if (error) {
+        console.error("Error fetching categories:", error.message);
+        return;
+      }
+      console.log(categories);
+      setCategories(categories || []);
+    };
+    fetchCategories();
+  }, []);
+
+  const displayedCategories = categories.length > 0 && categories;
 
   return (
     <>
@@ -36,21 +46,22 @@ export const ShowCase = () => {
           </button>
           <div className={`${isOpen ? "block" : "hidden"} md:block`}>
             <div className="text-black text-base space-y-4 w-full md:w-auto pt-8">
-              {categories.map((items, index) =>
-                items.link ? (
+              {displayedCategories.length > 0 ? (
+                displayedCategories.map((item) => (
                   <Link
-                    key={index}
-                    to={items.link}
-                    className="flex items-center gap-x-4 md:gap-x-5"
+                    key={item.id}
+                    to={item.link || "#"}
+                    className="flex items-center gap-x-4 md:gap-x-5 capitalize"
                   >
-                    {items.name} <FaAngleRight className="ml-2 md:ml-4" />
+                    {item.name} <FaAngleRight className="ml-2 md:ml-4" />
                   </Link>
-                ) : (
-                  <p key={index}>{items.name}</p>
-                )
+                ))
+              ) : (
+                <p>No categories available</p>
               )}
             </div>
           </div>
+
           <div className="hidden md:block h-32 md:h-48 lg:h-72 xl:h-96 border-l-2 border-gray-300 mr-1 ml-10"></div>
           <div className="flex flex-col md:flex-row items-center justify-center px-1 w-full md:w-auto bg-black mt-8">
             <div className="text-center md:text-left w-full md:w-[600px] h-auto md:h-[344px] p-4 ">
