@@ -109,17 +109,26 @@ export const Navbar = () => {
             </button>
           </div>
         </div>
-        <div className={`${isOpen ? "block" : "hidden"} md:hidden mt-4`}>
+        <div
+          className={`${isOpen ? "block" : "hidden"} md:hidden mt-4`}
+        >
           {navRoutes.map((route, i) => (
             <Link
               to={route?.path}
-              className="block text-black hover:text-gray-700 text-base hover:underline"
+              className="block text-black hover:text-gray-700 text-base hover:underline   "
               key={`${route.name}-${i}`}
             >
               {route?.name}
             </Link>
           ))}
-
+          {!user && (
+            <Link
+              to={"/signup"}
+              className="text-black hover:text-gray-700 text-base hover:underline "
+            >
+              SignUp
+            </Link>
+          )}
           <div className="py-2">
             <CustomSearch />
           </div>
