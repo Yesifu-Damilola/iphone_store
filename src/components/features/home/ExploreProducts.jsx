@@ -2,22 +2,15 @@
 import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
-
 import { CustomButton } from "../../custombutton/CustomButton";
 import { AddToCartButton } from "../../AddToCartButton";
 import { supabase } from "../../../supabase/supabaseClients";
 import { useQuery } from "@tanstack/react-query";
 
-const fetchExploreOurProducts = async (userId) => {
-  // console.log("User ID:", userId);
-  // if (!userId || typeof userId !== "string") {
-  //   throw new Error("Invalid ID");
-  // }
-
+const fetchExploreOurProducts = async () => {
   const { data: products, error } = await supabase
     .from("products")
-    .select("*")
-    .eq("id", userId);
+    .select("id,product_name, description, product_images, price, originalPrice");
 
   console.log("Fetched user data:", products);
 
@@ -73,14 +66,14 @@ export const ExploreProducts = ({ handleAddToCart }) => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
-          {products?.map((item, index, arr) => (
+          {products.map((item, index, arr) => (
             <div key={index}>
               <div className="group bg-[#F5F5F5] rounded p-4 relative">
                 <div className="flex items-center justify-between mb-4">
                   {item.category && (
                     <div>
                       <span className="bg-[#00FF66] text-white text-xs px-2 py-1 rounded">
-                        {item.category || "Uncategorized"}
+                        {item.category}
                       </span>
                     </div>
                   )}
@@ -94,8 +87,8 @@ export const ExploreProducts = ({ handleAddToCart }) => {
 
                 <div className="lg:w-[180px] md:h-[190px] mx-auto">
                   <img
-                    src={item.imageUrl}
-                    alt={item.title || "Product Image"}
+                    src={item.product_images?.[0]}
+                    alt={item.title}
                     className="w-full h-auto md:w-[140px] md:h-[160px] mx-auto"
                   />
                   <Link
@@ -108,7 +101,7 @@ export const ExploreProducts = ({ handleAddToCart }) => {
                   </Link>
                 </div>
               </div>
-              <p className="mt-4 text-base font-semibold">{item.title}</p>
+              <p className="mt-4 text-base font-semibold">{item.product_name}</p>
               <p className="mt-2 text-sm">
                 {item.price}
                 {item.originalPrice && (
