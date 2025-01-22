@@ -10,7 +10,9 @@ import { useQuery } from "@tanstack/react-query";
 const fetchExploreOurProducts = async () => {
   const { data: products, error } = await supabase
     .from("products")
-    .select("id,product_name, description, product_images, price, originalPrice");
+    .select(
+      "id,product_name, description, product_images, price, originalPrice"
+    );
 
   console.log("Fetched user data:", products);
 
@@ -66,7 +68,7 @@ export const ExploreProducts = ({ handleAddToCart }) => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
-          {products.map((item, index, arr) => (
+          {products.slice(0, 15).map((item, index, arr) => (
             <div key={index}>
               <div className="group bg-[#F5F5F5] rounded p-4 relative">
                 <div className="flex items-center justify-between mb-4">
@@ -101,7 +103,9 @@ export const ExploreProducts = ({ handleAddToCart }) => {
                   </Link>
                 </div>
               </div>
-              <p className="mt-4 text-base font-semibold">{item.product_name}</p>
+              <p className="mt-4 text-base font-semibold">
+                {item.product_name}
+              </p>
               <p className="mt-2 text-sm">
                 {item.price}
                 {item.originalPrice && (
