@@ -2,11 +2,51 @@
 import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { exploreProducts } from "../../../constants/Products";
+
 import { CustomButton } from "../../custombutton/CustomButton";
 import { AddToCartButton } from "../../AddToCartButton";
+import { supabase } from "../../../supabase/supabaseClients";
+import { useQuery } from "@tanstack/react-query";
+
+const fetchExploreOurProducts = async (userId) => {
+  // console.log("User ID:", userId);
+  // if (!userId || typeof userId !== "string") {
+  //   throw new Error("Invalid ID");
+  // }
+
+  const { data: products, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("id", userId);
+
+  console.log("Fetched user data:", products);
+
+  if (error) {
+    console.error("Supabase fetch error:", error.message);
+    throw new Error(error.message);
+  }
+  return products;
+};
 
 export const ExploreProducts = ({ handleAddToCart }) => {
+  const {
+    data: products = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchExploreOurProducts,
+  });
+
+  if (isLoading) {
+    return <p className="text-center">Loading products...</p>;
+  }
+
+  if (isError) {
+    return <p className="text-center">Error: {error.message}</p>;
+  }
+
   return (
     <>
       <div className="container mx-auto p-4 pt-10">
@@ -33,18 +73,18 @@ export const ExploreProducts = ({ handleAddToCart }) => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
-          {exploreProducts?.map((item, index, arr) => (
+          {products?.map((item, index, arr) => (
             <div key={index}>
               <div className="group bg-[#F5F5F5] rounded p-4 relative">
                 <div className="flex items-center justify-between mb-4">
-                  {item.products && (
+                  {item.category && (
                     <div>
                       <span className="bg-[#00FF66] text-white text-xs px-2 py-1 rounded">
-                        {item.products}
+                        {item.category || "Uncategorized"}
                       </span>
                     </div>
                   )}
-                  {(index >= arr.length - 5 || !item.products) && (
+                  {(index >= arr.length - 5 || !item.category) && (
                     <div className="space-y-2">
                       <FiHeart className="bg-white border rounded-full text-xl p-1" />
                       <FiEye className="bg-white border rounded-full text-xl p-1" />
@@ -54,15 +94,17 @@ export const ExploreProducts = ({ handleAddToCart }) => {
 
                 <div className="lg:w-[180px] md:h-[190px] mx-auto">
                   <img
-                    src={item.src}
-                    alt={item.title}
+                    src={item.imageUrl}
+                    alt={item.title || "Product Image"}
                     className="w-full h-auto md:w-[140px] md:h-[160px] mx-auto"
                   />
                   <Link
                     to="#"
                     className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 "
                   >
-                    <AddToCartButton handleAddToCart={handleAddToCart} />
+                    <AddToCartButton
+                      handleAddToCart={() => handleAddToCart(item)}
+                    />
                   </Link>
                 </div>
               </div>

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { AddToCartButton } from "../../AddToCartButton";
 
 export const FlashSalesItem = ({ item, handleAddToCart, showCartIcon }) => {
+  console.log(item.product_images, "products", item);
   return (
     <div>
       <div className="group bg-[#F5F5F5] rounded p-4 relative">
@@ -22,7 +23,7 @@ export const FlashSalesItem = ({ item, handleAddToCart, showCartIcon }) => {
         </div>
         <Link to={`/products/${4}`} className="w-[180px] h-[190px] mx-auto ">
           <img
-            src={item.src}
+            src={item.product_images}
             alt={item.title}
             className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto pb-5"
           />
@@ -34,7 +35,7 @@ export const FlashSalesItem = ({ item, handleAddToCart, showCartIcon }) => {
           </div>
         </Link>
       </div>
-      <p className="mt-4 text-base font-semibold">{item.title}</p>
+      <p className="mt-4 text-base font-semibold">{item.product_name}</p>
       <p className="mt-2 text-sm">
         {item.price}
         <span className="line-through text-gray-500 px-2">

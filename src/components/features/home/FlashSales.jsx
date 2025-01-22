@@ -5,6 +5,8 @@ import { FaArrowLeft } from "react-icons/fa";
 import { FlashSalesItem } from "./FlashSalesItem";
 import { Link, useNavigate } from "react-router-dom";
 import { CustomButton } from "../../../components/custombutton/CustomButton";
+import { supabase } from "../../../supabase/supabaseClients";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 const strongElements = document.querySelectorAll("#timeContainer strong");
@@ -15,17 +17,39 @@ strongElements.forEach((element, index) => {
   }
 });
 
+const fetchFlashSalesProducts = async () => {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("productFeatures", "flash-sales");
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+};
+
 export const FlashSales = ({
   title,
   subTitle,
   type = "home",
   className = "lg:grid-cols-5 my-10",
-  products,
+  product,
   showCartIcon,
-  targetDate = "2025-01-18T12:00:00Z",
+  targetDate = "2025-01-24T12:00:00Z",
 }) => {
-  const navigate = useNavigate();
+  const {
+    data: products,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["flashSaleProducts"],
+    queryFn: fetchFlashSalesProducts,
+  });
 
+  const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -70,6 +94,14 @@ export const FlashSales = ({
     // Cleanup: clear the timer when the component unmounts
     return () => clearInterval(timer);
   }, [targetDate]);
+
+  if (isLoading) {
+    return <p className="text-center">Loading flash sales products...</p>;
+  }
+
+  if (isError) {
+    return <p className="text-center">Error: {error.message}</p>;
+  }
 
   return (
     <>
@@ -120,13 +152,15 @@ export const FlashSales = ({
           ) : null}
         </div>
         <div className={`grid grid-cols-1 sm:grid-cols-2  gap-4 ${className}`}>
-          {products?.map((item, index) => (
-            <FlashSalesItem
-              item={item}
-              key={index}
-              showCartIcon={showCartIcon}
-            />
-          ))}
+          {products &&
+            products?.length > 0 &&
+            products?.map((item) => (
+              <FlashSalesItem
+                item={item}
+                key={item.id}
+                showCartIcon={showCartIcon}
+              />
+            ))}
         </div>
 
         {type === "home" ? (

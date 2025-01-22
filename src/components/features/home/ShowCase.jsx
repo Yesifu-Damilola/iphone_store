@@ -3,36 +3,36 @@ import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import apple from "../../../assets/images/Applelogo@3.png";
 import heroiphone from "../../../assets/images/heroiphone2@3.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { supabase } from "./../../../supabase/supabaseClients";
+import { useQuery } from "@tanstack/react-query";
 
+const fetchCategories = async () => {
+  const { data, error } = await supabase.from("categories").select("*");
 
+  if (error) {
+    console.log("Supabase fetch error:", error.message);
+    throw new Error(error.message);
+  }
+  return data;
+};
 
 export const ShowCase = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [categories, setCategories] = useState([]);
+
+  const {
+    data: categories = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
 
   const toggleList = () => {
     setIsOpen(!isOpen);
   };
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const { data: categories, error } = await supabase
-        .from("categories")
-        .select("*");
-
-      if (error) {
-        console.error("Error fetching categories:", error.message);
-        return;
-      }
-      console.log(categories);
-      setCategories(categories || []);
-    };
-    fetchCategories();
-  }, []);
-
-  const displayedCategories = categories.length > 0 && categories;
 
   return (
     <>
@@ -45,13 +45,17 @@ export const ShowCase = () => {
             {isOpen ? "Hide Categories" : "show Categories"}
           </button>
           <div className={`${isOpen ? "block" : "hidden"} md:block`}>
-            <div className="text-black text-base space-y-4 w-full md:w-auto pt-8">
-              {displayedCategories.length > 0 ? (
-                displayedCategories.map((item) => (
+            <div className="text-black text-base space-y-4 w-full md:w-auto pt-8 ">
+              {isLoading ? (
+                <p>Loading categories...</p>
+              ) : isError ? (
+                <p>Error: {error?.message || "Unknown error occurred"}</p>
+              ) : categories.length > 0 ? (
+                categories.map((item) => (
                   <Link
                     key={item.id}
                     to={item.link || "#"}
-                    className="flex items-center gap-x-4 md:gap-x-5 capitalize"
+                    className="flex items-center gap-x-4 md:gap-x-5 capitalize hover:text-primary"
                   >
                     {item.name} <FaAngleRight className="ml-2 md:ml-4" />
                   </Link>
