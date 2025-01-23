@@ -4,24 +4,8 @@ import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { CustomButton } from "../../custombutton/CustomButton";
 import { AddToCartButton } from "../../AddToCartButton";
-import { supabase } from "../../../supabase/supabaseClients";
-import { useQuery } from "@tanstack/react-query";
+import { useFetchData } from "../../../hooks/useFetchData";
 
-const fetchExploreOurProducts = async () => {
-  const { data: products, error } = await supabase
-    .from("products")
-    .select(
-      "id,product_name, description, product_images, price, originalPrice"
-    );
-
-  console.log("Fetched user data:", products);
-
-  if (error) {
-    console.error("Supabase fetch error:", error.message);
-    throw new Error(error.message);
-  }
-  return products;
-};
 
 export const ExploreProducts = ({ handleAddToCart }) => {
   const {
@@ -29,10 +13,7 @@ export const ExploreProducts = ({ handleAddToCart }) => {
     isLoading,
     isError,
     error,
-  } = useQuery({
-    queryKey: ["products"],
-    queryFn: fetchExploreOurProducts,
-  });
+  } = useFetchData("products" );
 
   if (isLoading) {
     return <p className="text-center">Loading products...</p>;
@@ -69,7 +50,7 @@ export const ExploreProducts = ({ handleAddToCart }) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
           {products.slice(0, 15).map((item, index, arr) => (
-            <div key={index}>
+            <div key={item.id}>
               <div className="group bg-[#F5F5F5] rounded p-4 relative">
                 <div className="flex items-center justify-between mb-4">
                   {item.category && (

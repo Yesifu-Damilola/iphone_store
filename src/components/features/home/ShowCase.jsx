@@ -4,31 +4,16 @@ import { Link } from "react-router-dom";
 import apple from "../../../assets/images/Applelogo@3.png";
 import heroiphone from "../../../assets/images/heroiphone2@3.png";
 import { useState } from "react";
-import { supabase } from "./../../../supabase/supabaseClients";
-import { useQuery } from "@tanstack/react-query";
-
-const fetchCategories = async () => {
-  const { data, error } = await supabase.from("categories").select("*");
-
-  if (error) {
-    console.log("Supabase fetch error:", error.message);
-    throw new Error(error.message);
-  }
-  return data;
-};
+import { useFetchData } from "../../../hooks/useFetchData";
 
 export const ShowCase = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const {
     data: categories = [],
+    error,
     isLoading,
     isError,
-    error,
-  } = useQuery({
-    queryKey: ["categories"],
-    queryFn: fetchCategories,
-  });
+  } = useFetchData("categories", "id, name");
 
   const toggleList = () => {
     setIsOpen(!isOpen);

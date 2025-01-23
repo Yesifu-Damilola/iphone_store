@@ -5,10 +5,8 @@ import { FaArrowLeft } from "react-icons/fa";
 import { FlashSalesItem } from "./FlashSalesItem";
 import { Link, useNavigate } from "react-router-dom";
 import { CustomButton } from "../../../components/custombutton/CustomButton";
-import { supabase } from "../../../supabase/supabaseClients";
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import { CountdownTimer } from "../../timer Component/CountdownTimer";
+import { useFetchData } from "../../../hooks/useFetchData";
+import { CountdownTimer } from "./../../timer Component/CountdownTimer";
 
 const strongElements = document.querySelectorAll("#timeContainer strong");
 
@@ -18,18 +16,6 @@ strongElements.forEach((element, index) => {
   }
 });
 
-const fetchFlashSalesProducts = async () => {
-  const { data, error } = await supabase
-    .from("products")
-    .select("*")
-    .eq("productFeatures", "flash-sales");
-
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  return data;
-};
 
 export const FlashSales = ({
   title,
@@ -38,63 +24,16 @@ export const FlashSales = ({
   className = "lg:grid-cols-5 my-10",
   product,
   showCartIcon,
-  targetDate = "2025-01-24T12:00:00Z",
+  targetDate = "2025-01-28T12:00:00Z",
 }) => {
   const {
-    data: products,
+    data: products = [],
     isLoading,
     isError,
     error,
-  } = useQuery({
-    queryKey: ["flashSaleProducts"],
-    queryFn: fetchFlashSalesProducts,
-  });
+  } = useFetchData("products", "*", { productFeatures: "flash-sales" });
 
   const navigate = useNavigate();
-  // const [timeLeft, setTimeLeft] = useState({
-  //   days: 0,
-  //   hours: 0,
-  //   minutes: 0,
-  //   seconds: 0,
-  // });
-
-  // useEffect(() => {
-  //   if (!targetDate || isNaN(new Date(targetDate).getTime())) {
-  //     console.error("Invalid or missing target date:", targetDate);
-  //     return;
-  //   }
-
-  //   let timer;
-
-  //   const calculateTimeLeft = () => {
-  //     const now = new Date(); // Get the current time
-  //     const target = new Date(targetDate); // Convert target date to Date object
-  //     const difference = target - now; // Calculate the difference in milliseconds
-
-  //     // If the target date is in the future, update the time left
-  //     if (difference > 0) {
-  //       setTimeLeft({
-  //         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-  //         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-  //         minutes: Math.floor((difference / (1000 * 60)) % 60),
-  //         seconds: Math.floor((difference / 1000) % 60),
-  //       });
-  //     } else {
-  //       // If the target date is passed, set everything to 0
-  //       setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  //       clearInterval(timer); // Stop the timer
-  //     }
-  //   };
-
-  //   // Initial calculation
-  //   calculateTimeLeft();
-
-  //   // Set an interval to update the timer every second
-  //   timer = setInterval(calculateTimeLeft, 1000);
-
-  //   // Cleanup: clear the timer when the component unmounts
-  //   return () => clearInterval(timer);
-  // }, [targetDate]);
 
   if (isLoading) {
     return <p className="text-center">Loading flash sales products...</p>;
@@ -124,23 +63,8 @@ export const FlashSales = ({
                 </div>
               )}
             </div>
-            {/* {subTitle && (
-              <div
-                className="flex justify-between w-full sm:w-[250px] md:w-[302px] h-[50px] pt-4 sm:pt-6 md:pt-8 gap-x-2 md:gap-x-4"
-                id="timeContainer"
-              > */}
-                {/* {["Days", "Hours", "Minutes", "Seconds"].map((unit, index) => (
-                  <div key={unit} className="text-center">
-                    <p className="text-xs md:text-sm">{unit}</p>
-                    <strong className="text-3xl md:text-2xl">
-                      {Object.values(timeLeft)[index]}
-                      {index < 3 && <span className="text-[#E07575]"> : </span>}
-                    </strong>
-                  </div>
-                ))} */}
-                <CountdownTimer targetDate={targetDate} />
-              {/* </div> */}
-            {/* )} */}
+
+            <CountdownTimer targetDate={targetDate} />
           </div>
           {type === "home" ? (
             <div className="flex gap-5 mt-4 md:mt-0 pt-6 md:pt-0">
@@ -148,7 +72,7 @@ export const FlashSales = ({
                 <FaArrowLeft className="h-4 w-4 text-black" />
               </Link>
               <Link to="#" className="bg-[#F5F5F5] border rounded-full p-2">
-                <FaArrowRight className="h-4 w-4 text-black" />
+                <FaArrowRight clasName="h-4 w-4 text-black" />
               </Link>
             </div>
           ) : null}
@@ -156,7 +80,7 @@ export const FlashSales = ({
         <div className={`grid grid-cols-1 sm:grid-cols-2  gap-4 ${className}`}>
           {products &&
             products?.length > 0 &&
-            products?.map((item) => (
+            products.map((item) => (
               <FlashSalesItem
                 item={item}
                 key={item.id}

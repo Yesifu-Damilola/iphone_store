@@ -23,7 +23,7 @@ export const FlashSalesItem = ({ item, handleAddToCart, showCartIcon }) => {
         </div>
         <Link to={`/products/${4}`} className="w-[180px] h-[190px] mx-auto ">
           <img
-            src={item.product_images}
+            src={item.product_images?.[0]}
             alt={item.title}
             className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto pb-5"
           />

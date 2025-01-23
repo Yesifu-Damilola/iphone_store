@@ -4,8 +4,25 @@ import womanwearinghat from "../../../assets/images/womanwearinghat@3.png";
 import transparentamazonecho from "../../../assets/images/transparentamazonecho@3.png";
 import perfume from "../../../assets/images/perfume@3.png";
 import { NewArrivalItem } from "../NewArrivalItem";
+import { useFetchData } from "../../../hooks/useFetchData";
 
 export const NewArrival = () => {
+const {
+    data: products = [],
+    isLoading,
+    isError,
+    error,
+  } = useFetchData("products", "*", { productFeatures: "new-arrival" });
+
+   if (isLoading) {
+     return <p className="text-center">Loading new arrival products...</p>;
+   }
+
+   if (isError) {
+     return <p className="text-center">Error: {error.message}</p>;
+   }
+
+
   return (
     <div className="container mx-auto p-4 pt-10">
       <div className="flex gap-x-4 items-center">

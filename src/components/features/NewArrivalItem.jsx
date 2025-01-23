@@ -2,6 +2,8 @@ import { FaTruckFast } from "react-icons/fa6";
 import { MdOutlineHeadsetMic } from "react-icons/md";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 
+
+
 export const NewArrivalItem = () => {
   return (
     <div className="grid md:grid-cols-3  grid-cols-1 md:gap-8 gap-4  w-3/4 mx-auto">

@@ -1,11 +1,26 @@
 import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { sellingProducts } from "../../../constants/Products";
-
-
+import { useFetchData } from "../../../hooks/useFetchData";
 
 export const SellingProducts = () => {
+  const {
+    data: products = [],
+    isLoading,
+    isError,
+    error,
+  } = useFetchData("products", "*", {
+    productFeatures: "best-selling-products",
+  });
+
+  if (isLoading) {
+    return <p className="text-center">Loading new arrival products...</p>;
+  }
+
+  if (isError) {
+    return <p className="text-center">Error: {error.message}</p>;
+  }
+
   return (
     <div className="container mx-auto p-4">
       <div className="flex gap-x-4 items-center">
@@ -32,47 +47,49 @@ export const SellingProducts = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
-        {sellingProducts?.map((item, index) => (
-          <div key={index}>
-            <div className="bg-[#F5F5F5] rounded p-4 relative">
-              <div className="top-0 right-0 space-y-2 mb-4 flex flex-col items-end">
-                <FiHeart className="bg-white border rounded-full text-2xl p-1" />
-                <FiEye className="bg-white border rounded-full text-2xl p-1" />
-              </div>
+        {products &&
+          products?.length > 0 &&
+          products?.map((item) => (
+            <div key={item.id}>
+              <div className="bg-[#F5F5F5] rounded p-4 relative">
+                <div className="top-0 right-0 space-y-2 mb-4 flex flex-col items-end">
+                  <FiHeart className="bg-white border rounded-full text-2xl p-1" />
+                  <FiEye className="bg-white border rounded-full text-2xl p-1" />
+                </div>
 
-              <div className="lg:w-[180px] lg:h-[180px] mx-auto">
-                <img
-                  src={item.src}
-                  alt={item.title}
-                  className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto"
-                />
+                <div className="lg:w-[180px] lg:h-[180px] mx-auto">
+                  <img
+                    src={item.product_images?.[0]}
+                    alt={item.product_name}
+                    className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto"
+                  />
+                </div>
+              </div>
+              <p className="mt-4 text-base font-semibold">
+                {item.product_name}
+              </p>
+              <p className="mt-2   text-sm">
+                {item.price}
+                <span className="line-through text-gray-500 px-2">
+                  {item.originalPrice}
+                </span>
+              </p>
+              <div className="flex items-center mt-2 text-sm">
+                {Array.from({ length: 5 }).map((_, starIndex) => (
+                  <FaStar
+                    key={starIndex}
+                    className={
+                      starIndex < Math.floor(item.rating)
+                        ? "text-[#FFAD33]"
+                        : "text-[#bfbfbbb9]"
+                    }
+                  />
+                ))}
+                <span className="ml-2 text-gray-600">({item.reviews})</span>
               </div>
             </div>
-            <p className="mt-4 text-base font-semibold">{item.title}</p>
-            <p className="mt-2   text-sm">
-              {item.price}
-              <span className="line-through text-gray-500 px-2">
-                {item.originalPrice}
-              </span>
-            </p>
-            <div className="flex items-center mt-2 text-sm">
-              {Array.from({ length: 5 }).map((_, starIndex) => (
-                <FaStar
-                  key={starIndex}
-                  className={
-                    starIndex < Math.floor(item.rating)
-                      ? "text-[#FFAD33]"
-                      : "text-[#bfbfbbb9]"
-                  }
-                />
-              ))}
-              <span className="ml-2 text-gray-600">({item.reviews})</span>
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
 };
-
-
