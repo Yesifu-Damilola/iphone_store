@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AddToCartButton } from "../../AddToCartButton";
 
 export const FlashSalesItem = ({ item, handleAddToCart, showCartIcon }) => {

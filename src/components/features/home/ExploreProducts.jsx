@@ -16,7 +16,7 @@ export const ExploreProducts = ({ handleAddToCart }) => {
   } = useFetchData("products" );
 
   if (isLoading) {
-    return <p className="text-center">Loading products...</p>;
+    return <p className="text-center">Loading explore products...</p>;
   }
 
   if (isError) {
@@ -49,7 +49,7 @@ export const ExploreProducts = ({ handleAddToCart }) => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
-          {products.slice(0, 15).map((item, index, arr) => (
+          {products?.slice(0, 15).map((item, index, arr) => (
             <div key={item.id}>
               <div className="group bg-[#F5F5F5] rounded p-4 relative">
                 <div className="flex items-center justify-between mb-4">
@@ -71,7 +71,7 @@ export const ExploreProducts = ({ handleAddToCart }) => {
                 <div className="lg:w-[180px] md:h-[190px] mx-auto">
                   <img
                     src={item.product_images?.[0]}
-                    alt={item.title}
+                    alt={item.product_name || "Product Image"}
                     className="w-full h-auto md:w-[140px] md:h-[160px] mx-auto"
                   />
                   <Link
@@ -106,7 +106,7 @@ export const ExploreProducts = ({ handleAddToCart }) => {
                     }
                   />
                 ))}
-                <span className="ml-2 text-gray-600">({item.reviews})</span>
+                <span className="ml-2 text-gray-600">({item.reviews ?? 0})</span>
               </div>
               {index >= arr.length - 5 && (
                 <div className="flex items-center mt-2">

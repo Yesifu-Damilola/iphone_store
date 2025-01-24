@@ -22,7 +22,7 @@ export const FlashSales = ({
   subTitle,
   type = "home",
   className = "lg:grid-cols-5 my-10",
-  product,
+  // product,
   showCartIcon,
   targetDate = "2025-01-28T12:00:00Z",
 }) => {
@@ -63,8 +63,8 @@ export const FlashSales = ({
                 </div>
               )}
             </div>
-
             <CountdownTimer targetDate={targetDate} />
+
           </div>
           {type === "home" ? (
             <div className="flex gap-5 mt-4 md:mt-0 pt-6 md:pt-0">

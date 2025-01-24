@@ -14,7 +14,7 @@ export const SellingProducts = () => {
   });
 
   if (isLoading) {
-    return <p className="text-center">Loading new arrival products...</p>;
+    return <p className="text-center">Loading best selling products...</p>;
   }
 
   if (isError) {
@@ -47,9 +47,8 @@ export const SellingProducts = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
-        {products &&
-          products?.length > 0 &&
-          products?.map((item) => (
+        {products?.length > 0 ? (
+          products.map((item) => (
             <div key={item.id}>
               <div className="bg-[#F5F5F5] rounded p-4 relative">
                 <div className="top-0 right-0 space-y-2 mb-4 flex flex-col items-end">
@@ -88,7 +87,12 @@ export const SellingProducts = () => {
                 <span className="ml-2 text-gray-600">({item.reviews})</span>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <p className="text-center col-span-full">
+            No best-selling products available.
+          </p>
+        )}
       </div>
     </div>
   );

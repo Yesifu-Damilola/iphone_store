@@ -8,6 +8,7 @@ import { useFetchData } from "../../../hooks/useFetchData";
 
 export const ShowCase = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   const {
     data: categories = [],
     error,
@@ -16,7 +17,7 @@ export const ShowCase = () => {
   } = useFetchData("categories", "id, name");
 
   const toggleList = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   return (
@@ -27,22 +28,22 @@ export const ShowCase = () => {
             className="md:hidden bg-primary text-white px-4 py-2 rounded"
             onClick={toggleList}
           >
-            {isOpen ? "Hide Categories" : "show Categories"}
+            {isOpen ? "Hide Categories" : "Show Categories"}
           </button>
           <div className={`${isOpen ? "block" : "hidden"} md:block`}>
             <div className="text-black text-base space-y-4 w-full md:w-auto pt-8 ">
               {isLoading ? (
                 <p>Loading categories...</p>
               ) : isError ? (
-                <p>Error: {error?.message || "Unknown error occurred"}</p>
-              ) : categories.length > 0 ? (
+                <p>Error: {error?.message || "Failed to fetch categories"}</p>
+              ) : categories?.length > 0 ? (
                 categories.map((item) => (
                   <Link
                     key={item.id}
-                    to={item.link || "#"}
+                    to={item?.link || "#"}
                     className="flex items-center gap-x-4 md:gap-x-5 capitalize hover:text-primary"
                   >
-                    {item.name} <FaAngleRight className="ml-2 md:ml-4" />
+                    {item?.name} <FaAngleRight className="ml-2 md:ml-4" />
                   </Link>
                 ))
               ) : (
