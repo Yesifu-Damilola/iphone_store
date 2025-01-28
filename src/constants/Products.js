@@ -38,7 +38,6 @@ export const products = [
     originalPrice: "$1160",
     rating: 4.5,
     reviews: 75,
-    // hover: { hasCartButton: true },
   },
   {
     src: gaming_monitor,
@@ -47,7 +46,6 @@ export const products = [
     originalPrice: "$400",
     rating: 5,
     reviews: 99,
-    // hover: { hasCartButton: true },
   },
   {
     src: chair,
@@ -56,7 +54,6 @@ export const products = [
     originalPrice: "$400",
     rating: 5,
     reviews: 99,
-    // hover: { hasCartButton: true },
   },
   {
     src: gaming_laptop,
@@ -65,7 +62,6 @@ export const products = [
     originalPrice: "$160",
     rating: 5,
     reviews: 88,
-    // hover: { hasCartButton: true },
   },
 ];
 

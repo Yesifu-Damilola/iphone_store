@@ -2,8 +2,14 @@ import { Link } from "react-router-dom";
 import { CustomButton } from "../../components/custombutton/CustomButton";
 import gamingmonitor from "../../assets/images/gaming_monitor@3.png";
 import gamepad from "../../assets/images/gamepad@3.png";
+import { useContext } from "react";
+import { Shopcontext } from "../../context/ShopContext";
+
+const headers = ["Product", "Price", "Quantity", "Subtotal"];
 
 const Cart = () => {
+  const { cartItems } = useContext(Shopcontext);
+
   return (
     <section className="container mx-auto py-8 px-4 md:px-8 sm:px-8">
       <div className="flex flex-col sm:flex-row items-start mb-4 py-8 lg:px-0">
@@ -21,10 +27,15 @@ const Cart = () => {
 
       <div className="space-y-10">
         <div className="shadow flex flex-row sm:flex-col md:flex-col lg:flex-row items-center justify-between p-3 space-x-5 ">
-          <div className="text-base w-full lg:w-auto text-center lg:text-left">
-            Product
-          </div>
-          <div className="text-base w-full lg:w-auto text-center lg:text-left">
+          {headers.map((header, id) => (
+            <div
+              key={id}
+              className="text-base w-full lg:w-auto text-center lg:text-left"
+            >
+              {header}
+            </div>
+          ))}
+          {/* <div className="text-base w-full lg:w-auto text-center lg:text-left">
             Price
           </div>
           <div className="text-base w-full lg:w-auto text-center lg:text-left">
@@ -32,7 +43,7 @@ const Cart = () => {
           </div>
           <div className="text-base w-full lg:w-auto text-center lg:text-left">
             Subtotal
-          </div>
+          </div> */}
         </div>
 
         <div className="shadow flex flex-row sm:flex-col md:flex-col lg:flex-row items-center justify-between p-3 px-5 space-x-2">

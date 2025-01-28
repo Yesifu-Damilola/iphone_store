@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { CustomButton } from "../../../components/custombutton/CustomButton";
 import { useFetchData } from "../../../hooks/useFetchData";
 import { CountdownTimer } from "./../../timer Component/CountdownTimer";
+import { useContext } from "react";
+import { Shopcontext } from "../../../context/ShopContext";
 
 const strongElements = document.querySelectorAll("#timeContainer strong");
 
@@ -30,6 +32,8 @@ export const FlashSales = ({
     isError,
     error,
   } = useFetchData("products", "*", { productFeatures: "flash-sales" });
+
+  const { addToCart, cartItems } = useContext(Shopcontext);
 
   const navigate = useNavigate();
 
@@ -85,6 +89,7 @@ export const FlashSales = ({
                 item={item}
                 key={item?.id}
                 showCartIcon={showCartIcon}
+                onAddToCart={() => addToCart(item.id)}
               />
             ))}
         </div>
@@ -94,7 +99,9 @@ export const FlashSales = ({
             <CustomButton
               className="text-sm text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 lg:px-10 lg:py-4"
               text="View All Products"
-              onClick={() => navigate("/products/cart")}
+              onClick={() => {
+                navigate("/products");
+              }}
             />
           </div>
         ) : null}
