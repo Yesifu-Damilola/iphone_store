@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AddToCartButton } from "../../AddToCartButton";
 
 export const FlashSalesItem = ({ item, handleAddToCart, showCartIcon }) => {
@@ -37,9 +37,9 @@ export const FlashSalesItem = ({ item, handleAddToCart, showCartIcon }) => {
       </div>
       <p className="mt-4 text-base font-semibold">{item.product_name}</p>
       <p className="mt-2 text-sm">
-        {item.price}
+        {`$${item.price}`}
         <span className="line-through text-gray-500 px-2">
-          {item.originalPrice}
+          {`$${item.originalPrice}`}
         </span>
       </p>
       <div className="flex items-center mt-2 text-sm">

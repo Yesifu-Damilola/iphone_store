@@ -11,7 +11,7 @@ const WishList = ({ handleAddToCart }) => {
   // const navigate = useNavigate();
 
   return (
-    <main className="container">
+    <main className="container mx-auto">
       <div className="flex items-center justify-between py-20 px-4">
         <h4 className="text-xl">Wishlist (4)</h4>
         <CustomButton

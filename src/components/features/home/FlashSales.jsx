@@ -16,15 +16,13 @@ strongElements.forEach((element, index) => {
   }
 });
 
-
 export const FlashSales = ({
   title,
   subTitle,
   type = "home",
   className = "lg:grid-cols-5 my-10",
-  // product,
   showCartIcon,
-  targetDate = "2025-01-28T12:00:00Z",
+  targetDate = "2025-01-31T12:00:00Z",
 }) => {
   const {
     data: products = [],
@@ -40,7 +38,7 @@ export const FlashSales = ({
   }
 
   if (isError) {
-    return <p className="text-center">Error: {error.message}</p>;
+    return <p className="text-center">Error: {error?.message}</p>;
   }
 
   return (
@@ -63,8 +61,10 @@ export const FlashSales = ({
                 </div>
               )}
             </div>
-            <CountdownTimer targetDate={targetDate} />
 
+            {type === "home" ? (
+              <CountdownTimer targetDate={targetDate} />
+            ) : null}
           </div>
           {type === "home" ? (
             <div className="flex gap-5 mt-4 md:mt-0 pt-6 md:pt-0">
@@ -83,7 +83,7 @@ export const FlashSales = ({
             products.map((item) => (
               <FlashSalesItem
                 item={item}
-                key={item.id}
+                key={item?.id}
                 showCartIcon={showCartIcon}
               />
             ))}
@@ -94,7 +94,7 @@ export const FlashSales = ({
             <CustomButton
               className="text-sm text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 lg:px-10 lg:py-4"
               text="View All Products"
-              onClick={() => navigate("/products")}
+              onClick={() => navigate("/products/cart")}
             />
           </div>
         ) : null}

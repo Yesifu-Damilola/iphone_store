@@ -20,7 +20,7 @@ export const ExploreProducts = ({ handleAddToCart }) => {
   }
 
   if (isError) {
-    return <p className="text-center">Error: {error.message}</p>;
+    return <p className="text-center">Error: {error?.message}</p>;
   }
 
   return (
@@ -88,10 +88,10 @@ export const ExploreProducts = ({ handleAddToCart }) => {
                 {item.product_name}
               </p>
               <p className="mt-2 text-sm">
-                {item.price}
+                {`$${item.price}`}
                 {item.originalPrice && (
                   <span className="line-through text-gray-500 px-2">
-                    {item.originalPrice}
+                    {`$${item.originalPrice}`}
                   </span>
                 )}
               </p>

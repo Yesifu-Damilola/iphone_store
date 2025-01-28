@@ -18,7 +18,7 @@ export const SellingProducts = () => {
   }
 
   if (isError) {
-    return <p className="text-center">Error: {error.message}</p>;
+    return <p className="text-center">Error: {error?.message}</p>;
   }
 
   return (
@@ -68,7 +68,7 @@ export const SellingProducts = () => {
                 {item.product_name}
               </p>
               <p className="mt-2   text-sm">
-                {item.price}
+                {`$${item.price}`}
                 <span className="line-through text-gray-500 px-2">
                   {item.originalPrice}
                 </span>

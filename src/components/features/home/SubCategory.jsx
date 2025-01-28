@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { CiMobile4 } from "react-icons/ci";
 import { HiOutlineComputerDesktop } from "react-icons/hi2";
@@ -6,8 +7,33 @@ import { CiHeadphones } from "react-icons/ci";
 import { TbDeviceGamepad } from "react-icons/tb";
 import { TbDeviceWatchStats } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { useFetchData } from "../../../hooks/useFetchData";
 
-export const SubCategory = () => {
+const iconMapping = {
+  Phones: CiMobile4,
+  Computers: HiOutlineComputerDesktop,
+  SmartWatch: TbDeviceWatchStats,
+  Camera: FiCamera,
+  Headphones: CiHeadphones,
+  Gaming: TbDeviceGamepad,
+};
+
+export const SubCategory = ({ id}) => {
+  const {
+    data: products = [],
+    isLoading,
+    isError,
+    error,
+  } = useFetchData("products", "*", { category_id: id});
+
+  if (isLoading) {
+    return <p className="text-center">Loading categories...</p>;
+  }
+
+  if (isError) {
+    return <p className="text-center text-red-500">Error: {error?.message}</p>;
+  }
+
   return (
     <main>
       <div className="container mx-auto p-4">
@@ -33,12 +59,26 @@ export const SubCategory = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8 pt-14 pb-6 ">
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
-            <CiMobile4 className="text-6xl" />
-            <p className="mt-4 text-base">Phones</p>
-          </div>
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
+        <div
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8
+        pt-14 pb-6 "
+        >
+          {products.length > 0 &&
+            products.slice(0, 6).map((product) => {
+              const Icon = iconMapping[product.name] || null;
+              return (
+                <div
+                  key={product.id}
+                  className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105"
+                >
+                  {Icon && <Icon className="text-6xl" />}
+                  {/* <img src={product.product_images?.[0]} alt="" /> */}
+                  <p className="mt-4 text-base">{product.category_id}</p>
+                </div>
+              );
+            })}
+
+          {/* <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
             <HiOutlineComputerDesktop className="text-6xl" />
             <p className="text-base mt-4">Computers</p>
           </div>
@@ -57,7 +97,7 @@ export const SubCategory = () => {
           <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
             <TbDeviceGamepad className="text-6xl" />
             <p className="text-base mt-4 ">Gaming</p>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="w-full mt-4 mb-6">

@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { NewArrivalItem } from "../NewArrivalItem";
 import { useFetchData } from "../../../hooks/useFetchData";
 
-export const NewArrival = () => {
+export const NewArrival = ({ title = "Features", subTitle = "New Arrival" }) => {
   const {
     data: products = [],
     isLoading,
@@ -15,7 +16,7 @@ export const NewArrival = () => {
   }
 
   if (isError) {
-    return <p className="text-center">Error: {error.message}</p>;
+    return <p className="text-center">Error: {error?.message}</p>;
   }
 
   return (
@@ -23,15 +24,17 @@ export const NewArrival = () => {
       <div className="flex gap-x-4 items-center">
         <button className="bg-[#DB4444] border-0 rounded-sm w-5 h-10"></button>
         <span className="block text-[#DB4444] text-sm md:text-xl font-semibold py-2">
-          Featured
+          {title}
         </span>
       </div>
       <div className="flex flex-col md:flex-row text-center md:text-left">
-        <div>
-          <h2 className="text-2xl md:text-3xl font-semibold pt-6">
-            New Arrival
-          </h2>
-        </div>
+        {subTitle && (
+          <div>
+            <h2 className="text-2xl md:text-3xl font-semibold pt-6">
+              {subTitle}
+            </h2>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-x-12 my-10 w-full max-w-[1280px] mx-auto">
@@ -45,7 +48,6 @@ export const NewArrival = () => {
             <div className="absolute bottom-0 left-0 p-4 w-full">
               <h4 className="text-xl md:text-2xl font-semibold text-left text-[#FAFAFA]">
                 {products[0]?.product_name || "Product Name"}
-               
               </h4>
               <p className="mt-2 text-sm text-left text-[#FAFAFA]">
                 {products[0]?.description || "Product escription"}
@@ -72,7 +74,7 @@ export const NewArrival = () => {
                   {products[1]?.product_name}
                 </h4>
                 <p className="mt-2 text-sm text-left text-[#FAFAFA]">
-                  {products[0]?.description} 
+                  {products[0]?.description}
                 </p>
                 <Link
                   to={products[1]?.link || "#"}

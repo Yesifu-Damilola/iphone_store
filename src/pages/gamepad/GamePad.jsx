@@ -4,7 +4,7 @@ import GamepadItem from "./GamepadItem";
 
 const GamePad = () => {
   return (
-    <div>
+    <div className="container mx-auto">
       <div className="flex flex-col sm:flex-row items-center sm:items-start mb-4 lg:mb-0 lg:px-4 py-10">
         <Link
           to="/"
