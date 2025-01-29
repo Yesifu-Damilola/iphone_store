@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { AddToCartButton } from "../../AddToCartButton";
 
 export const FlashSalesItem = ({ item, handleAddToCart, showCartIcon }) => {
-
   return (
     <div>
       <div className="group bg-[#F5F5F5] rounded p-4 relative">

@@ -1,3 +1,4 @@
+import "react-loading-skeleton/dist/skeleton.css";
 import { FaArrowRight } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -5,6 +6,7 @@ import apple from "../../../assets/images/Applelogo@3.png";
 import heroiphone from "../../../assets/images/heroiphone2@3.png";
 import { useState } from "react";
 import { useFetchData } from "../../../hooks/useFetchData";
+import Skeleton from "react-loading-skeleton";
 
 export const ShowCase = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +35,10 @@ export const ShowCase = () => {
           <div className={`${isOpen ? "block" : "hidden"} md:block`}>
             <div className="text-black text-base space-y-4 w-full md:w-auto pt-8 ">
               {isLoading ? (
-                <p>Loading categories...</p>
+                <div className="grid gap-y-5 ">
+                  <Skeleton count={4} width={"100%"} height={20} />
+                  <Skeleton count={5} width={300} height={20} />
+                </div>
               ) : isError ? (
                 <p>Error: {error?.message || "Failed to fetch categories"}</p>
               ) : categories?.length > 0 ? (

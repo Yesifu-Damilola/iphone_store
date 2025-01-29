@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import { NewArrivalItem } from "../NewArrivalItem";
 import { useFetchData } from "../../../hooks/useFetchData";
 
-export const NewArrival = ({ title = "Features", subTitle = "New Arrival" }) => {
+export const NewArrival = ({
+  title = "Features",
+  subTitle = "New Arrival",
+}) => {
   const {
     data: products = [],
     isLoading,

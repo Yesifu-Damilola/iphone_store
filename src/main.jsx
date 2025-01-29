@@ -8,7 +8,7 @@ import { AuthContextProvider } from "./context/AuthContext.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ShopContextProvider } from "./context/ShopContext.jsx";
-
+import "react-loading-skeleton/dist/skeleton.css";
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(

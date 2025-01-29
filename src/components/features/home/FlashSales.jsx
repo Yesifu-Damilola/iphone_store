@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import "react-loading-skeleton/dist/skeleton.css";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { FlashSalesItem } from "./FlashSalesItem";
@@ -9,6 +10,8 @@ import { useFetchData } from "../../../hooks/useFetchData";
 import { CountdownTimer } from "./../../timer Component/CountdownTimer";
 import { useContext } from "react";
 import { Shopcontext } from "../../../context/ShopContext";
+
+import SkeletonLoader from "../../SkeletonLoader";
 
 const strongElements = document.querySelectorAll("#timeContainer strong");
 
@@ -33,16 +36,8 @@ export const FlashSales = ({
     error,
   } = useFetchData("products", "*", { productFeatures: "flash-sales" });
 
-  const { addToCart, cartItems } = useContext(Shopcontext);
+  // const { addToCart, cartItems } = useContext(Shopcontext);
   const navigate = useNavigate();
-
-  if (isLoading) {
-    return <p className="text-center">Loading flash sales products...</p>;
-  }
-
-  if (isError) {
-    return <p className="text-center">Error: {error?.message}</p>;
-  }
 
   return (
     <>
@@ -80,17 +75,32 @@ export const FlashSales = ({
             </div>
           ) : null}
         </div>
-        <div className={`grid grid-cols-1 sm:grid-cols-2  gap-4 ${className}`}>
-          {products &&
-            products?.length > 0 &&
+        <div
+          className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${className || ""}`}
+        >
+          {isLoading ? (
+            <SkeletonLoader
+              count={5}
+              width={290}
+              height={250}
+              direction="horizontal"
+            />
+          ) : isError ? (
+            <p className="text-red-500">
+              Error: {error?.message || "Something went wrong"}
+            </p>
+          ) : products?.length > 0 ? (
             products.map((item) => (
               <FlashSalesItem
+                key={item.id}
                 item={item}
-                key={item?.id}
                 showCartIcon={showCartIcon}
-                onAddToCart={() => addToCart(item.id)}
+                // onAddToCart={() => addToCart(item.id)}
               />
-            ))}
+            ))
+          ) : (
+            <p>No products available.</p>
+          )}
         </div>
 
         {type === "home" ? (
@@ -99,7 +109,7 @@ export const FlashSales = ({
               className="text-sm text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 lg:px-10 lg:py-4"
               text="View All Products"
               onClick={() => {
-                navigate("/products");
+                navigate("/products/cart");
               }}
             />
           </div>

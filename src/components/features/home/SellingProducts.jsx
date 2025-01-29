@@ -1,7 +1,9 @@
+import "react-loading-skeleton/dist/skeleton.css";
 import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useFetchData } from "../../../hooks/useFetchData";
+import SkeletonLoader from "../../SkeletonLoader";
 
 export const SellingProducts = () => {
   const {
@@ -13,14 +15,7 @@ export const SellingProducts = () => {
     productFeatures: "best-selling-products",
   });
 
-  if (isLoading) {
-    return <p className="text-center">Loading best selling products...</p>;
-  }
-
-  if (isError) {
-    return <p className="text-center">Error: {error?.message}</p>;
-  }
-
+ 
   return (
     <div className="container mx-auto p-4">
       <div className="flex gap-x-4 items-center">
@@ -47,7 +42,18 @@ export const SellingProducts = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
-        {products?.length > 0 ? (
+        {isLoading ? (
+          <SkeletonLoader
+            count={5}
+            width={290}
+            height={250}
+            direction="horizontal"
+          />
+        ) : isError ? (
+          <p className="text-red-500">
+            Error: {error?.message || "Something went wrong"}
+          </p>
+        ) : products?.length > 0 ? (
           products.map((item) => (
             <div key={item.id}>
               <div className="bg-[#F5F5F5] rounded p-4 relative">

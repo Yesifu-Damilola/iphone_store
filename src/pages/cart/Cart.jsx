@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import { CustomButton } from "../../components/custombutton/CustomButton";
 import gamingmonitor from "../../assets/images/gaming_monitor@3.png";
 import gamepad from "../../assets/images/gamepad@3.png";
-import { useContext } from "react";
-import { Shopcontext } from "../../context/ShopContext";
+// import { useContext } from "react";
+// import { Shopcontext } from "../../context/ShopContext";
 
 const headers = ["Product", "Price", "Quantity", "Subtotal"];
 
 const Cart = () => {
-  const { cartItems } = useContext(Shopcontext);
+  // const { cartItems } = useContext(Shopcontext);
 
   return (
     <section className="container mx-auto py-8 px-4 md:px-8 sm:px-8">
@@ -35,15 +35,6 @@ const Cart = () => {
               {header}
             </div>
           ))}
-          {/* <div className="text-base w-full lg:w-auto text-center lg:text-left">
-            Price
-          </div>
-          <div className="text-base w-full lg:w-auto text-center lg:text-left">
-            Quantity
-          </div>
-          <div className="text-base w-full lg:w-auto text-center lg:text-left">
-            Subtotal
-          </div> */}
         </div>
 
         <div className="shadow flex flex-row sm:flex-col md:flex-col lg:flex-row items-center justify-between p-3 px-5 space-x-2">

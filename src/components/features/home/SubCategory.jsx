@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
+import "react-loading-skeleton/dist/skeleton.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../../../supabase/supabaseClients";
 import { toast } from "react-toastify";
-
-
 
 export const SubCategory = () => {
   const {
@@ -33,7 +32,7 @@ export const SubCategory = () => {
   console.log(subcategories, "subcategories");
 
   if (isLoading) {
-    return <p className="text-center">Loading categories...</p>;
+    return <p className="text-center">Loading SubCategories...</p>;
   }
 
   if (isError) {
