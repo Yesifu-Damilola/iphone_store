@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import "react-loading-skeleton/dist/skeleton.css";
 import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { AddToCartButton } from "../../AddToCartButton";
 
-export const FlashSalesItem = ({ item, handleAddToCart, showCartIcon }) => {
+export const FlashSalesItem = ({
+  item,
+  handleAddToCart,
+  showCartIcon,
+ 
+}) => {
   return (
     <div>
       <div className="group bg-[#F5F5F5] rounded p-4 relative">
@@ -41,6 +47,8 @@ export const FlashSalesItem = ({ item, handleAddToCart, showCartIcon }) => {
           {`$${item.originalPrice}`}
         </span>
       </p>
+
+     
       <div className="flex items-center mt-2 text-sm">
         {Array.from({ length: 5 }).map((_, starIndex) => (
           <FaStar

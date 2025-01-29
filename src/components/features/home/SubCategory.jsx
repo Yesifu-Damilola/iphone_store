@@ -31,13 +31,13 @@ export const SubCategory = () => {
 
   console.log(subcategories, "subcategories");
 
-  if (isLoading) {
-    return <p className="text-center">Loading SubCategories...</p>;
-  }
+  // if (isLoading) {
+  //   return <p className="text-center">Loading SubCategories...</p>;
+  // }
 
-  if (isError) {
-    return <p className="text-center text-red-500">Error: {error?.message}</p>;
-  }
+  // if (isError) {
+  //   return <p className="text-center text-red-500">Error: {error?.message}</p>;
+  // }
 
   return (
     <main>
@@ -63,9 +63,24 @@ export const SubCategory = () => {
             </Link>
           </div>
         </div>
-
         <div className="pt-14 pb-6">
-          {subcategories?.length > 0 ? (
+          {isLoading ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
+              {[...Array(6)].map((_, index) => (
+                <div
+                  key={index}
+                  className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] animate-pulse"
+                >
+                  <div className="w-16 h-16 bg-gray-300 "></div>
+                  <div className="mt-4 w-3/4 h-4 bg-gray-300 "></div>
+                </div>
+              ))}
+            </div>
+          ) : isError ? (
+            <p className="text-red-500 text-center">
+              Error: {error?.message || "Something went wrong"}
+            </p>
+          ) : subcategories?.length > 0 ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
               {subcategories.map((subcategory) => (
                 <div
@@ -81,17 +96,9 @@ export const SubCategory = () => {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
-              {[...Array(6)].map((_, index) => (
-                <div
-                  key={index}
-                  className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] animate-pulse"
-                >
-                  <div className="w-16 h-16 bg-gray-300 rounded-full"></div>
-                  <div className="mt-4 w-3/4 h-4 bg-gray-300 rounded"></div>
-                </div>
-              ))}
-            </div>
+            <p className="text-center col-span-full">
+              No subcategories available.
+            </p>
           )}
         </div>
       </div>

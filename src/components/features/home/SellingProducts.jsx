@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useFetchData } from "../../../hooks/useFetchData";
-import SkeletonLoader from "../../SkeletonLoader";
+// import SkeletonLoader from "../../SkeletonLoader";
 
 export const SellingProducts = () => {
   const {
@@ -15,7 +15,6 @@ export const SellingProducts = () => {
     productFeatures: "best-selling-products",
   });
 
- 
   return (
     <div className="container mx-auto p-4">
       <div className="flex gap-x-4 items-center">
@@ -41,7 +40,7 @@ export const SellingProducts = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
         {isLoading ? (
           <SkeletonLoader
             count={5}
@@ -79,6 +78,75 @@ export const SellingProducts = () => {
                   {item.originalPrice}
                 </span>
               </p>
+              <div className="flex items-center mt-2 text-sm">
+                {Array.from({ length: 5 }).map((_, starIndex) => (
+                  <FaStar
+                    key={starIndex}
+                    className={
+                      starIndex < Math.floor(item.rating)
+                        ? "text-[#FFAD33]"
+                        : "text-[#bfbfbbb9]"
+                    }
+                  />
+                ))}
+                <span className="ml-2 text-gray-600">({item.reviews})</span>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-center col-span-full">
+            No best-selling products available.
+          </p>
+        )}
+      </div> */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
+        {isLoading ? (
+          Array.from({ length: 5 }).map((_, index) => (
+            <div key={index} className="bg-[#F5F5F5] rounded p-4 animate-pulse">
+              <div className="w-[180px] h-[180px] bg-gray-300 mx-auto rounded"></div>
+              <div className="w-3/4 h-4 bg-gray-300 rounded mt-4 mx-auto"></div>
+              <div className="w-1/2 h-3 bg-gray-300 rounded mt-2 mx-auto"></div>
+            </div>
+          ))
+        ) : isError ? (
+          <p className="text-red-500">
+            Error: {error?.message || "Something went wrong"}
+          </p>
+        ) : products?.length > 0 ? (
+          products.map((item) => (
+            <div key={item.id}>
+              <div className="bg-[#F5F5F5] rounded p-4 relative">
+                <div className="top-0 right-0 space-y-2 mb-4 flex flex-col items-end">
+                  <FiHeart className="bg-white border rounded-full text-2xl p-1" />
+                  <FiEye className="bg-white border rounded-full text-2xl p-1" />
+                </div>
+
+                <div className="lg:w-[180px] lg:h-[180px] mx-auto">
+                  <img
+                    src={item.product_images?.[0]}
+                    alt={item.product_name}
+                    className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto"
+                  />
+                </div>
+              </div>
+
+              {isLoading ? (
+                <div className="w-3/4 h-4 bg-gray-300 rounded mt-4 mx-auto animate-pulse"></div>
+              ) : (
+                <p className="mt-4 text-base font-semibold">
+                  {item.product_name}
+                </p>
+              )}
+              {isLoading ? (
+                <div className="w-1/2 h-3 bg-gray-300 rounded mt-2 mx-auto animate-pulse"></div>
+              ) : (
+                <p className="mt-2 text-sm">
+                  {`$${item.price}`}
+                  <span className="line-through text-gray-500 px-2">
+                    {item.originalPrice}
+                  </span>
+                </p>
+              )}
               <div className="flex items-center mt-2 text-sm">
                 {Array.from({ length: 5 }).map((_, starIndex) => (
                   <FaStar
