@@ -1,30 +1,36 @@
 /* eslint-disable react/prop-types */
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { CiMobile4 } from "react-icons/ci";
-import { HiOutlineComputerDesktop } from "react-icons/hi2";
-import { FiCamera } from "react-icons/fi";
-import { CiHeadphones } from "react-icons/ci";
-import { TbDeviceGamepad } from "react-icons/tb";
-import { TbDeviceWatchStats } from "react-icons/tb";
+
 import { Link } from "react-router-dom";
-import { useFetchData } from "../../../hooks/useFetchData";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "../../../supabase/supabaseClients";
+import { toast } from "react-toastify";
 
-const iconMapping = {
-  Phones: CiMobile4,
-  Computers: HiOutlineComputerDesktop,
-  SmartWatch: TbDeviceWatchStats,
-  Camera: FiCamera,
-  Headphones: CiHeadphones,
-  Gaming: TbDeviceGamepad,
-};
 
-export const SubCategory = ({ id}) => {
+
+export const SubCategory = () => {
   const {
-    data: products = [],
+    data: subcategories,
     isLoading,
-    isError,
     error,
-  } = useFetchData("products", "*", { category_id: id});
+    isError,
+  } = useQuery({
+    queryKey: ["subcategory"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("subcategories")
+        .select("*")
+        .eq("category_id", "fc195ff6-57f1-4e8d-9a36-2b9fe503d392");
+
+      if (error) {
+        return toast.error(error.message);
+      }
+
+      return data;
+    },
+  });
+
+  console.log(subcategories, "subcategories");
 
   if (isLoading) {
     return <p className="text-center">Loading categories...</p>;
@@ -59,45 +65,35 @@ export const SubCategory = ({ id}) => {
           </div>
         </div>
 
-        <div
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8
-        pt-14 pb-6 "
-        >
-          {products.length > 0 &&
-            products.slice(0, 6).map((product) => {
-              const Icon = iconMapping[product.name] || null;
-              return (
+        <div className="pt-14 pb-6">
+          {subcategories?.length > 0 ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
+              {subcategories.map((subcategory) => (
                 <div
-                  key={product.id}
+                  key={subcategory?.id}
                   className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105"
                 >
-                  {Icon && <Icon className="text-6xl" />}
-                  {/* <img src={product.product_images?.[0]} alt="" /> */}
-                  <p className="mt-4 text-base">{product.category_id}</p>
+                  <img
+                    src={subcategory?.images}
+                    alt={subcategory?.name || "Image"}
+                  />
+                  <p className="mt-4 text-base">{subcategory?.name}</p>
                 </div>
-              );
-            })}
-
-          {/* <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
-            <HiOutlineComputerDesktop className="text-6xl" />
-            <p className="text-base mt-4">Computers</p>
-          </div>
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px hover:bg-primary transform transition-transform duration-300 hover:scale-105">
-            <TbDeviceWatchStats className="text-6xl" />
-            <p className="text-base mt-4">SmartWatch</p>
-          </div>
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
-            <FiCamera className="text-6xl" />
-            <p className="text-base mt-4">Camera</p>
-          </div>
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
-            <CiHeadphones className="text-6xl" />
-            <p className="text-base mt-4">HeadPhones</p>
-          </div>
-          <div className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105">
-            <TbDeviceGamepad className="text-6xl" />
-            <p className="text-base mt-4 ">Gaming</p>
-          </div> */}
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
+              {[...Array(6)].map((_, index) => (
+                <div
+                  key={index}
+                  className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] animate-pulse"
+                >
+                  <div className="w-16 h-16 bg-gray-300 rounded-full"></div>
+                  <div className="mt-4 w-3/4 h-4 bg-gray-300 rounded"></div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <div className="w-full mt-4 mb-6">

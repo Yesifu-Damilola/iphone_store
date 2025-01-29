@@ -34,7 +34,6 @@ export const FlashSales = ({
   } = useFetchData("products", "*", { productFeatures: "flash-sales" });
 
   const { addToCart, cartItems } = useContext(Shopcontext);
-
   const navigate = useNavigate();
 
   if (isLoading) {

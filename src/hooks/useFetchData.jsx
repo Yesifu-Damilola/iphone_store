@@ -12,7 +12,6 @@ export const useFetchData = (tableName, columns = "*", filters = {}) => {
     const { data, error } = await query;
 
     if (error) {
-      console.log(`${tableName} fetch error:`, error?.message);
       throw new Error(error?.message);
     }
     return data;

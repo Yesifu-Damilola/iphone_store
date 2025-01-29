@@ -42,15 +42,15 @@ export const NewArrival = ({ title = "Features", subTitle = "New Arrival" }) => 
           <div className="bg-[#000000] relative rounded w-full lg:w-[570px] h-auto lg:h-[600px]">
             <img
               src={products[0]?.product_images?.[0]}
-              alt={products[0]?.product_name || "Product Image"}
+              alt={products[0]?.product_name}
               className="w-full h-auto lg:w-[511px] lg:h-[511px]"
             />
             <div className="absolute bottom-0 left-0 p-4 w-full">
               <h4 className="text-xl md:text-2xl font-semibold text-left text-[#FAFAFA]">
-                {products[0]?.product_name || "Product Name"}
+                {products[0]?.product_name}
               </h4>
               <p className="mt-2 text-sm text-left text-[#FAFAFA]">
-                {products[0]?.description || "Product escription"}
+                {products[0]?.description}
               </p>
               <Link
                 to={products[0]?.link || "#"}
@@ -66,7 +66,7 @@ export const NewArrival = ({ title = "Features", subTitle = "New Arrival" }) => 
             <div className="relative bg-[#000000] rounded w-full lg:w-[570px] h-auto lg:h-[284px]">
               <img
                 src={products[1]?.product_images?.[0]}
-                alt={products[1]?.product_name || "Products Name"}
+                alt={products[1]?.product_name}
                 className="w-full h-auto lg:w-[472px] lg:h-[284px]"
               />
               <div className="absolute bottom-0 left-0 p-4 w-full">

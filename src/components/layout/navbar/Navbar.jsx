@@ -9,7 +9,6 @@ import { Users } from "../../../assets/icons/Users";
 export const Navbar = () => {
   const { user } = useCurrentUser();
 
-  console.log(user);
   const [profileVisible, setProfileVisible] = useState(false);
 
   const toggleVisibility = () => {
