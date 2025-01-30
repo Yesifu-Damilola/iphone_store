@@ -1,11 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import "react-loading-skeleton/dist/skeleton.css";
 import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { AddToCartButton } from "../../AddToCartButton";
-import SkeletonLoader from "../../SkeletonLoader";
 
 export const FlashSalesItem = ({
   item,
@@ -41,34 +39,13 @@ export const FlashSalesItem = ({
           </div>
         </Link>
       </div>
-      {/* Skeleton Loader for Price */}
-      <p className="mt-2 text-sm ">
-        {isLoading ? (
-          <SkeletonLoader
-            count={3}
-            width={70}
-            height={30}
-            direction="vertical"
-            className="bg-gray-300"
-          />
-        ) : (
-          `$${item.price}`
-        )}
-
+      <p className="mt-4 text-base font-semibold">{item.product_name}</p>
+      <p className="mt-2 text-sm">
+        {`$${item.price}`}
         <span className="line-through text-gray-500 px-2">
-          {isLoading ? (
-            <SkeletonLoader
-              count={5}
-              width={70}
-              height={30}
-              direction="vertical"
-            />
-          ) : (
-            `$${item.originalPrice}`
-          )}
+          {`$${item.originalPrice}`}
         </span>
       </p>
-
       <div className="flex items-center mt-2 text-sm">
         {Array.from({ length: 5 }).map((_, starIndex) => (
           <FaStar

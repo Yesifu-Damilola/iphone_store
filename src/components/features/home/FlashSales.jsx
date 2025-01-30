@@ -94,7 +94,7 @@ export const FlashSales = ({
                 key={item.id}
                 item={item}
                 showCartIcon={showCartIcon}
-                isLoading={isLoading}
+                isLoading={true}
                 // onAddToCart={() => addToCart(item.id)}
               />
             ))
