@@ -10,7 +10,6 @@ import { useFetchData } from "../../../hooks/useFetchData";
 import { CountdownTimer } from "./../../timer Component/CountdownTimer";
 import { useContext } from "react";
 import { Shopcontext } from "../../../context/ShopContext";
-
 import SkeletonLoader from "../../SkeletonLoader";
 
 const strongElements = document.querySelectorAll("#timeContainer strong");
@@ -95,6 +94,7 @@ export const FlashSales = ({
                 key={item.id}
                 item={item}
                 showCartIcon={showCartIcon}
+                isLoading={isLoading}
                 // onAddToCart={() => addToCart(item.id)}
               />
             ))

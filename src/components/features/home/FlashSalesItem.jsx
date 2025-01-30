@@ -5,12 +5,13 @@ import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { AddToCartButton } from "../../AddToCartButton";
+import SkeletonLoader from "../../SkeletonLoader";
 
 export const FlashSalesItem = ({
   item,
   handleAddToCart,
   showCartIcon,
- 
+  isLoading,
 }) => {
   return (
     <div>
@@ -40,15 +41,34 @@ export const FlashSalesItem = ({
           </div>
         </Link>
       </div>
-      <p className="mt-4 text-base font-semibold">{item.product_name}</p>
-      <p className="mt-2 text-sm">
-        {`$${item.price}`}
+      {/* Skeleton Loader for Price */}
+      <p className="mt-2 text-sm ">
+        {isLoading ? (
+          <SkeletonLoader
+            count={3}
+            width={70}
+            height={30}
+            direction="vertical"
+            className="bg-gray-300"
+          />
+        ) : (
+          `$${item.price}`
+        )}
+
         <span className="line-through text-gray-500 px-2">
-          {`$${item.originalPrice}`}
+          {isLoading ? (
+            <SkeletonLoader
+              count={5}
+              width={70}
+              height={30}
+              direction="vertical"
+            />
+          ) : (
+            `$${item.originalPrice}`
+          )}
         </span>
       </p>
 
-     
       <div className="flex items-center mt-2 text-sm">
         {Array.from({ length: 5 }).map((_, starIndex) => (
           <FaStar
