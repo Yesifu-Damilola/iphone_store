@@ -21,8 +21,8 @@ export const Navbar = () => {
     setIsOpen((prev) => !prev);
   };
   return (
-    <header className="bg-white sticky top-12 md:top-16 z-10 ">
-      <nav className="container mx-auto p-4">
+    <header className="bg-white sticky top-12 md:top-16 z-50  ">
+      <nav className="container mx-auto p-4 ">
         <div className="flex justify-between items-center">
           <div className="p-2">
             <Link

@@ -3,9 +3,8 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "../../../supabase/supabaseClients";
-import { toast } from "react-toastify";
+import { useFetch } from "../../../hooks/useFetch";
+import { fetchSubCategories } from "../../../services/categoryApi/fetchCategories";
 
 export const SubCategory = () => {
   const {
@@ -13,31 +12,7 @@ export const SubCategory = () => {
     isLoading,
     error,
     isError,
-  } = useQuery({
-    queryKey: ["subcategory"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("subcategories")
-        .select("*")
-        .eq("category_id", "fc195ff6-57f1-4e8d-9a36-2b9fe503d392");
-
-      if (error) {
-        return toast.error(error.message);
-      }
-
-      return data;
-    },
-  });
-
-  console.log(subcategories, "subcategories");
-
-  // if (isLoading) {
-  //   return <p className="text-center">Loading SubCategories...</p>;
-  // }
-
-  // if (isError) {
-  //   return <p className="text-center text-red-500">Error: {error?.message}</p>;
-  // }
+  } = useFetch(fetchSubCategories, "subcategories");
 
   return (
     <main>
@@ -85,7 +60,7 @@ export const SubCategory = () => {
               {subcategories.map((subcategory) => (
                 <div
                   key={subcategory?.id}
-                  className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105"
+                  className="border-2 rounded p-4 flex flex-col items-center w-full h-[145px] hover:bg-primary transform transition-transform duration-300 hover:scale-105 cursor-pointer"
                 >
                   <img
                     src={subcategory?.images}

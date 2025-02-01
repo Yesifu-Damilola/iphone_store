@@ -6,11 +6,12 @@ import { FaArrowLeft } from "react-icons/fa";
 import { FlashSalesItem } from "./FlashSalesItem";
 import { Link, useNavigate } from "react-router-dom";
 import { CustomButton } from "../../../components/custombutton/CustomButton";
-import { useFetchData } from "../../../hooks/useFetchData";
 import { CountdownTimer } from "./../../timer Component/CountdownTimer";
 import { useContext } from "react";
 import { Shopcontext } from "../../../context/ShopContext";
 import SkeletonLoader from "../../SkeletonLoader";
+import { useFetch } from "../../../hooks/useFetch";
+import { fetchAllProducts } from "../../../services/products/fetchProduct";
 
 const strongElements = document.querySelectorAll("#timeContainer strong");
 
@@ -26,14 +27,17 @@ export const FlashSales = ({
   type = "home",
   className = "lg:grid-cols-5 my-10",
   showCartIcon,
-  targetDate = "2025-01-31T12:00:00Z",
+  targetDate = "2025-02-06T12:00:00Z",
+  productFeatures,
+  count = 4,
+  query = "",
 }) => {
   const {
     data: products = [],
     isLoading,
     isError,
     error,
-  } = useFetchData("products", "*", { productFeatures: "flash-sales" });
+  } = useFetch(fetchAllProducts, "products", productFeatures, count);
 
   // const { addToCart, cartItems } = useContext(Shopcontext);
   const navigate = useNavigate();
@@ -59,7 +63,7 @@ export const FlashSales = ({
               )}
             </div>
 
-            {type === "home" ? (
+            {type === "home" && productFeatures === "flash-sales" ? (
               <CountdownTimer targetDate={targetDate} />
             ) : null}
           </div>
@@ -69,7 +73,7 @@ export const FlashSales = ({
                 <FaArrowLeft className="h-4 w-4 text-black" />
               </Link>
               <Link to="#" className="bg-[#F5F5F5] border rounded-full p-2">
-                <FaArrowRight clasName="h-4 w-4 text-black" />
+                <FaArrowRight className="h-4 w-4 text-black" />
               </Link>
             </div>
           ) : null}
@@ -94,7 +98,9 @@ export const FlashSales = ({
                 key={item.id}
                 item={item}
                 showCartIcon={showCartIcon}
-                isLoading={true}
+                productFeatures={productFeatures}
+                query={query}
+                // isLoading={true}
                 // onAddToCart={() => addToCart(item.id)}
               />
             ))

@@ -1,9 +1,7 @@
 import { ShowCase } from "../../components/features/home/ShowCase";
 import { FlashSales } from "./../../components/features/home/FlashSales";
 import { SubCategory } from "./../../components/features/home/SubCategory";
-import { SellingProducts } from "./../../components/features/home/SellingProducts";
 import { MusicExperience } from "./../../components/features/home/MusicExperience";
-import { ExploreProducts } from "./../../components/features/home/ExploreProducts";
 import { NewArrival } from "./../../components/features/home/NewArrival";
 import { products } from "../../constants/Products";
 
@@ -15,11 +13,23 @@ const Home = () => {
         title={"Today’s"}
         subTitle="Flash Sales"
         products={products}
+        productFeatures="flash-sales"
       />
       <SubCategory products={products} />
-      <SellingProducts />
+      <FlashSales
+        title={"This Month"}
+        subTitle="Best Selling Products"
+        products={products}
+        productFeatures="best-selling-products"
+      />
       <MusicExperience />
-      <ExploreProducts />
+      <FlashSales
+        title={"Our Products"}
+        subTitle="Explore Our Products"
+        products={products}
+        count={14}
+      />
+
       <NewArrival />
     </>
   );

@@ -23,7 +23,12 @@ export const ShopContextProvider = ({ children }) => {
   const revomeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
   };
+
+
   
+  
+
+
 
   const contextValue = { cartItems, addToCart, revomeFromCart };
   return (

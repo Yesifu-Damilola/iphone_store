@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link, useNavigate } from "react-router-dom";
 import { TopHeader } from "../../components/headerbutton/TopHeader";
 import { Navbar } from "../../components/layout/navbar/Navbar";

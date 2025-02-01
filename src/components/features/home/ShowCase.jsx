@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import apple from "../../../assets/images/Applelogo@3.png";
 import heroiphone from "../../../assets/images/heroiphone2@3.png";
 import { useState } from "react";
-import { useFetchData } from "../../../hooks/useFetchData";
 import Skeleton from "react-loading-skeleton";
+import { useFetch } from "../../../hooks/useFetch";
+import { fetchCategories } from "../../../services/categoryApi/fetchCategories";
 
 export const ShowCase = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,7 @@ export const ShowCase = () => {
     error,
     isLoading,
     isError,
-  } = useFetchData("categories", "id, name");
+  } = useFetch(fetchCategories, "categories");
 
   const toggleList = () => {
     setIsOpen((prev) => !prev);

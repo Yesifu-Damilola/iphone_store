@@ -18,7 +18,7 @@ export const useFetchData = (tableName, columns = "*", filters = {}) => {
   };
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: [tableName, columns, filters],
+    queryKey: [tableName, filters],
     queryFn: fetchData,
   });
 

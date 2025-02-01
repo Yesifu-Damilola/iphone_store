@@ -1,11 +1,13 @@
+/* eslint-disable react/prop-types */
 import "react-loading-skeleton/dist/skeleton.css";
 import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useFetchData } from "../../../hooks/useFetchData";
+import { AddToCartButton } from "../../AddToCartButton";
 // import SkeletonLoader from "../../SkeletonLoader";
 
-export const SellingProducts = () => {
+export const SellingProducts = ({ handleAddToCart }) => {
   const {
     data: products = [],
     isLoading,
@@ -32,80 +34,20 @@ export const SellingProducts = () => {
 
         <div className="flex gap-5 pt-6 ">
           <Link
-            to="/"
+            to="#"
             className="text-sm text-[#FFFFFF] bg-[#DB4444] rounded px-8 py-3 sm:px-6 sm:py-2 md:px-6 md:py-3 lg:px-8 lg:py-3"
           >
             View All
           </Link>
         </div>
       </div>
-
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
-        {isLoading ? (
-          <SkeletonLoader
-            count={5}
-            width={290}
-            height={250}
-            direction="horizontal"
-          />
-        ) : isError ? (
-          <p className="text-red-500">
-            Error: {error?.message || "Something went wrong"}
-          </p>
-        ) : products?.length > 0 ? (
-          products.map((item) => (
-            <div key={item.id}>
-              <div className="bg-[#F5F5F5] rounded p-4 relative">
-                <div className="top-0 right-0 space-y-2 mb-4 flex flex-col items-end">
-                  <FiHeart className="bg-white border rounded-full text-2xl p-1" />
-                  <FiEye className="bg-white border rounded-full text-2xl p-1" />
-                </div>
-
-                <div className="lg:w-[180px] lg:h-[180px] mx-auto">
-                  <img
-                    src={item.product_images?.[0]}
-                    alt={item.product_name}
-                    className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto"
-                  />
-                </div>
-              </div>
-              <p className="mt-4 text-base font-semibold">
-                {item.product_name}
-              </p>
-              <p className="mt-2   text-sm">
-                {`$${item.price}`}
-                <span className="line-through text-gray-500 px-2">
-                  {item.originalPrice}
-                </span>
-              </p>
-              <div className="flex items-center mt-2 text-sm">
-                {Array.from({ length: 5 }).map((_, starIndex) => (
-                  <FaStar
-                    key={starIndex}
-                    className={
-                      starIndex < Math.floor(item.rating)
-                        ? "text-[#FFAD33]"
-                        : "text-[#bfbfbbb9]"
-                    }
-                  />
-                ))}
-                <span className="ml-2 text-gray-600">({item.reviews})</span>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p className="text-center col-span-full">
-            No best-selling products available.
-          </p>
-        )}
-      </div> */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 my-10">
         {isLoading ? (
           Array.from({ length: 5 }).map((_, index) => (
             <div key={index} className="bg-[#F5F5F5] rounded p-4 animate-pulse">
               <div className="w-[180px] h-[180px] bg-gray-300 mx-auto rounded"></div>
-              <div className="w-3/4 h-4 bg-gray-300 rounded mt-4 mx-auto"></div>
-              <div className="w-1/2 h-3 bg-gray-300 rounded mt-2 mx-auto"></div>
+              <div className="w-3/4 h-4 bg-gray-300 rounded mt-4 ml-3"></div>
+              <div className="w-1/2 h-3 bg-gray-300 rounded mt-2 ml-3"></div>
             </div>
           ))
         ) : isError ? (
@@ -115,18 +57,26 @@ export const SellingProducts = () => {
         ) : products?.length > 0 ? (
           products.map((item) => (
             <div key={item.id}>
-              <div className="bg-[#F5F5F5] rounded p-4 relative">
+              <div className="bg-[#F5F5F5] rounded p-4  ">
                 <div className="top-0 right-0 space-y-2 mb-4 flex flex-col items-end">
-                  <FiHeart className="bg-white border rounded-full text-2xl p-1" />
-                  <FiEye className="bg-white border rounded-full text-2xl p-1" />
+                  <FiHeart className="bg-white border rounded-full text-2xl p-1 cursor-pointer" />
+                  <FiEye className="bg-white border rounded-full text-2xl p-1 cursor-pointer" />
                 </div>
 
-                <div className="lg:w-[180px] lg:h-[180px] mx-auto">
+                <div className="lg:w-[180px] lg:h-[180px] mx-auto group relative">
                   <img
                     src={item.product_images?.[0]}
                     alt={item.product_name}
                     className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto"
                   />
+                  <Link
+                    to="#"
+                    className="flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300  absolute inset-0 left-0 bottom-0"
+                  >
+                    <AddToCartButton
+                      handleAddToCart={() => handleAddToCart(item)}
+                    />
+                  </Link>
                 </div>
               </div>
 

@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { NewArrivalItem } from "../NewArrivalItem";
-import { useFetchData } from "../../../hooks/useFetchData";
+import { useFetch } from "../../../hooks/useFetch";
+import { fetchAllProducts } from "../../../services/products/fetchProduct";
 
 // export const NewArrival = ({
 //   title = "Features",
@@ -259,7 +260,7 @@ export const NewArrival = ({
     isLoading,
     isError,
     error,
-  } = useFetchData("products", "*", { productFeatures: "new-arrival" });
+  } = useFetch(fetchAllProducts, "products", "new-arrival");
 
   return (
     <div className="container mx-auto p-4 pt-10">
