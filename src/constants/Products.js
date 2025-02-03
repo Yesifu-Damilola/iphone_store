@@ -19,6 +19,26 @@ import gamepad1 from "../assets/images/gamepad1@3.png";
 import gamepad2 from "../assets/images/gamepad2@3.png";
 import gamepad3 from "../assets/images/gamepad3@3.png";
 import gamepad4 from "../assets/images/gamepad4@3.png";
+import heroiphone from "../assets/images/heroiphone.jpeg";
+import horeiphone1 from "../assets/images/horeiphone1.webp";
+import heroiphone2 from "../assets/images/heroiphone2@3.png";
+import heroiphone3 from "../assets/images/horeiphone3.jpeg";
+import heroiphone4 from "../assets/images/heroiphone4.jpeg";
+import heroiphone5 from "../assets/images/heroiphone5.jpeg";
+import heroiphone6 from "../assets/images/heroiphone6.jpeg";
+import heroiphone8 from "../assets/images/heroiphone8.jpeg";
+import heroiphone9 from "../assets/images/heroiphone9.jpeg";
+import heroiphone10 from "../assets/images/heroiphone10.jpeg";
+import heroiphone11 from "../assets/images/heroiphone11.jpeg";
+import heroiphone12 from "../assets/images/heroiphone12.webp";
+import heroiphone13 from "../assets/images/heroiphone13.jpeg";
+import heroiphone14 from "../assets/images/heroiphone14.jpeg";
+import heroiphone15 from "../assets/images/heroiphone15.jpeg";
+import heroiphone16 from "../assets/images/heroiphone16.jpeg";
+import heroiphone19 from "../assets/images/heroiphone19.jpeg";
+import heroiphone20 from "../assets/images/heroiphone20.jpeg";
+import heroiphone21 from "../assets/images/heroiphone21.jpeg";
+import heroiphone22 from "../assets/images/heroiphone22.jpeg";
 
 export const products = [
   {
@@ -254,4 +274,25 @@ export const galleries = [
   },
 ];
 
-export const images = [];
+export const iphoneImages = [
+  heroiphone,
+  horeiphone1,
+  heroiphone2,
+  heroiphone3,
+  heroiphone4,
+  heroiphone5,
+  heroiphone6,
+  heroiphone8,
+  heroiphone9,
+  heroiphone10,
+  heroiphone11,
+  heroiphone12,
+  heroiphone13,
+  heroiphone14,
+  heroiphone15,
+  heroiphone16,
+  heroiphone19,
+  heroiphone20,
+  heroiphone21,
+  heroiphone22,
+];

@@ -3,14 +3,22 @@ import { FaArrowRight } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import apple from "../../../assets/images/Applelogo@3.png";
-import heroiphone from "../../../assets/images/heroiphone2@3.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useFetch } from "../../../hooks/useFetch";
 import { fetchCategories } from "../../../services/categoryApi/fetchCategories";
+import { iphoneImages } from "../../../constants/Products";
 
 export const ShowCase = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % iphoneImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const {
     data: categories = [],
@@ -86,7 +94,7 @@ export const ShowCase = () => {
             </div>
             <div className="bg-cover w-full md:w-auto md:py-0">
               <img
-                src={heroiphone}
+                src={iphoneImages[currentIndex]}
                 alt="iphone_hero"
                 className="max-w-full w-full md:w-[550px] h-auto md:h-[344px]"
               />
