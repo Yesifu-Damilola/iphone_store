@@ -253,3 +253,5 @@ export const galleries = [
     title: "gamepad4",
   },
 ];
+
+export const images = [];

@@ -30,7 +30,7 @@ const Home = () => {
         count={14}
       />
 
-      <NewArrival />
+      <NewArrival title={"Features"} subTitle="New Arrival" />
     </>
   );
 };

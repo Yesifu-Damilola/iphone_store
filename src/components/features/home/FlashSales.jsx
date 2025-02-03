@@ -7,8 +7,6 @@ import { FlashSalesItem } from "./FlashSalesItem";
 import { Link, useNavigate } from "react-router-dom";
 import { CustomButton } from "../../../components/custombutton/CustomButton";
 import { CountdownTimer } from "./../../timer Component/CountdownTimer";
-import { useContext } from "react";
-import { Shopcontext } from "../../../context/ShopContext";
 import SkeletonLoader from "../../SkeletonLoader";
 import { useFetch } from "../../../hooks/useFetch";
 import { fetchAllProducts } from "../../../services/products/fetchProduct";
