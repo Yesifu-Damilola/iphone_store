@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
-export const CountdownTimer = ({ targetDate }) => {
+export const CountdownTimer = ({ targetDate, className = "" }) => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -48,7 +48,9 @@ export const CountdownTimer = ({ targetDate }) => {
   }, [targetDate]);
 
   return (
-    <div className="flex justify-between w-full sm:w-[250px] md:w-[302px] h-[50px] pt-4 sm:pt-6 md:pt-8 gap-x-2 md:gap-x-4">
+    <div
+      className={`flex justify-between w-full sm:w-[250px] md:w-[302px] h-[50px] pt-4 sm:pt-6 md:pt-8 gap-x-2 md:gap-x-4 ${className}`}
+    >
       {["Days", "Hours", "Minutes", "Seconds"].map((unit, index) => (
         <div key={unit} className="text-center">
           <p className="text-xs md:text-sm">{unit}</p>

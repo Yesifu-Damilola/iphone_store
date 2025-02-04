@@ -22,12 +22,11 @@ import gamepad4 from "../assets/images/gamepad4@3.png";
 import heroiphone from "../assets/images/heroiphone.jpg";
 import heroiphone1 from "../assets/images/heroiphone1.webp";
 import heroiphone2 from "../assets/images/heroiphone2@3.png";
-
 import heroiphone5 from "../assets/images/heroiphone5.webp";
 import heroiphone7 from "../assets/images/heroiphone7.webp";
 import heroiphone8 from "../assets/images/heroiphone8.jpeg";
-
-
+import heroiphone10 from "../assets/images/heroiphone10.webp";
+import heroiphone11 from "../assets/images/heroiphone11.jpg";
 import heroiphone12 from "../assets/images/heroiphone12.webp";
 
 export const products = [
@@ -271,5 +270,7 @@ export const iphoneImages = [
   heroiphone5,
   heroiphone7,
   heroiphone8,
+  heroiphone10,
+  heroiphone11,
   heroiphone12,
 ];

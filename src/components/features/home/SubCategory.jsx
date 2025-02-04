@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useFetch } from "../../../hooks/useFetch";
 import { fetchSubCategories } from "../../../services/categoryApi/fetchCategories";
 
-export const SubCategory = () => {
+export const SubCategory = ({ title, subTitle }) => {
   const {
     data: subcategories,
     isLoading,
@@ -20,13 +20,13 @@ export const SubCategory = () => {
         <div className="flex gap-x-4 items-center">
           <button className="bg-[#DB4444] border-0 rounded-sm w-5 h-10"></button>
           <span className="block text-[#DB4444] text-sm md:text-xl font-semibold py-2">
-            Categories
+            {title}
           </span>
         </div>
         <div className="flex flex-col md:flex-row text-center md:text-left justify-between items-center">
           <div>
             <h2 className="text-2xl md:text-3xl font-semibold pt-6">
-              Browse By Category
+              {subTitle}
             </h2>
           </div>
           <div className="flex gap-5 pt-6 ">

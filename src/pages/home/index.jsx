@@ -15,7 +15,11 @@ const Home = () => {
         products={products}
         productFeatures="flash-sales"
       />
-      <SubCategory products={products} />
+      <SubCategory
+        title={" Categories"}
+        subTitle="Browse By Category"
+        products={products}
+      />
       <FlashSales
         title={"This Month"}
         subTitle="Best Selling Products"

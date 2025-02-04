@@ -1,4 +1,5 @@
 import boombox from "../../../assets/images/boombox@3.png";
+import { CountdownTimer } from "../../timer Component/CountdownTimer";
 
 export const MusicExperience = () => {
   return (
@@ -13,7 +14,7 @@ export const MusicExperience = () => {
             Enhance Your Music Experience
           </p>
 
-          <div className="flex flex-wrap justify-between mt-8">
+          {/* <div className="flex flex-wrap justify-between mt-8">
             <div className="flex w-1/2 md:w-1/4 justify-center mb-4">
               <button className="text-[#000000] border rounded-full w-[62px] h-[62px] bg-white flex flex-col items-center justify-center">
                 <p className="text-base">23</p>
@@ -38,6 +39,13 @@ export const MusicExperience = () => {
                 <p className="text-xs">Seconds</p>
               </button>
             </div>
+          </div> */}
+
+          <div className="py-8">
+            <CountdownTimer
+              targetDate="2025-02-20T23:59:59"
+              className="text-white"
+            />
           </div>
 
           <div className="mt-10">

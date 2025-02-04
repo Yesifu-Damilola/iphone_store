@@ -7,7 +7,7 @@ import { CustomButton } from "../../custombutton/CustomButton";
 import { AddToCartButton } from "../../AddToCartButton";
 import { useFetchData } from "../../../hooks/useFetchData";
 
-export const ExploreProducts = ({ handleAddToCart }) => {
+export const ExploreProducts = ({ handleAddToCart, title, subtitle }) => {
   const {
     data: products = [],
     isLoading,
@@ -21,13 +21,13 @@ export const ExploreProducts = ({ handleAddToCart }) => {
         <div className="flex gap-x-4 items-center">
           <button className="bg-[#DB4444] border-0 rounded-sm w-5 h-10"></button>
           <span className="block text-[#DB4444] text-sm md:text-xl font-semibold py-2">
-            Our Products
+           {title}
           </span>
         </div>
         <div className="flex flex-col md:flex-row text-center md:text-left justify-between items-center">
           <div>
             <h2 className="text-2xl md:text-3xl font-semibold pt-6">
-              Explore Our Products
+              {subtitle}
             </h2>
           </div>
           <div className="flex gap-5 pt-6 ">
