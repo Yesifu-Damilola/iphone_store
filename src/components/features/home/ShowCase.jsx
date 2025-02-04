@@ -92,12 +92,25 @@ export const ShowCase = () => {
                 </Link>
               </div>
             </div>
-            <div className="bg-cover w-full md:w-auto md:py-0">
+            <div className="bg-cover w-full md:w-auto md:py-0 relative ">
               <img
                 src={iphoneImages[currentIndex]}
                 alt="iphone_hero"
-                className="max-w-full w-full md:w-[550px] h-auto md:h-[344px]"
+                className="max-w-full w-full md:w-[550px] h-auto md:h-[344px] transition-opacity duration-500"
               />
+              <div className="flex md:items-left md:justify-start items-center justify-center ">
+                {iphoneImages.map((_, index) => (
+                  <span
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`w-2 h-2 mx-1 rounded-full cursor-pointer ${
+                      currentIndex === index
+                        ? "bg-red-500 w-2 h-2"
+                        : "bg-gray-500"
+                    } transition-all duration-300`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
