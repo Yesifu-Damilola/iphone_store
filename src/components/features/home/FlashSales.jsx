@@ -10,6 +10,7 @@ import { CountdownTimer } from "./../../timer Component/CountdownTimer";
 import SkeletonLoader from "../../SkeletonLoader";
 import { useFetch } from "../../../hooks/useFetch";
 import { fetchAllProducts } from "../../../services/products/fetchProduct";
+import { products } from "./../../../constants/Products";
 
 const strongElements = document.querySelectorAll("#timeContainer strong");
 
@@ -28,11 +29,12 @@ export const FlashSales = ({
   targetDate = "2025-02-06T12:00:00Z",
   productFeatures,
   count = 4,
+  loaderCount = 5,
   query = "",
 }) => {
   const {
     data: products = [],
-    isLoading,
+    status,
     isError,
     error,
   } = useFetch(fetchAllProducts, "products", productFeatures, count);
@@ -76,22 +78,33 @@ export const FlashSales = ({
             </div>
           ) : null}
         </div>
+
+        {status === "pending" && products.length === 0 && (
+          <SkeletonLoader
+            count={loaderCount || 5}
+            width={290}
+            height={250}
+            direction="horizontal"
+          />
+        )}
+
+        {status === "error" && products.length === 0 && (
+          <p className="text-red-500">
+            Error: {error?.message || "Something went wrong"}
+          </p>
+        )}
+
+        {status === "success" && products.length === 0 && (
+          <p>No products available.</p>
+        )}
+
         <div
           className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${className || ""}`}
         >
-          {isLoading ? (
-            <SkeletonLoader
-              count={5}
-              width={290}
-              height={250}
-              direction="horizontal"
-            />
-          ) : isError ? (
-            <p className="text-red-500">
-              Error: {error?.message || "Something went wrong"}
-            </p>
-          ) : products?.length > 0 ? (
-            products.map((item) => (
+          {products &&
+            products?.length > 0 &&
+            status === "success" &&
+            products?.map((item) => (
               <FlashSalesItem
                 key={item.id}
                 item={item}
@@ -101,10 +114,7 @@ export const FlashSales = ({
                 // isLoading={true}
                 // onAddToCart={() => addToCart(item.id)}
               />
-            ))
-          ) : (
-            <p>No products available.</p>
-          )}
+            ))}
         </div>
 
         {type === "home" ? (

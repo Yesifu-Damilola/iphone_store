@@ -26,7 +26,6 @@ export const AuthLayout = ({ children, title, subtitle }) => {
           </h2>
           <p className="text-base">{subtitle}</p>
         </div>
-
         {children}
       </div>
     </div>

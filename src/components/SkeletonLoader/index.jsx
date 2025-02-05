@@ -6,12 +6,10 @@ const SkeletonLoader = ({
   count = 5,
   width = 290,
   height = 250,
-  direction = "horizontal",
+  // direction = "horizontal",
 }) => {
   return (
-    <div
-      className={direction === "horizontal" ? "flex gap-x-4" : "grid gap-y-4"}
-    >
+    <div className={"grid grid-cols-5 gap-6"}>
       {Array(count)
         .fill(null)
         .map((_, index) => (

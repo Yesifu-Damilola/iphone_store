@@ -43,7 +43,7 @@ const ProductDetailsItem = ({ products }) => {
     <div className="container m-auto px-1">
       <div className="mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[200px_minmax(0,_2fr)_1fr] gap-8">
         <div className="space-y-4">
-          {products.product_images?.map((image, id) => (
+          {products?.product_images?.map((image, id) => (
             <div
               key={id}
               className="flex flex-col items-center justify-center w-full h-[138px] bg-secondary rounded"
@@ -57,7 +57,7 @@ const ProductDetailsItem = ({ products }) => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col items-center justify-center bg-secondary w-full h-auto md:h-[600px] rounded px-2 ">
+        <div className="flex flex-col items-center justify-center bg-secondary w-full h-auto md:h-[600px] rounded px-2">
           <img
             src={selectedImage}
             alt={selectedImage.product}

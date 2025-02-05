@@ -3,7 +3,7 @@ import { supabase } from "../supabase/supabaseClients";
 
 export const useFetchProductDetails = ({ apiName, key, value }) => {
   const fetchProductDetails = async () => {
-    if (!apiName || !key || !value) return null;
+    // if (!apiName || !key || !value) return null;
 
     const { data, error } = await supabase
       .from(apiName)
@@ -20,6 +20,6 @@ export const useFetchProductDetails = ({ apiName, key, value }) => {
   return useQuery({
     queryKey: [apiName, key, value],
     queryFn: fetchProductDetails,
-    enabled: !!apiName && !!key && !!value,
+    // enabled: !!apiName && !!key && !!value,
   });
 };

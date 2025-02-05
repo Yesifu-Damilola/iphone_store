@@ -32,6 +32,7 @@ const Home = () => {
         subTitle="Explore Our Products"
         products={products}
         count={14}
+        loaderCount={15}
       />
 
       <NewArrival title={"Features"} subTitle="New Arrival" />

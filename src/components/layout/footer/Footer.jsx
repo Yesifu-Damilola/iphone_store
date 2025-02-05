@@ -17,14 +17,14 @@ export const Footer = () => {
             </div>
             <div>
               <Link
-                to="/"
+                to="#"
                 className="text-lg font-semibold mb-4 hover:underline"
               >
                 Subscribe
               </Link>
             </div>
             <div>
-              <Link to="/" className="hover:underline">
+              <Link to="#" className="hover:underline">
                 Get 10% off your first order
               </Link>
             </div>
@@ -40,7 +40,7 @@ export const Footer = () => {
           </div>
 
           <div className="space-y-2">
-            <Link to="" className="text-lg font-semibold mb-4 hover:underline">
+            <Link to="#" className="text-lg font-semibold mb-4 hover:underline">
               Support
             </Link>
             <p>111 Bijoy Sarani, Dhaka, DH 1515, Bangladesh.</p>
@@ -78,7 +78,7 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
-
+          
           <div className="space-y-2">
             <Link to="" className="text-lg font-semibold mb-4 hover:underline">
               Quick Link
@@ -123,7 +123,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="w-full mt-12">
-        <hr className="border border-[#D9D9D9]   w-full sm:w-full lg:w-full mx-auto" />
+        <hr className="border border-[#D9D9D9] w-full sm:w-full lg:w-full mx-auto" />
       </div>
       <div className="text-[#D9D9D9] max-w-screen-xl mx-auto px-4 text-center mt-4 pb-5">
         <p className="flex flex-col sm:flex-row justify-center items-center gap-3 text-base">

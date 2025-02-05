@@ -114,7 +114,7 @@ export const Navbar = () => {
           {navRoutes.map((route, i) => (
             <Link
               to={route?.path}
-              className="block text-black hover:text-gray-700 text-base hover:underline   "
+              className="block text-black hover:text-gray-700 text-base hover:underline"
               key={`${route.name}-${i}`}
             >
               {route?.name}
@@ -123,7 +123,7 @@ export const Navbar = () => {
           {!user && (
             <Link
               to={"/signup"}
-              className="text-black hover:text-gray-700 text-base hover:underline "
+              className="text-black hover:text-gray-700 text-base hover:underline"
             >
               SignUp
             </Link>

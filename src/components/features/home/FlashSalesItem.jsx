@@ -47,7 +47,7 @@ export const FlashSalesItem = ({
             <img
               src={item.product_images?.[0]}
               alt={item.title}
-              className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto pb-5 absolute z-50"
+              className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto pb-5 absolute z-30"
             />
           </Link>
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300  z-20">
