@@ -1,20 +1,24 @@
+/* eslint-disable react/prop-types */
+
 import { BiStar } from "react-icons/bi";
 import { useState } from "react";
 import { FaHeart, FaRegHeart, FaTruckFast } from "react-icons/fa6";
 import { RiLoopLeftFill } from "react-icons/ri";
-import { galleries, products } from "../../constants/Products";
 import { FlashSales } from "../../components/features/home/FlashSales";
 import { Link } from "react-router-dom";
 
-const GamepadItem = () => {
-  const [selectedImage, setSelectedImage] = useState([]);
-  const [count, setCount] = useState(2);
+const ProductDetailsItem = ({ products }) => {
+  console.log(products);
+  const [selectedImage, setSelectedImage] = useState(
+    products?.product_images?.[0] || ""
+  );
+  const [count, setCount] = useState(1);
   const [liked, setLiked] = useState(false);
-  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedColor, setSelectedColor] = useState(products?.color || "");
   const [selectedSize, setSelectedSize] = useState("");
 
   const handleDecrease = () => {
-    setCount((prevCount) => Math.max(prevCount - 1, 0));
+    setCount((prevCount) => Math.max(prevCount - 1, 1));
   };
 
   const handleIncrease = () => {
@@ -33,35 +37,37 @@ const GamepadItem = () => {
     setSelectedSize(size);
   };
 
+  if (!products) return <p>Product not found.</p>;
+
   return (
     <div className="container m-auto px-1">
       <div className="mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[200px_minmax(0,_2fr)_1fr] gap-8">
         <div className="space-y-4">
-          {galleries.map((gallery) => (
+          {products.product_images?.map((image, id) => (
             <div
-              key={gallery.id}
+              key={id}
               className="flex flex-col items-center justify-center w-full h-[138px] bg-secondary rounded"
             >
               <img
-                src={gallery.src}
-                alt={gallery.title}
-                onClick={() => setSelectedImage(gallery)}
-                className="w-[121px] h-[114px]"
+                src={image}
+                alt={`Product image ${id + 1}`}
+                onClick={() => setSelectedImage(image)}
+                className="w-[121px] h-[114px] cursor-pointer"
               />
             </div>
           ))}
         </div>
         <div className="flex flex-col items-center justify-center bg-secondary w-full h-auto md:h-[600px] rounded px-2 ">
           <img
-            src={selectedImage.src || galleries[0].src}
-            alt={selectedImage.title}
+            src={selectedImage}
+            alt={selectedImage.product}
             className="w-[446px] h-[315px]"
           />
         </div>
         <div className="ml-0 md:ml-5">
           <div className="space-y-3">
             <h2 className="text-2xl font-semibold text-left">
-              Havic HV G-92 Gamepad
+              {products.product_name}
             </h2>
             <div className="space-y-3">
               <div className="flex flex-wrap gap-4 py-1">
@@ -76,18 +82,19 @@ const GamepadItem = () => {
                 <div className="hidden md:block">|</div>
                 <span className="text-sm text-[#00FF66]">In Stock</span>
               </div>
-              <p className="text-2xl/6 text-left">$192.00</p>
+              <p className="text-2xl/6 text-left">${products.price}</p>
               <p className="text-sm/5 text-left w-full md:w-[373px] py-1">
-                PlayStation 5 Controller Skin High quality vinyl with air
+                {products.description}
+                {/* PlayStation 5 Controller Skin High quality vinyl with air
                 channel adhesive for easy bubble free install & mess free
-                removal Pressure sensitive.
+                removal Pressure sensitive. */}
               </p>
             </div>
             <div className="py-2 w-full md:w-[400px]">
               <hr />
             </div>
             <div className="flex gap-4 pt-1 pb-3">
-              <span className="text-xl text-left">Colours:</span>
+              <span className="text-xl text-left">Colors:</span>
               <div
                 className={`border-4 border-solid border-black rounded-full bg-[#A0BCE0] w-5 h-5 cursor-pointer ${
                   selectedColor === "#A0BCE0"
@@ -188,11 +195,12 @@ const GamepadItem = () => {
           subTitle=""
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 pt-6"
           type="flashsales"
-          products={products.slice(0, 4).map((products) => products)}
+          // products={[products]}
+          // products={products.slice(0, 4).map((products) => products)}
         />
       </div>
     </div>
   );
 };
 
-export default GamepadItem;
+export default ProductDetailsItem;

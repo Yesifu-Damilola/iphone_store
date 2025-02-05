@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { FaStar } from "react-icons/fa";
 import { FiEye, FiHeart } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AddToCartButton } from "../../AddToCartButton";
 import { useWishLists } from "../../../hooks/useWishLists";
 
@@ -14,6 +14,10 @@ export const FlashSalesItem = ({
   query = "products",
 }) => {
   const { isPending, mutate } = useWishLists(query, productFeatures);
+
+  const { id } = useParams();
+  // console.log(id);
+
   return (
     <div>
       <div className="group bg-[#F5F5F5] rounded p-4 relative">
@@ -39,11 +43,13 @@ export const FlashSalesItem = ({
           </div>
         </div>
         <div className="w-[180px] h-[190px] mx-auto ">
-          <img
-            src={item.product_images?.[0]}
-            alt={item.title}
-            className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto pb-5"
-          />
+          <Link to={`/flashSales/${item.id}`} className=" cursor-pointer">
+            <img
+              src={item.product_images?.[0]}
+              alt={item.title}
+              className="w-full h-auto md:w-[172px] md:h-[152px] mx-auto pb-5 absolute z-50"
+            />
+          </Link>
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300  z-20">
             <AddToCartButton
               handleAddToCart={handleAddToCart}

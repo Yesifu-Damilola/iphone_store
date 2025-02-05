@@ -1,8 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import ProductDetailsItem from "./ProductDetailsItem";
+import { useFetchProductDetails } from "../../hooks/useFetchProductDetails";
 
-import GamepadItem from "./GamepadItem";
+const ProductDetails = () => {
+  const { id } = useParams();
+  // const navigate = useNavigate()
 
-const GamePad = () => {
+  const {
+    data: products,
+    isPending,
+    isError,
+  } = useFetchProductDetails({
+    apiName: "products",
+    key: "id",
+    value: id,
+  });
+ 
+  if (isPending) return <p className="text-center justify-center">Loading product...</p>;
+  if (isError) return <p className="text-center justify-center">Error fetching product!</p>;
+
   return (
     <div className="container mx-auto">
       <div className="flex flex-col sm:flex-row items-center sm:items-start mb-4 lg:mb-0 lg:px-4 py-10">
@@ -27,9 +43,9 @@ const GamePad = () => {
           Havic HV G-92 Gamepad
         </Link>
       </div>
-      <GamepadItem />
+      <ProductDetailsItem products={products} />
     </div>
   );
 };
 
-export default GamePad;
+export default ProductDetails;

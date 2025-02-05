@@ -19,9 +19,10 @@ import { Reviews } from "./components/account/Reviews";
 import WishList from "./pages/wishlist/WishList";
 import Cart from "./pages/cart/Cart";
 import MyAccount from "./pages/myaccount/MyAccount";
-import GamePad from "./pages/gamepad/GamePad";
+import ProductDetails from "./pages/productdetails/ProductDetails";
 import ProductRoot from "./pages/products/Root";
 import Products from "./pages/products/index";
+// import { FlashSalesDetails } from "./pages/FlashSalesDetails";
 
 const App = () => {
   return (
@@ -29,6 +30,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Root />}>
           <Route index element={<Home />} />
+          {/* <Route path="flashSales/:id" element={<FlashSalesDetails />} /> */}
+          <Route path="/flashSales/:id" element={<ProductDetails />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
           <Route path="contact" element={<Contact />} />
@@ -45,10 +48,10 @@ const App = () => {
           <Route path="myaccount" element={<MyAccount />} />
           <Route path="products" element={<ProductRoot />}>
             <Route index element={<Products />} />
-            <Route path=":id" element={<GamePad />} />
+            {/* <Route path="/products/:id" element={<ProductDetails />} /> */}
           </Route>
         </Route>
-        <Route path="gamepad" element={<GamePad />} />
+        {/* <Route path="gamepad" element={<ProductDetails />} /> */}
         <Route path="*" element={<NotFound showHeaderFooter={true} />} />
       </Routes>
     </Router>
