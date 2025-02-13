@@ -8,7 +8,6 @@ import { FlashSales } from "../../components/features/home/FlashSales";
 import { Link } from "react-router-dom";
 
 const ProductDetailsItem = ({ products }) => {
-  console.log(products);
   const [selectedImage, setSelectedImage] = useState(
     products?.product_images?.[0] || ""
   );

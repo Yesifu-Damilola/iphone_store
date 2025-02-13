@@ -19,6 +19,7 @@ import gamepad1 from "../assets/images/gamepad1@3.png";
 import gamepad2 from "../assets/images/gamepad2@3.png";
 import gamepad3 from "../assets/images/gamepad3@3.png";
 import gamepad4 from "../assets/images/gamepad4@3.png";
+import gamingmonitor from "../assets/images/gaming_monitor@3.png";
 import heroiphone from "../assets/images/heroiphone.jpg";
 import heroiphone1 from "../assets/images/heroiphone1.webp";
 import heroiphone2 from "../assets/images/heroiphone2@3.png";
@@ -273,4 +274,21 @@ export const iphoneImages = [
   heroiphone10,
   heroiphone11,
   heroiphone12,
+];
+
+export const cartItems = [
+  {
+    id: 1,
+    name: "LCD Monitor",
+    price: 650,
+    image: gamingmonitor, 
+    quantity: 1,
+  },
+  {
+    id: 2,
+    name: "H1 Gamepad",
+    price: 550,
+    image: gamepad,
+    quantity: 1,
+  },
 ];

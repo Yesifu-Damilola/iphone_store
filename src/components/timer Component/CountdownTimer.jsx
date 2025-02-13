@@ -49,7 +49,7 @@ export const CountdownTimer = ({ targetDate, className = "" }) => {
 
   return (
     <div
-      className={`flex justify-between w-full sm:w-[250px] md:w-[302px] h-[50px] pt-4 sm:pt-6 md:pt-8 gap-x-2 md:gap-x-4 ${className}`}
+      className={`flex text-center md:text-left md:justify-start justify-center w-full sm:w-[250px] md:w-[302px] h-[50px] pt-4 sm:pt-6 md:pt-8 gap-x-2 md:gap-x-4 ${className}`}
     >
       {["Days", "Hours", "Minutes", "Seconds"].map((unit, index) => (
         <div key={unit} className="text-center">

@@ -34,7 +34,7 @@ export const ShowCase = () => {
   return (
     <>
       <main className="container mx-auto flex flex-col items-center justify-center px-4 mb-16 ">
-        <div className="flex flex-col md:flex-row gap-11  w-full">
+        <div className="flex flex-col md:flex-row gap-11 w-full">
           <button
             className="md:hidden bg-primary text-white px-4 py-2 rounded"
             onClick={toggleList}

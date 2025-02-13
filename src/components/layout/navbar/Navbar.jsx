@@ -5,21 +5,28 @@ import CustomSearch from "../../customsearch/CustomSearch";
 import { navRoutes, subMenuLists } from "../../../constants/navbar";
 import { useCurrentUser } from "../../../hooks/auth/useCurrentUser";
 import { Users } from "../../../assets/icons/Users";
+import { Heart } from "../../../assets/icons/Heart";
+import { useCart } from "../../../hooks/useCart";
+import { Cart } from "../../../assets/icons/Cart";
+import { formatCurrency } from "../../../helper/formatCurrency";
+
 
 export const Navbar = () => {
-  const { user } = useCurrentUser();
+const { state } = useCart()
 
+  const { user } = useCurrentUser();
   const [profileVisible, setProfileVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleVisibility = () => {
     setProfileVisible((prev) => !prev);
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-
   const toggleNavbar = () => {
     setIsOpen((prev) => !prev);
   };
+
+  const totalPrice = state?.items?.reduce((total, item) => total + item.price * item.quantity, 0)
   return (
     <header className="bg-white sticky top-12 md:top-16 z-50  ">
       <nav className="container mx-auto p-4 ">
@@ -53,11 +60,22 @@ export const Navbar = () => {
           </div>
           <div className="md:flex hidden  items-center">
             <CustomSearch />
-            {subMenuLists?.map((menu) => (
+            {/* {subMenuLists?.map((menu) => (
               <Link to={menu?.path} className="p-2" key={menu.path}>
                 <menu.icon className="h-6 w-6 text-black hover:underline" />
               </Link>
-            ))}
+            ))} */}
+
+            <Link to={"/wishlist"} className="p-2">
+            <Heart className="h-6 w-6 text-black hover:underline"/>
+            </Link>
+
+            <Link to={"/cart"} className="p-2 relative" >
+            <Cart className="h-6 w-6 text-black hover:underline"/>
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                  {formatCurrency(totalPrice)}
+                </span>
+            </Link>
             {user?.email && (
               <div className="p-2">
                 <Users
@@ -108,9 +126,7 @@ export const Navbar = () => {
             </button>
           </div>
         </div>
-        <div
-          className={`${isOpen ? "block" : "hidden"} md:hidden mt-4`}
-        >
+        <div className={`${isOpen ? "block" : "hidden"} md:hidden mt-4`}>
           {navRoutes.map((route, i) => (
             <Link
               to={route?.path}

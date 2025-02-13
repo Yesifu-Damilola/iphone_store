@@ -72,15 +72,15 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/" className="hover:underline">
+                <Link to="#" className="hover:underline">
                   Shop
                 </Link>
               </li>
             </ul>
           </div>
-          
+
           <div className="space-y-2">
-            <Link to="" className="text-lg font-semibold mb-4 hover:underline">
+            <Link to="#" className="text-lg font-semibold mb-4 hover:underline">
               Quick Link
             </Link>
 
@@ -108,7 +108,7 @@ export const Footer = () => {
             </ul>
           </div>
           <div className="space-y-2">
-            <Link to="" className="text-lg font-semibold mb-4 hover:underline">
+            <Link to="#" className="text-lg font-semibold mb-4 hover:underline">
               Download App
             </Link>
 
@@ -127,7 +127,7 @@ export const Footer = () => {
       </div>
       <div className="text-[#D9D9D9] max-w-screen-xl mx-auto px-4 text-center mt-4 pb-5">
         <p className="flex flex-col sm:flex-row justify-center items-center gap-3 text-base">
-          <LuCopyright className="" />
+          <LuCopyright />
           Copyright Rimel 2022. All rights reserved.
         </p>
       </div>

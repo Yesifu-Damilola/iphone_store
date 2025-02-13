@@ -41,7 +41,7 @@ export const MusicExperience = () => {
             </div>
           </div> */}
 
-          <div className="py-8">
+          <div className="py-4">
             <CountdownTimer
               targetDate="2025-02-20T23:59:59"
               className="text-white"

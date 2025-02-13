@@ -10,7 +10,7 @@ import { CountdownTimer } from "./../../timer Component/CountdownTimer";
 import SkeletonLoader from "../../SkeletonLoader";
 import { useFetch } from "../../../hooks/useFetch";
 import { fetchAllProducts } from "../../../services/products/fetchProduct";
-import { products } from "./../../../constants/Products";
+
 
 const strongElements = document.querySelectorAll("#timeContainer strong");
 
@@ -111,8 +111,7 @@ export const FlashSales = ({
                 showCartIcon={showCartIcon}
                 productFeatures={productFeatures}
                 query={query}
-                // isLoading={true}
-                // onAddToCart={() => addToCart(item.id)}
+              
               />
             ))}
         </div>
