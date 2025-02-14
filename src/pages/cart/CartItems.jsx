@@ -3,6 +3,7 @@ import { CustomButton } from "../../components/custombutton/CustomButton";
 // import gamingmonitor from "../../assets/images/gaming_monitor@3.png";
 // import gamepad from "../../assets/images/gamepad@3.png";
 import { useCart } from "../../hooks/useCart";
+import { X } from 'lucide-react';
 
 const headers = ["Product", "Price", "Quantity", "Subtotal"];
 const CartItems = () => {
@@ -16,6 +17,14 @@ const CartItems = () => {
       payload: { id, quantity: Number.parseInt(newQuantity, 10) },
     })
   }
+
+// const removeFromCart = (id) => {
+//   dispatch({
+//     type: "REMOVE_FROM_CART",
+//     playload: id,
+//   })
+// }
+  
   return (
     <section>
       <div className="space-y-10">
@@ -33,7 +42,7 @@ const CartItems = () => {
         {carts?.map((item) => (
           <div
             key={item.id}
-            className="shadow flex flex-row sm:flex-col md:flex-col lg:flex-row items-center justify-between p-3 px-5 space-x-2"
+            className="shadow flex flex-row sm:flex-col md:flex-col lg:flex-row items-center justify-between p-3 px-5 space-x-2 relative"
           >
             <div className="w-full lg:w-auto text-center lg:text-left flex items-center justify-center lg:justify-start space-x-4">
               <img
@@ -41,6 +50,12 @@ const CartItems = () => {
                 alt={item.product_name}
                 className="w-7 h-7"
               />
+              <button
+                    onClick={() => dispatch({ type: "REMOVE_FROM_CART", payload: item.id })}
+                    className="absolute -top-2 -left-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors"
+                  >
+                    <X size={10} />
+                  </button>
               <p className="text-base">{item.product_name}</p>
             </div>
 

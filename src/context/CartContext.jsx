@@ -39,6 +39,12 @@ const cartReducer = (state, action) => {
         }, []),
       };
 
+      case "REMOVE_FROM_CART":
+        return {
+          ...state,
+          items: state.items.filter(item => item.id !== action.payload),
+        };
+      
     case "UPDATE_CART":
       return {
         ...state,
