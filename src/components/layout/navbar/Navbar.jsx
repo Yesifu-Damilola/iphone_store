@@ -8,7 +8,7 @@ import { Users } from "../../../assets/icons/Users";
 import { Heart } from "../../../assets/icons/Heart";
 import { useCart } from "../../../hooks/useCart";
 import { Cart } from "../../../assets/icons/Cart";
-import { formatCurrency } from "../../../helper/formatCurrency";
+// import { formatCurrency } from "../../../helper/formatCurrency";
 
 
 export const Navbar = () => {
@@ -26,7 +26,7 @@ const { state } = useCart()
     setIsOpen((prev) => !prev);
   };
 
-  const totalPrice = state?.items?.reduce((total, item) => total + item.price * item.quantity, 0)
+  const totalItems = state?.items?.reduce((total, item) => total + item.quantity, 0)
   return (
     <header className="bg-white sticky top-12 md:top-16 z-50  ">
       <nav className="container mx-auto p-4 ">
@@ -73,7 +73,7 @@ const { state } = useCart()
             <Link to={"/cart"} className="p-2 relative" >
             <Cart className="h-6 w-6 text-black hover:underline"/>
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                  {formatCurrency(totalPrice)}
+                  {totalItems}
                 </span>
             </Link>
             {user?.email && (

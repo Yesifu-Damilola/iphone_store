@@ -23,6 +23,7 @@ const cartReducer = (state, action) => {
         };
       }
       return { ...state, items: [...state.items, { ...action.payload }] };
+
     case "REMOVE_ITEM":
       return {
         ...state,
@@ -37,6 +38,7 @@ const cartReducer = (state, action) => {
           return acc;
         }, []),
       };
+
     case "UPDATE_CART":
       return {
         ...state,
@@ -48,6 +50,7 @@ const cartReducer = (state, action) => {
           )
           .filter((item) => item.quantity > 0),
       };
+      
     case "CLEAR_CART":
       return { ...state, items: [] };
     default:
