@@ -7,21 +7,34 @@ export const CheckOut = () => {
           <div className="flex flex-col sm:flex-row items-start mb-4 py-8 lg:px-0">
             <Link
               to="/account"
-              className="text-sm text-black hover:underline mb-2 sm:mb-0 sm:mr-2"
+              className="text-sm text-black hover:underline mb-2 sm:mb-0 sm:mx-2"
             >
              Account
             </Link>
             <div className="hidden sm:block">/</div>
-            <Link to="#" className="text-sm text-black hover:underline sm:ml-2">
+            <Link to="#" className="text-sm text-black hover:underline mb-2 sm:mb-0 sm:mx-2">
             My Account
             </Link>
-            <Link to="#" className="text-sm text-black hover:underline sm:ml-2">
-              Cart
+            <div className="hidden sm:block">/</div>
+            <Link to="#" className="text-sm text-black hover:underline mb-2 sm:mb-0 sm:mx-2">
+            Product
             </Link>
-            <Link to="#" className="text-sm text-black hover:underline sm:ml-2">
-              Cart
+            <div className="hidden sm:block">/</div>
+            <Link to="#" className="text-sm text-black hover:underline mb-2 sm:mb-0 sm:mx-2">
+            View Cart
+            </Link>
+            <div className="hidden sm:block">/</div>
+            <Link to="#" className="text-sm text-black hover:underline mb-2 sm:mb-0 sm:mx-2">
+            CheckOut
             </Link>
           </div>
+          <div>
+            <h2 className="text-[#000000]">Billing Details</h2>
+            <div>
+              
+            </div>
+          </div>
+          
           </section>
   )
 }
