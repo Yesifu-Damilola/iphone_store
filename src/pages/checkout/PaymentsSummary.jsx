@@ -116,7 +116,7 @@ export const PaymentsSummary = () => {
         </div> */}
         <div className="space-y-3">
           <div
-            className={`flex items-center justify-between p-4 cursor-pointer transition-colors ${
+            className={`flex gap-6 items-center justify-between py-4 px-1 cursor-pointer transition-colors ${
               selectedPayment === "bank" ? "border-blue-500" : ""
             }`}
             onClick={() => setSelectedPayment("bank")}
@@ -124,11 +124,11 @@ export const PaymentsSummary = () => {
             <div className="flex">
             <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center">
               {selectedPayment === "bank" && (
-                <div className="w-2.5 h-2.5 bg-blue-600 rounded-full"></div>
+                <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
               )}
             </div>
             <div className="ml-2 flex">
-              <CreditCard className="w-5 h-5 text-gray-600 mr-2" />
+              <CreditCard className="w-5 h-5 text-gray-600 mr-1" />
               <span>Bank</span> 
             </div>
             </div>
@@ -141,18 +141,18 @@ export const PaymentsSummary = () => {
           </div>
 
           <div
-            className={`flex items-center p-4 cursor-pointer transition-colors ${
+            className={`flex items-center py-4 px-1 cursor-pointer transition-colors ${
               selectedPayment === "cash" ? "border-blue-500" : ""
             }`}
             onClick={() => setSelectedPayment("cash")}
           >
             <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center">
               {selectedPayment === "cash" && (
-                <div className="w-2.5 h-2.5 bg-blue-600 rounded-full"></div>
+                <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
               )}
             </div>
             <div className="ml-2 flex items-center">
-              <Banknote className="w-5 h-5 text-gray-600 mr-3" />
+              <Banknote className="w-5 h-5 text-gray-600 mr-1" />
               <span>Cash on Delivery</span>
             </div>
           </div>
@@ -174,7 +174,7 @@ export const PaymentsSummary = () => {
           </button>
         </div>
 
-        <button className="w-full px-6 py-3 bg-primary text-white rounded-lg transition-colors flex items-center justify-center space-x-2">
+        <button className="md:w-[190px] w-full px-6 py-3 bg-primary text-white rounded-lg transition-colors flex items-center justify-center space-x-2">
           <Truck className="w-5 h-5" />
           <span>Place Order</span>
         </button>
