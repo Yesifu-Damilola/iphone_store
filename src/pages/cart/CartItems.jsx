@@ -16,12 +16,17 @@ const CartItems = () => {
       payload: { id, quantity: Number.parseInt(newQuantity, 10) },
     });
   };
+
+  const calculateTotal = () => {
+    return state?.items?.reduce((total, item) => total + (item.price * item.quantity), 0);
+  };
   const navigate = useNavigate();
+
   return (
     <section className="container mx-auto">
       <div className="space-y-10">
         <div className=" shadow grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 md:gap-x-72 gap-x-48 gap-y-4 md:p-2 px-2 ">
-          {headers.map((header, index) => (
+          {headers?.map((header, index) => (
             <div
               key={index}
               className="text-base w-full font-semibold py-2 md:text-center justify-between"
@@ -95,12 +100,8 @@ const CartItems = () => {
           ))}
         </div>
       </div>
-
-      <div>
         <div className=" flex  justify-between py-4 mt-4">
           <button className="border py-3 px-6">Return To Shop</button>
-        </div>
-        <div>
           <button
             onClick={() => dispatch({ type: "CLEAR_CART" })}
             className="border py-3 px-6 bg-primary text-white"
@@ -108,8 +109,6 @@ const CartItems = () => {
             Clear Cart
           </button>
         </div>
-      </div>
-
       <div className="flex flex-col lg:flex-row lg:gap-6 gap-6 py-10">
         <div className="w-full lg:w-auto">
           <CustomButton
@@ -130,7 +129,7 @@ const CartItems = () => {
             <h5 className="font-semibold mb-4">Cart Total</h5>
             <div className="flex justify-between mb-2">
               <div>Subtotal:</div>
-              <div>$1750</div>
+              <span className="font-medium">${calculateTotal().toFixed(2)}</span>
             </div>
             <div className="flex justify-between mb-2">
               <div>Shipping:</div>
@@ -138,7 +137,7 @@ const CartItems = () => {
             </div>
             <div className="flex justify-between mb-4">
               <div>Total:</div>
-              <div>$1750</div>
+              <span>${calculateTotal().toFixed(2)}</span>
             </div>
             <div className="flex justify-end">
               <CustomButton
