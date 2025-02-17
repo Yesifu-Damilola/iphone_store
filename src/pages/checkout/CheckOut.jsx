@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BillingsDetails } from "./BillingsDetails";
+import { CheckoutForm } from "./CheckoutForm";
 import { PaymentsSummary } from "./PaymentsSummary";
 
 export const CheckOut = () => {
@@ -25,7 +25,7 @@ export const CheckOut = () => {
               {subTitle.name}
             </Link>
             {index < subTitles.length - 1 && (
-              <spaon className="hidden sm:block">/</spaon>
+              <span className="hidden sm:block">/</span>
             )}
           </div>
         ))}
@@ -33,7 +33,7 @@ export const CheckOut = () => {
       <div>
         <h2 className="text-2xl font-bold mb-6">Billing Details</h2>
        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-       <BillingsDetails/>
+       <CheckoutForm/>
        <PaymentsSummary/>
        </div>
       </div>

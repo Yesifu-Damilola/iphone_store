@@ -2,9 +2,9 @@
 import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-const STORAGE_KEY = "checkoutFormData";
+const STORAGE_KEY = "checkout_info";
 
-export const BillingsDetails = () => {
+export const CheckoutForm = () => {
   const {
     register,
     handleSubmit,
@@ -19,46 +19,38 @@ export const BillingsDetails = () => {
     const savedData = localStorage.getItem(STORAGE_KEY);
     if (savedData) {
       const parsedData = JSON.parse(savedData);
+
+      console.log("Loaded from storage:", parsedData);
       Object.entries(parsedData).forEach(([key, value]) => {
         setValue(key, value);
       });
     }
   }, [setValue]);
 
-  const onSubmit = useCallback((data) => {
-    if (data.saveInfo) {
-      const {
-        firstName,
-        companyName,
-        streetAddress,
-        apartment,
-        city,
-        phoneNumber,
-        email,
-      } = data;
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({
-          firstName,
-          companyName,
-          streetAddress,
-          apartment,
-          city,
-          phoneNumber,
-          email,
-        })
-      );
-    } else {
-      localStorage.removeItem(STORAGE_KEY);
-    }
-    console.log("Form submitted:", data);
-  }, []);
+  // useEffect(() => {
+  //   if (saveInfo !== undefined) {
+  //     const currentData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  //     localStorage.setItem(
+  //       STORAGE_KEY,
+  //       JSON.stringify({ ...currentData, saveInfo })
+  //     );
+  //     console.log("Updated storage:", { ...currentData, saveInfo });
+  //   }
+  // }, [saveInfo]);
+
+  const onSubmit = (data) => {
+      if (saveInfo) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } else {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+      console.log("Form submitted:", data);
+    };
+   
+  
 
   return (
-    <form
-    onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 bg-white"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <label
@@ -191,7 +183,7 @@ export const BillingsDetails = () => {
           )}
         </div>
 
-        <div className="md:col-span-2">
+        {/* <div className="md:col-span-2">
           <label className="flex items-center space-x-2 ">
             <input
               type="checkbox"
@@ -203,6 +195,26 @@ export const BillingsDetails = () => {
               Save this information for faster check-out next time
             </span>
           </label>
+        </div> */}
+        <div className="md:col-span-2">
+          <button
+            type="submit"
+            onClick={() => 
+              setValue("saveInfo", !saveInfo)}
+            className="flex items-center space-x-2 focus:outline-none"
+          >
+            <input
+              type="checkbox"
+              {...register("saveInfo")}
+              checked={saveInfo || false}
+              readOnly
+              className="appearance-none w-5 h-5 border border-gray-300 rounded bg-white checked:bg-[#DB4444] checked:border-transparent focus:outline-none relative 
+            checked:after:content-['✔'] checked:after:absolute checked:after:text-white checked:after:text-sm checked:after:left-[4px]"
+            />
+            <span className="text-sm text-gray-700">
+              Save this information for faster check-out next time
+            </span>
+          </button>
         </div>
       </div>
 
