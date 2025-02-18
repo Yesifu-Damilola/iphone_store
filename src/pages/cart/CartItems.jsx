@@ -23,7 +23,10 @@ const CartItems = () => {
     toast.success("Item removed from cart!");
   };
 
-
+  const handleClearCart = () => {
+    dispatch({ type: "CLEAR_CART" })
+    toast.success("Cart cleared successfully!")
+  }
 
   const calculateTotal = () => {
     return state?.items?.reduce(
@@ -116,7 +119,8 @@ const CartItems = () => {
       <div className=" flex  justify-between py-4 mt-4">
         <button className="border py-3 px-6">Return To Shop</button>
         <button
-          onClick={() => dispatch({ type: "CLEAR_CART" })}
+          onClick={handleClearCart}
+        
           className="border py-3 px-6 bg-primary text-white"
         >
           Clear Cart

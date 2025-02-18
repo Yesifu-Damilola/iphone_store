@@ -7,9 +7,9 @@ export const CheckOut = () => {
 
   const subTitles = [
     { name: "Account", path: "/account" },
-    { name: "My Account", path: "#" },
+    { name: "My Account", path: "/myaccount" },
     { name: "Product", path: "#" },
-    { name: "View Cart", path: "#" },
+    { name: "View Cart", path: "/cart" },
     { name: "CheckOut", path: "#" },
   ];
 

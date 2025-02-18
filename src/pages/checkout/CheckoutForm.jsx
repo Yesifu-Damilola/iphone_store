@@ -1,54 +1,54 @@
 /* eslint-disable no-unused-vars */
 import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const STORAGE_KEY = "checkout_info";
 
 export const CheckoutForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-    watch,
-  } = useForm();
-
+  const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm();
   const saveInfo = watch("saveInfo");
 
   useEffect(() => {
+    // Retrieve saved user data from localStorage (if available)
     const savedData = localStorage.getItem(STORAGE_KEY);
     if (savedData) {
       const parsedData = JSON.parse(savedData);
-
-      console.log("Loaded from storage:", parsedData);
-      Object.entries(parsedData).forEach(([key, value]) => {
-        setValue(key, value);
-      });
+      const email = parsedData?.email;
+      if (email) {
+        // Prefill the form with saved data if email exists in storage
+        Object.entries(parsedData).forEach(([key, value]) => setValue(key, value));
+      }
     }
   }, [setValue]);
 
-  // useEffect(() => {
-  //   if (saveInfo !== undefined) {
-  //     const currentData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-  //     localStorage.setItem(
-  //       STORAGE_KEY,
-  //       JSON.stringify({ ...currentData, saveInfo })
-  //     );
-  //     console.log("Updated storage:", { ...currentData, saveInfo });
-  //   }
-  // }, [saveInfo]);
+  const onSubmit = useCallback((data) => {
+    // Only save data if 'saveInfo' is checked
+    if (data.saveInfo) {
+      const userInfo = {
+        firstName: data.firstName,
+        companyName: data.companyName,
+        streetAddress: data.streetAddress,
+        apartment: data.apartment,
+        city: data.city,
+        phoneNumber: data.phoneNumber,
+        email: data.email,
+      };
 
-  const onSubmit = (data) => {
-      if (saveInfo) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      } else {
-        localStorage.removeItem(STORAGE_KEY);
-      }
-      console.log("Form submitted:", data);
-    };
-   
-  
+      // Save data in localStorage with email as key to allow multiple users
+      const currentData = localStorage.getItem(STORAGE_KEY);
+      const parsedData = currentData ? JSON.parse(currentData) : {};
 
+      parsedData[data.email] = userInfo; // Store using the email as a key
+
+      // Save back to localStorage
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(parsedData));
+
+      toast.success("Information saved successfully!");
+    } else {
+      toast.error("Please select the checkbox to save your information.");
+    }
+  }, []);
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -183,33 +183,19 @@ export const CheckoutForm = () => {
           )}
         </div>
 
-        {/* <div className="md:col-span-2">
-          <label className="flex items-center space-x-2 ">
-            <input
-              type="checkbox"
-              {...register("saveInfo")}
-              className="appearance-none w-5 h-5 border border-gray-300 rounded bg-white checked:bg-[#DB4444] checked:border-transparent focus:outline-none relative 
-                  checked:after:content-['✔'] checked:after:absolute checked:after:text-white checked:after:text-sm checked:after:left-[4px]"
-            />
-            <span className="text-sm text-gray-700  ">
-              Save this information for faster check-out next time
-            </span>
-          </label>
-        </div> */}
         <div className="md:col-span-2">
           <button
             type="submit"
-            onClick={() => 
-              setValue("saveInfo", !saveInfo)}
+            onClick={() => setValue("saveInfo", !watch("saveInfo"))}
             className="flex items-center space-x-2 focus:outline-none"
           >
             <input
               type="checkbox"
               {...register("saveInfo")}
-              checked={saveInfo || false}
+              checked={watch("saveInfo")}
               readOnly
-              className="appearance-none w-5 h-5 border border-gray-300 rounded bg-white checked:bg-[#DB4444] checked:border-transparent focus:outline-none relative 
-            checked:after:content-['✔'] checked:after:absolute checked:after:text-white checked:after:text-sm checked:after:left-[4px]"
+              className="appearance-none w-5 h-5 border border-gray-300 rounded bg-white checked:bg-[#DB4444] checked:border-transparent focus:outline-none relative
+                checked:after:content-['✔'] checked:after:absolute checked:after:text-white checked:after:text-sm checked:after:left-[4px]"
             />
             <span className="text-sm text-gray-700">
               Save this information for faster check-out next time
@@ -218,14 +204,14 @@ export const CheckoutForm = () => {
         </div>
       </div>
 
-      {/* <div className="mt-6">
+       <div className="mt-6">
         <button
           type="submit"
           className="w-full md:w-[470px] bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors focus:outline-none"
         >
           Complete Order
         </button>
-      </div> */}
+      </div>
     </form>
   );
 };
