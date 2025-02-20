@@ -44,12 +44,12 @@ export const FlashSalesItem = ({
         <div className="w-[180px] h-[190px] mx-auto ">
           <Link
             to={`/flashSales/${item.id}`}
-            className=" cursor-pointer relative z-10"
+            className="cursor-pointer relative z-10 "
           >
             <img
               src={item.product_images?.[0]}
               alt={item.title}
-              className=" md:w-[172px] md:h-[182px] w-[170px] h-[180px] mx-auto pb-5"
+              className="md:w-[167px] md:h-[172px] w-[165px] h-[175px] pb-5 pr-2"
             />
           </Link>
           <div className="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">

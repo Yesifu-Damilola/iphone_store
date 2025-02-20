@@ -11,7 +11,6 @@ import SkeletonLoader from "../../SkeletonLoader";
 import { useFetch } from "../../../hooks/useFetch";
 import { fetchAllProducts } from "../../../services/products/fetchProduct";
 
-
 const strongElements = document.querySelectorAll("#timeContainer strong");
 
 strongElements.forEach((element, index) => {
@@ -111,7 +110,6 @@ export const FlashSales = ({
                 showCartIcon={showCartIcon}
                 productFeatures={productFeatures}
                 query={query}
-              
               />
             ))}
         </div>
@@ -122,7 +120,7 @@ export const FlashSales = ({
               className="text-sm text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 lg:px-10 lg:py-4"
               text="View All Products"
               onClick={() => {
-                navigate("/products/cart");
+                navigate("/products");
               }}
             />
           </div>

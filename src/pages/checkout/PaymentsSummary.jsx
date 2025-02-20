@@ -58,62 +58,6 @@ export const PaymentsSummary = () => {
       {/* Payment Methods */}
       <div className="space-y-4">
         <h3 className="font-semibold">Payment Method</h3>
-        {/* <div className="space-y-3">
-          <label className="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-            <input
-              type="radio"
-              name="payment"
-              value="bank"
-              checked={selectedPayment === 'bank'}
-              onChange={(e) => setSelectedPayment(e.target.value)}
-              className="w-4 h-4 text-blue-600"
-            />
-            <div className="ml-4 flex items-center">
-              <CreditCard className="w-5 h-5 text-gray-600 mr-3" />
-              <span>Bank Transfer</span>
-            </div>
-          </label>
-
-          <label className="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-            <input
-              type="radio"
-              name="payment"
-              value="cash"
-              checked={selectedPayment === 'cash'}
-              onChange={(e) => setSelectedPayment(e.target.value)}
-              className="w-4 h-4 text-blue-600"
-            />
-            <div className="ml-4 flex items-center">
-              <Banknote className="w-5 h-5 text-gray-600 mr-3" />
-              <span>Cash on Delivery</span>
-            </div>
-          </label>
-        </div> */}
-        {/* <div className="space-y-3">
-          <label
-            className={`flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
-              selectedPayment === "bank" ? "border-blue-600 bg-blue-50" : ""
-            }`}
-            onClick={() => setSelectedPayment("bank")}
-          >
-            <div className="ml-4 flex items-center">
-              <CreditCard className="w-5 h-5 text-gray-600 mr-3" />
-              <span>Bank Transfer</span>
-            </div>
-          </label>
-
-          <label
-            className={`flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${
-              selectedPayment === "cash" ? "border-blue-600 bg-blue-50" : ""
-            }`}
-            onClick={() => setSelectedPayment("cash")}
-          >
-            <div className="ml-4 flex items-center">
-              <Banknote className="w-5 h-5 text-gray-600 mr-3" />
-              <span>Cash on Delivery</span>
-            </div>
-          </label>
-        </div> */}
         <div className="space-y-3">
           <div
             className={`flex gap-6 items-center justify-between py-4 px-1 cursor-pointer transition-colors ${

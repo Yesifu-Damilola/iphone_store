@@ -6,7 +6,13 @@ import { toast } from "react-toastify";
 const STORAGE_KEY = "checkout_info";
 
 export const CheckoutForm = () => {
-  const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useForm();
   const saveInfo = watch("saveInfo");
 
   useEffect(() => {
@@ -17,7 +23,9 @@ export const CheckoutForm = () => {
       const email = parsedData?.email;
       if (email) {
         // Prefill the form with saved data if email exists in storage
-        Object.entries(parsedData).forEach(([key, value]) => setValue(key, value));
+        Object.entries(parsedData).forEach(([key, value]) =>
+          setValue(key, value)
+        );
       }
     }
   }, [setValue]);
@@ -184,7 +192,7 @@ export const CheckoutForm = () => {
         </div>
 
         <div className="md:col-span-2">
-          <button
+          <label
             type="submit"
             onClick={() => setValue("saveInfo", !watch("saveInfo"))}
             className="flex items-center space-x-2 focus:outline-none"
@@ -200,11 +208,11 @@ export const CheckoutForm = () => {
             <span className="text-sm text-gray-700">
               Save this information for faster check-out next time
             </span>
-          </button>
+          </label>
         </div>
       </div>
 
-       <div className="mt-6">
+      <div className="mt-6">
         <button
           type="submit"
           className="w-full md:w-[470px] bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors focus:outline-none"

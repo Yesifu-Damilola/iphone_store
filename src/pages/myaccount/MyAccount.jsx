@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { CustomButton } from "./../../components/custombutton/CustomButton";
 import { useForm } from "react-hook-form";
+import { MyAccountHeaders } from "./MyAccountHeaders";
+import { MyAccountSubHeader } from "./MyAccountSubHeader";
 
 const MyAccount = () => {
   const {
@@ -16,83 +18,9 @@ const MyAccount = () => {
 
   return (
     <article className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex flex-col lg:flex-row items-center justify-between mb-4 py-10">
-        <div className="flex flex-col sm:flex-row items-center sm:items-start mb-4 lg:mb-0 lg:px-0">
-          <Link
-            to="/"
-            className="text-sm text-black hover:underline mb-2 sm:mb-0 sm:mr-2"
-          >
-            Home
-          </Link>
-          <div className="hidden sm:block">/</div>
-          <Link to="#" className="text-sm text-black hover:underline sm:ml-2">
-            My Account
-          </Link>
-        </div>
-        <div className="flex flex-col sm:flex-row items-center sm:items-start lg:px-0">
-          <Link
-            to="/"
-            className="text-sm text-black hover:underline mb-2 sm:mb-0 sm:mr-2"
-          >
-            Welcome!
-          </Link>
-          <Link to="#" className="text-sm hover:underline sm:ml-2 text-primary">
-            Md Rimel
-          </Link>
-        </div>
-      </div>
-
+      <MyAccountHeaders/>
       <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-6 min-h-[70vh]">
-        <div className="space-y-4 py-10">
-          <div className="space-y-3">
-            <h4 className="font-semibold text-base">Manage My Account</h4>
-            <div className="ml-8">
-              <div className="py-2">
-                <Link to="#" className="hover:text-primary text-base">
-                  My Profile
-                </Link>
-              </div>
-              <div className="py-2">
-                <Link to="#" className="hover:text-primary text-base ">
-                  Address Book
-                </Link>
-              </div>
-
-              <div className="py-2">
-                <Link to="#" className="hover:text-primary text-base ">
-                  My Payment Options
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <Link to="/Order" className="font-semibold text-base">
-              My Orders
-            </Link>
-            <div className="ml-8">
-              <div>
-                <Link to="#" className="hover:text-primary text-base ">
-                  My Returns
-                </Link>
-              </div>
-              <div className="py-3">
-                <Link
-                  to="/Cancellations"
-                  className="hover:text-primary text-base "
-                >
-                  My Cancellations
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <Link to="/WishList" className="font-semibold text-base">
-              My WishList
-            </Link>
-          </div>
-        </div>
+       <MyAccountSubHeader/>
         <div className="shadow-md px-2 py-10">
           <h3 className="text-primary text-lg font-medium mb-4">
             Edit Your Profile

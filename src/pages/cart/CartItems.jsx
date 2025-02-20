@@ -9,24 +9,28 @@ const headers = ["Product", "Price", "Quantity", "Subtotal"];
 const CartItems = () => {
   const { state, dispatch } = useCart();
   const carts = state?.items ?? [];
+  const toastId = "";
 
   const handleQuantityChange = (id, newQuantity) => {
+    if (toast.isActive(toastId)) return;
     dispatch({
       type: "UPDATE_CART",
       payload: { id, quantity: Number.parseInt(newQuantity, 10) },
     });
-    toast.success("Item removed from cart")
+    toast.success("Item Quantity updated from cart", { toastId });
   };
 
   const handleRemoveItem = (id) => {
+    if (toast.isActive(toastId)) return;
     dispatch({ type: "REMOVE_FROM_CART", payload: id });
-    toast.success("Item removed from cart!");
+    toast.success("Item removed from cart!", { toastId });
   };
 
   const handleClearCart = () => {
-    dispatch({ type: "CLEAR_CART" })
-    toast.success("Cart cleared successfully!")
-  }
+    if (toast.isActive(toastId)) return;
+    dispatch({ type: "CLEAR_CART" });
+    toast.success("Cart cleared successfully!", { toastId });
+  };
 
   const calculateTotal = () => {
     return state?.items?.reduce(
@@ -39,7 +43,7 @@ const CartItems = () => {
   return (
     <section className="container mx-auto">
       <div className="space-y-10">
-        <div className=" shadow grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 md:gap-x-72 gap-x-48 gap-y-4 md:p-2 px-2 ">
+        <div className="shadow grid grid-cols-1 sm:grid-cols-4 gap-24 md:gap-x-72  gap-y-4 md:p-2 px-2 ">
           {headers?.map((header, index) => (
             <div
               key={index}
@@ -49,15 +53,25 @@ const CartItems = () => {
             </div>
           ))}
         </div>
+        {/* <div className="shadow grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 sm:gap-x-8 md:gap-x-16 lg:gap-x-24 gap-y-4 p-2 sm:p-4 md:p-6 w-full">
+          {headers?.map((header, index) => (
+            <div
+              key={index}
+              className="text-sm sm:text-base font-semibold py-2 text-center"
+            >
+              {header}
+            </div>
+          ))}
+        </div> */}
 
         {carts.length === 0 ? (
-          <EmptyCart/>
+          <EmptyCart />
         ) : (
           <div className="">
             {carts?.map((item) => (
               <div
                 key={item.id}
-                className="shadow grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 md:gap-x-72 gap-x-48 gap-y-4 md:py-2 px-2 my-10 relative"
+                className="shadow grid grid-cols-1 sm:grid-cols-4 gap-24 md:grid-cols-4 md:gap-x-72 gap-y-4 md:py-2 px-2 my-10 relative"
               >
                 <div className="w-full md:text-center md:flex text-left md:space-x-4">
                   <img
@@ -78,7 +92,7 @@ const CartItems = () => {
 
                 <div className="relative">
                   <select
-                    className="text-base block appearance-none w-full bg-gray-100 border border-gray-300 p-2 rounded leading-tight focus:outline-none"
+                    className="text-base block appearance-none w-full  bg-gray-100 border border-gray-300 p-2 rounded leading-tight focus:outline-none"
                     value={item.quantity}
                     onChange={(e) =>
                       handleQuantityChange(item?.id, e.target.value)
@@ -90,7 +104,7 @@ const CartItems = () => {
                       </option>
                     ))}
                   </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex flex-col items-center justify-center px-1 text-gray-700 space-y-1">
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex flex-col p-1 text-gray-700 space-y-1">
                     <svg
                       className="fill-current h-3 w-3"
                       xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +134,6 @@ const CartItems = () => {
         <button className="border py-3 px-6">Return To Shop</button>
         <button
           onClick={handleClearCart}
-        
           className="border py-3 px-6 bg-primary text-white"
         >
           Clear Cart
@@ -142,7 +155,7 @@ const CartItems = () => {
           />
         </div>
         <div className="lg:ml-auto">
-          <div className="w-full lg:w-[670px] flex flex-col shadow p-4 space-y-6 h-auto rounded">
+          <div className="w-full md:w-[400px] flex flex-col shadow p-4 space-y-6 h-auto rounded">
             <h5 className="font-semibold mb-4">Cart Total</h5>
             <div className="flex justify-between mb-2">
               <div>Subtotal:</div>
