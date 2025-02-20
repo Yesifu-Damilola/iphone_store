@@ -5,7 +5,7 @@ const Products = () => {
       title={"Our Products"}
       subTitle="Explore Our Products"
       count={100}
-      loaderCount={15}
+      loaderCount={30}
       type="products"
     />
   );

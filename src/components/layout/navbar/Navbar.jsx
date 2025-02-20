@@ -8,16 +8,16 @@ import { Users } from "../../../assets/icons/Users";
 import { Heart } from "../../../assets/icons/Heart";
 import { useCart } from "../../../hooks/useCart";
 import { Cart } from "../../../assets/icons/Cart";
-// import { formatCurrency } from "../../../helper/formatCurrency";
+
 
 
 export const Navbar = () => {
-const { state } = useCart()
-
+  const { state } = useCart();
   const { user } = useCurrentUser();
   const [profileVisible, setProfileVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
+  
+ 
   const toggleVisibility = () => {
     setProfileVisible((prev) => !prev);
   };
@@ -26,7 +26,10 @@ const { state } = useCart()
     setIsOpen((prev) => !prev);
   };
 
-  const totalItems = state?.items?.reduce((total, item) => total + item.quantity, 0)
+  const totalItems = state?.items?.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
   return (
     <header className="bg-white sticky top-12 md:top-16 z-50  ">
       <nav className="container mx-auto p-4 ">
@@ -51,7 +54,7 @@ const { state } = useCart()
             ))}
             {!user && (
               <Link
-                to={"/signup"}
+                to="/signup"
                 className="text-black hover:text-gray-700 text-base hover:underline"
               >
                 SignUp
@@ -66,15 +69,20 @@ const { state } = useCart()
               </Link>
             ))} */}
 
-            <Link to={"/wishlist"} className="p-2">
-            <Heart className="h-6 w-6 text-black hover:underline"/>
+            <Link to="/wishlist" className="p-2 relative">
+              <Heart className="h-6 w-6 text-black hover:underline" />
+              {/* {wishList?.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                  {wishList?.length}
+                </span>
+              )} */}
             </Link>
 
-            <Link to={"/cart"} className="p-2 relative" >
-            <Cart className="h-6 w-6 text-black hover:underline"/>
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                  {totalItems}
-                </span>
+            <Link to="/cart" className="p-2 relative">
+              <Cart className="h-6 w-6 text-black hover:underline" />
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                {totalItems}
+              </span>
             </Link>
             {user?.email && (
               <div className="p-2">
