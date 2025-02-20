@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { Link, useNavigate } from "react-router-dom";
 import { FlashSales } from "../../components/features/home/FlashSales";
-import { products } from "../../constants/Products";
+// import { products } from "../../constants/Products";
 import { AddToCartButton } from "../../components/AddToCartButton";
 import { CustomButton } from "../../components/custombutton/CustomButton";
 import { useWishLists } from "../../hooks/useWishLists";
@@ -58,7 +58,7 @@ const WishList = ({ handleAddToCart }) => {
           }
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10"
           type="flashsales"
-          products={products.slice(0, 4)}
+          // products={products.slice(0, 4)}
           showCartIcon={true}
           query="wishlists"
         />

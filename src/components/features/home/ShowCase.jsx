@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useFetch } from "../../../hooks/useFetch";
 import { fetchCategories } from "../../../services/categoryApi/fetchCategories";
-import { iphoneImages } from "../../../constants/Products";
+import { iphoneImages } from "../../../constants/ProductsLists";
 
 export const ShowCase = () => {
   const [isOpen, setIsOpen] = useState(false);

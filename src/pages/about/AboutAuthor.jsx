@@ -11,11 +11,11 @@ export const AboutAuthor = () => {
           <div className="w-full max-w-[370px] h-[430px] mx-auto md:mx-0 rounded bg-secondary object-cover">
             <img src={Matlab} alt="Matlab" className=" w-full h-full " />
           </div>
-          <h2 className="text-3xl/8 font-medium text-left pt-2 pb-1">
+          <h2 className="text-3xl/8 font-medium md:text-left text-center pt-2 pb-1">
            Damilola Yesifu
           </h2>
-          <p className="text-base text-left ">Founder & Chairman</p>
-          <div className="flex md:justify-start gap-4 py-1">
+          <p className="text-base md:text-left text-center">Founder & Chairman</p>
+          <div className="flex md:justify-start gap-4 py-1 items-center justify-center">
             <FiTwitter className="w-6 h-6" />
             <FiInstagram className="w-6 h-6" />
             <FiLinkedin className="w-6 h-6" />
@@ -25,11 +25,11 @@ export const AboutAuthor = () => {
           <div className="w-full max-w-[370px] h-[430px] mx-auto md:mx-0 rounded bg-secondary object-cover">
             <img src={Watson} alt="Watson" className="w-full h-full " />
           </div>
-          <h2 className="text-3xl/8 font-medium text-left pt-2 pb-1">
+          <h2 className="text-3xl/8 font-medium md:text-left pt-2 pb-1">
             Emma Watson
           </h2>
-          <p className="text-base text-left">Managing Director</p>
-          <div className="flex md:justify-start gap-4 py-1">
+          <p className="text-base md:text-left text-center">Managing Director</p>
+          <div className="flex md:justify-start gap-4 py-1 items-center justify-center">
             <FiTwitter className="w-6 h-6" />
             <FiInstagram className="w-6 h-6" />
             <FiLinkedin className="w-6 h-6" />
@@ -43,11 +43,11 @@ export const AboutAuthor = () => {
               className="w-full h-full"
             />
           </div>
-          <h2 className="text-3xl/8 font-medium text-left pt-2 pb-1">
+          <h2 className="text-3xl/8 font-medium md:text-left text-center pt-2 pb-1">
             Will Smith
           </h2>
-          <p className="text-base text-left">Product Designer</p>
-          <div className="flex md:justify-start gap-4 py-1">
+          <p className="text-base md:text-left text-center">Product Designer</p>
+          <div className="flex md:justify-start gap-4 py-1 items-center justify-center">
             <FiTwitter className="w-6 h-6" />
             <FiInstagram className="w-6 h-6" />
             <FiLinkedin className="w-6 h-6" />

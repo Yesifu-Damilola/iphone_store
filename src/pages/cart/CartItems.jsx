@@ -53,17 +53,7 @@ const CartItems = () => {
             </div>
           ))}
         </div>
-        {/* <div className="shadow grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 sm:gap-x-8 md:gap-x-16 lg:gap-x-24 gap-y-4 p-2 sm:p-4 md:p-6 w-full">
-          {headers?.map((header, index) => (
-            <div
-              key={index}
-              className="text-sm sm:text-base font-semibold py-2 text-center"
-            >
-              {header}
-            </div>
-          ))}
-        </div> */}
-
+      
         {carts.length === 0 ? (
           <EmptyCart />
         ) : (

@@ -202,7 +202,7 @@ export const CheckoutForm = () => {
               {...register("saveInfo")}
               checked={watch("saveInfo")}
               readOnly
-              className="appearance-none w-5 h-5 border border-gray-300 rounded bg-white checked:bg-[#DB4444] checked:border-transparent focus:outline-none relative
+              className="appearance-none w-5 h-5 border border-gray-300 rounded bg-white checked:bg-primary checked:border-transparent focus:outline-none relative
                 checked:after:content-['✔'] checked:after:absolute checked:after:text-white checked:after:text-sm checked:after:left-[4px]"
             />
             <span className="text-sm text-gray-700">
@@ -215,7 +215,7 @@ export const CheckoutForm = () => {
       <div className="mt-6">
         <button
           type="submit"
-          className="w-full md:w-[470px] bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors focus:outline-none"
+          className="w-full md:w-[470px] bg-primary text-white py-3 px-4 rounded-md   focus:outline-none"
         >
           Complete Order
         </button>
