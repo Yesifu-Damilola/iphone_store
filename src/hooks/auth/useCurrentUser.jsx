@@ -7,9 +7,13 @@ export const useCurrentUser = () => {
   const { setUser, user } = UserAuth();
   const { data, isLoading, status } = useQuery({
     queryKey: ["current-user"],
-    queryFn: getCurrentUser,
+    queryFn: async () => {
+      const res = await getCurrentUser();
+      if (!res) return null;
+      return res;
+    },
   });
-
+  console.log(data);
   useEffect(() => {
     if (data && status === "success") {
       setUser(data);

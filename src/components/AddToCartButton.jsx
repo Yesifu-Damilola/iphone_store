@@ -10,12 +10,11 @@ export const AddToCartButton = ({
   product,
 }) => {
   const { dispatch } = useCart();
-  const toastId = "cart-toast";
 
   const handleAddToCart = () => {
-    if (toast.isActive(toastId)) return;
+    // if (toast.isActive(toastId)) return;
     dispatch({ type: "ADD_ITEM", payload: { ...product, quantity: 1 } });
-    toast.success("Item added to cart!", { toastId });
+    toast.success("Item added to cart!", { toastId: "cart-toast" });
   };
   return (
     <div className="bg-black text-white mt-6 container">

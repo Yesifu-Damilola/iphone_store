@@ -21,7 +21,8 @@ export const signUp = async (values) => {
       .single();
 
     if (userProfileError?.message) {
-      toast.error(error.userProfileError);
+      console.log(userProfileError);
+      toast.error(userProfileError.message);
     }
     return userProfileData;
   }
@@ -40,10 +41,10 @@ export const getCurrentUser = async () => {
       .eq("id", user?.id)
       .single();
 
-    if (error) {
+    if (error && !profile) {
       toast.error(error.message);
     }
-
+    console.log(profile);
     return profile;
   }
 };

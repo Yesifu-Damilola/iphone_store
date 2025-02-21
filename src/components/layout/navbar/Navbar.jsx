@@ -9,15 +9,12 @@ import { Heart } from "../../../assets/icons/Heart";
 import { useCart } from "../../../hooks/useCart";
 import { Cart } from "../../../assets/icons/Cart";
 
-
-
 export const Navbar = () => {
   const { state } = useCart();
   const { user } = useCurrentUser();
   const [profileVisible, setProfileVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  
- 
+
   const toggleVisibility = () => {
     setProfileVisible((prev) => !prev);
   };
@@ -71,19 +68,14 @@ export const Navbar = () => {
 
             <Link to="/wishlist" className="p-2 relative">
               <Heart className="h-6 w-6 text-black hover:underline" />
-              {/* {wishList?.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                  {wishList?.length}
-                </span>
-              )} */}
             </Link>
-
             <Link to="/cart" className="p-2 relative">
               <Cart className="h-6 w-6 text-black hover:underline" />
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
                 {totalItems}
               </span>
             </Link>
+
             {user?.email && (
               <div className="p-2">
                 <Users
@@ -95,8 +87,8 @@ export const Navbar = () => {
             )}
           </div>
 
-          <div className="md:hidden flex  gap-3">
-            <div className="flex items-center">
+          <div className="md:hidden flex gap-1">
+            {/* <div className="flex items-center">
               {subMenuLists?.map((menu) => {
                 return menu?.name === "users" ? (
                   <div className="p-2" key={menu.name}>
@@ -107,12 +99,37 @@ export const Navbar = () => {
                     {profileVisible && <Account />}
                   </div>
                 ) : (
-                  <Link to={menu?.path} className="p-2">
+                  <Link to={menu?.path} className="p-2" key={menu.name}>
                     <menu.icon className="h-6 w-6 text-black hover:underline" />
                   </Link>
                 );
               })}
-            </div>
+            </div> */}
+            {/* {subMenuLists?.map((menu) => (
+              <Link to={menu?.path} className="p-2" key={menu.path}>
+                <menu.icon className="h-6 w-6 text-black hover:underline" />
+              </Link>
+            ))} */}
+
+            {/* <Link to="/wishlist" className="p-2 relative">
+              <Heart className="h-6 w-6 text-black hover:underline" />
+            </Link> */}
+            <Link to="/cart" className="p-2 relative">
+              <Cart className="h-6 w-6 text-black hover:underline" />
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                {totalItems}
+              </span>
+            </Link>
+
+            {user?.email && (
+              <div className="p-2">
+                <Users
+                  className="h-6 w-6 over:underline"
+                  onClick={toggleVisibility}
+                />
+                {profileVisible && <Account />}
+              </div>
+            )}
             <button
               className="md:hidden flex items-center p-2"
               onClick={toggleNavbar}
@@ -134,11 +151,13 @@ export const Navbar = () => {
             </button>
           </div>
         </div>
-        <div className={`${isOpen ? "block" : "hidden"} md:hidden mt-4`}>
+        <div
+          className={`${isOpen ? "block" : "hidden"} md:hidden mt-4 space-y-2`}
+        >
           {navRoutes.map((route, i) => (
             <Link
               to={route?.path}
-              className="block text-black hover:text-gray-700 text-base hover:underline"
+              className="block text-black hover:text-gray-700 text-base hover:underline "
               key={`${route.name}-${i}`}
             >
               {route?.name}

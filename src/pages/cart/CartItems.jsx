@@ -9,27 +9,28 @@ const headers = ["Product", "Price", "Quantity", "Subtotal"];
 const CartItems = () => {
   const { state, dispatch } = useCart();
   const carts = state?.items ?? [];
-  const toastId = "";
 
   const handleQuantityChange = (id, newQuantity) => {
-    if (toast.isActive(toastId)) return;
     dispatch({
       type: "UPDATE_CART",
       payload: { id, quantity: Number.parseInt(newQuantity, 10) },
     });
-    toast.success("Item Quantity updated from cart", { toastId });
+    toast.success("Item Quantity updated from cart", {
+      toastId: "Item Quantity updated from cart"
+    });
   };
 
   const handleRemoveItem = (id) => {
-    if (toast.isActive(toastId)) return;
     dispatch({ type: "REMOVE_FROM_CART", payload: id });
-    toast.success("Item removed from cart!", { toastId });
+    toast.success("Item removed from cart!", {
+      toastId: "Item removed from cart!",
+    });
   };
 
   const handleClearCart = () => {
-    if (toast.isActive(toastId)) return;
+   
     dispatch({ type: "CLEAR_CART" });
-    toast.success("Cart cleared successfully!", { toastId });
+    toast.success("Cart cleared successfully!", { toastId: "Cart cleared successfully!" });
   };
 
   const calculateTotal = () => {
@@ -53,7 +54,7 @@ const CartItems = () => {
             </div>
           ))}
         </div>
-      
+
         {carts.length === 0 ? (
           <EmptyCart />
         ) : (

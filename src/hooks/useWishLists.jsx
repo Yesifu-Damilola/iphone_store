@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 export const useWishLists = (key, query) => {
   // Access the client
   const queryClient = useQueryClient();
+
   const { isPending, mutate } = useMutation({
     mutationFn: async (payload) => {
       const { data, error } = await supabase
@@ -20,11 +21,7 @@ export const useWishLists = (key, query) => {
       return data;
     },
     onSuccess: (data) => {
-      toast.success(
-        data?.wishlist
-          ? "Product Added to WishList"
-          : "Product Removed From Wishlist"
-      );
+    
       // Invalidate and refetch
       queryClient.invalidateQueries({
         queryKey: [key, query ?? ""],
@@ -33,6 +30,14 @@ export const useWishLists = (key, query) => {
       queryClient.invalidateQueries({
         queryKey: ["products", query ?? ""],
       });
+      toast.success(
+        data?.wishlist
+          ? "Product Added to WishList"
+          : "Product Removed From Wishlist",
+        {
+          toastId: "cart-toast",
+        }
+      );
     },
   });
   return {

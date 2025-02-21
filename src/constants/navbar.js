@@ -14,10 +14,10 @@ export const navRoutes = [
     name: "About",
     path: "./about",
   },
-  // {
-  //   name: "SignUp",
-  //   path: "./signup",
-  // },
+  {
+    name: "WishList",
+    path: "./wishlist",
+  },
 ];
 
 export const subMenuLists = [
