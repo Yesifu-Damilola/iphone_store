@@ -6,7 +6,7 @@ export const Order = () => {
       <span>
         <Mallbag />
       </span>
-      <h4 className="text-white text-sm md:text-base">My Ordert</h4>
+      <h4 className="text-white text-sm md:text-base">My Order</h4>
     </div>
   );
 };

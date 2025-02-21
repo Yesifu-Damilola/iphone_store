@@ -25,7 +25,7 @@ export const FlashSales = ({
   type = "home",
   className = "lg:grid-cols-5 my-10",
   showCartIcon,
-  targetDate = "2025-02-06T12:00:00Z",
+  targetDate = "2025-02-28T12:00:00Z",
   productFeatures,
   count = 4,
   loaderCount = 5,

@@ -43,7 +43,7 @@ export const MusicExperience = () => {
 
           <div className="py-4">
             <CountdownTimer
-              targetDate="2025-02-20T23:59:59"
+              targetDate="2025-03-02T23:59:59"
               className="text-white"
             />
           </div>

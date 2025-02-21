@@ -1,11 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { UserAuth } from "../../context/AuthContext";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { supabase } from "../../supabase/supabaseClients";
 import { toast } from "react-toastify";
 
-const STORAGE_KEY = "checkout_info";
-
 export const CheckoutForm = () => {
+  // Access the client
+  const queryClient = useQueryClient();
+  const { user } = UserAuth();
   const {
     register,
     handleSubmit,
@@ -13,54 +17,51 @@ export const CheckoutForm = () => {
     setValue,
     watch,
   } = useForm();
-  const saveInfo = watch("saveInfo");
 
-  useEffect(() => {
-    // Retrieve saved user data from localStorage (if available)
-    const savedData = localStorage.getItem(STORAGE_KEY);
-    if (savedData) {
-      const parsedData = JSON.parse(savedData);
-      const email = parsedData?.email;
-      if (email) {
-        // Prefill the form with saved data if email exists in storage
-        Object.entries(parsedData).forEach(([key, value]) =>
-          setValue(key, value)
-        );
+  const { isPending, mutate } = useMutation({
+    mutationFn: async (payload) => {
+      if (!payload.userId) return null;
+      const { data, error } = await supabase
+        .from("profile")
+        .update({
+          apartment: payload.apartment,
+          street_address: payload.street_address,
+          town_city: payload.town_city,
+          phone_number: payload.phone_number,
+        })
+        .eq("id", payload.userId)
+        .select()
+        .single();
+
+      if (error || !data) {
+        toast.error(error.message);
       }
-    }
-  }, [setValue]);
 
-  const onSubmit = useCallback((data) => {
-    // Only save data if 'saveInfo' is checked
-    if (data.saveInfo) {
-      const userInfo = {
-        firstName: data.firstName,
-        companyName: data.companyName,
-        streetAddress: data.streetAddress,
-        apartment: data.apartment,
-        city: data.city,
-        phoneNumber: data.phoneNumber,
-        email: data.email,
-      };
+      return data;
+    },
+    onSuccess: (data) => {
+      if (data) {
+        queryClient.invalidateQueries({
+          queryKey: ["current-user"],
+        });
+        toast.success("User Details Updated");
+      }
+    },
+  });
 
-      // Save data in localStorage with email as key to allow multiple users
-      const currentData = localStorage.getItem(STORAGE_KEY);
-      const parsedData = currentData ? JSON.parse(currentData) : {};
-
-      parsedData[data.email] = userInfo; // Store using the email as a key
-
-      // Save back to localStorage
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(parsedData));
-
-      toast.success("Information saved successfully!");
-    } else {
-      toast.error("Please select the checkbox to save your information.");
-    }
-  }, []);
+  const onSubmit = (data) => {
+    if (!user.id) return toast.error("Please Login to update Info");
+    const payload = {
+      ...data,
+      userId: user.id,
+    };
+    mutate(payload);
+    // console.log(data);
+  };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 bg-white">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <label
             htmlFor="firstName"
             className="block text-sm font-medium text-gray-700"
@@ -77,21 +78,7 @@ export const CheckoutForm = () => {
           {errors.firstName && (
             <p className="text-red-500 text-sm">{errors.firstName.message}</p>
           )}
-        </div>
-
-        <div className="space-y-2 md:col-span-2">
-          <label
-            htmlFor="companyName"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Company Name
-          </label>
-          <input
-            {...register("companyName")}
-            type="text"
-            className="md:w-[470px] w-full p-2 border-none bg-secondary rounded-md focus:outline-none"
-          />
-        </div>
+        </div> */}
 
         <div className="space-y-2 md:col-span-2">
           <label
@@ -101,7 +88,7 @@ export const CheckoutForm = () => {
             Street Address*
           </label>
           <input
-            {...register("streetAddress", {
+            {...register("street_address", {
               required: "Street address is required",
             })}
             type="text"
@@ -136,7 +123,7 @@ export const CheckoutForm = () => {
             Town/City*
           </label>
           <input
-            {...register("city", { required: "City is required" })}
+            {...register("city_town", { required: "City is required" })}
             type="text"
             className="w-full md:w-[470px] p-2 border-none bg-secondary rounded-md focus:outline-none"
           />
@@ -147,7 +134,7 @@ export const CheckoutForm = () => {
 
         <div className="space-y-2 md:col-span-2">
           <label
-            htmlFor="phoneNumber"
+            htmlFor="phone_number"
             className="block text-sm font-medium text-gray-700"
           >
             Phone Number*
@@ -165,29 +152,6 @@ export const CheckoutForm = () => {
           />
           {errors.phoneNumber && (
             <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>
-          )}
-        </div>
-
-        <div className="space-y-2 md:col-span-2">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Email Address*
-          </label>
-          <input
-            {...register("email", {
-              required: "Email is required",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "Please enter a valid email address",
-              },
-            })}
-            type="email"
-            className="w-full md:w-[470px] p-2 border-none bg-secondary rounded-md focus:outline-none"
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
           )}
         </div>
 
@@ -216,8 +180,9 @@ export const CheckoutForm = () => {
         <button
           type="submit"
           className="w-full md:w-[470px] bg-primary text-white py-3 px-4 rounded-md   focus:outline-none"
+          disabled={isPending}
         >
-          Complete Order
+          {isPending ? "Loading..." : " Save Details"}
         </button>
       </div>
     </form>

@@ -127,7 +127,13 @@ export const Navbar = () => {
                   className="h-6 w-6 over:underline"
                   onClick={toggleVisibility}
                 />
-                {profileVisible && <Account />}
+                {profileVisible && (
+                  <Account
+                    width="w-[180px]"
+                    height="h-[160px]"
+                    className="overflow-auto"
+                  />
+                )}
               </div>
             )}
             <button
@@ -163,6 +169,7 @@ export const Navbar = () => {
               {route?.name}
             </Link>
           ))}
+
           {!user && (
             <Link
               to={"/signup"}
