@@ -170,6 +170,15 @@ export const Navbar = () => {
             </Link>
           ))}
 
+          <div>
+          {user && (
+            <Link
+              to={"./wishlist"}
+              className="text-black hover:text-gray-700 text-base hover:underline space-y-2 "
+            >
+              WishList
+            </Link>
+          )}
           {!user && (
             <Link
               to={"/signup"}
@@ -178,6 +187,7 @@ export const Navbar = () => {
               SignUp
             </Link>
           )}
+          </div>
           <div className="py-2">
             <CustomSearch />
           </div>
