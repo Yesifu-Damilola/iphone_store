@@ -82,7 +82,7 @@ export const CheckoutForm = () => {
 
         <div className="space-y-2 md:col-span-2">
           <label
-            htmlFor="streetAddress"
+            htmlFor="street_address"
             className="block text-sm font-medium text-gray-700"
           >
             Street Address*
@@ -117,13 +117,13 @@ export const CheckoutForm = () => {
 
         <div className="space-y-2">
           <label
-            htmlFor="city"
+            htmlFor="town_city"
             className="block text-sm font-medium text-gray-700"
           >
             Town/City*
           </label>
           <input
-            {...register("city_town", { required: "City is required" })}
+            {...register("town_city", { required: "Town/City is required" })}
             type="text"
             className="w-full md:w-[470px] p-2 border-none bg-secondary rounded-md focus:outline-none"
           />
@@ -140,8 +140,8 @@ export const CheckoutForm = () => {
             Phone Number*
           </label>
           <input
-            {...register("phoneNumber", {
-              required: "Phone number is required",
+            {...register("phone_number", {
+              required: "Phone Number is required",
               pattern: {
                 value: /^[0-9+-]+$/,
                 message: "Please enter a valid phone number",
