@@ -1,31 +1,19 @@
 import useUpdateUserDetails from "../../hooks/useUpdateUserDetails";
 
 export const CheckOutForm = () => {
-  const { register, handleSubmit, errors, watch, isPending, onSubmit } =
-    useUpdateUserDetails();
+  const {
+    register,
+    handleSubmit,
+    errors,
+    watch,
+    isPending,
+    onSubmit,
+    setValue,
+  } = useUpdateUserDetails();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 bg-white">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* <div className="space-y-2">
-          <label
-            htmlFor="firstName"
-            className="block text-sm font-medium text-gray-700"
-          >
-            First Name*
-          </label>
-          <input
-            {...register("firstName", {
-              required: "First name is required",
-            })}
-            type="text"
-            className="w-full md:w-[470px] p-2 border-none bg-secondary  rounded-md focus:outline-none"
-          />
-          {errors.firstName && (
-            <p className="text-red-500 text-sm">{errors.firstName.message}</p>
-          )}
-        </div> */}
-
         <div className="space-y-2 md:col-span-2">
           <label
             htmlFor="street_address"

@@ -82,6 +82,7 @@ const useUpdateUserDetails = () => {
     watch,
     isPending,
     onSubmit,
+    setValue,
   };
 };
 
