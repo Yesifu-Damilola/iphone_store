@@ -1,9 +1,14 @@
-import { Link } from "react-router-dom";
-import { CheckoutForm } from "./CheckoutForm";
+import { Link, Navigate } from "react-router-dom";
+import { CheckOutForm } from "./CheckoutForm";
 import { PaymentsSummary } from "./PaymentsSummary";
+import { UserAuth } from "../../context/AuthContext";
 
 export const CheckOut = () => {
-  
+  const { user } = UserAuth();
+
+  if (!user) {
+    return <Navigate to="/signup" replace />;
+  }
 
   const subTitles = [
     { name: "Account", path: "/account" },
@@ -32,10 +37,10 @@ export const CheckOut = () => {
       </div>
       <div>
         <h2 className="text-2xl font-bold mb-6">Billing Details</h2>
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-       <CheckoutForm/>
-       <PaymentsSummary/>
-       </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <CheckOutForm />
+          <PaymentsSummary />
+        </div>
       </div>
     </section>
   );

@@ -27,7 +27,7 @@ export const CellPhones = ({ color = "#000000", ...res }) => {
             x2="40.8333"
             y2="39.8334"
             stroke="black"
-            stroke-width="2"
+            strokeWidth="2"
           />
         </g>
         <defs>

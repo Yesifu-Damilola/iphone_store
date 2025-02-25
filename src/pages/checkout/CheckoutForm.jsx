@@ -1,63 +1,9 @@
-/* eslint-disable no-unused-vars */
-import { useCallback, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { UserAuth } from "../../context/AuthContext";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { supabase } from "../../supabase/supabaseClients";
-import { toast } from "react-toastify";
+import useUpdateUserDetails from "../../hooks/useUpdateUserDetails";
 
-export const CheckoutForm = () => {
-  // Access the client
-  const queryClient = useQueryClient();
-  const { user } = UserAuth();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-    watch,
-  } = useForm();
+export const CheckOutForm = () => {
+  const { register, handleSubmit, errors, watch, isPending, onSubmit } =
+    useUpdateUserDetails();
 
-  const { isPending, mutate } = useMutation({
-    mutationFn: async (payload) => {
-      if (!payload.userId) return null;
-      const { data, error } = await supabase
-        .from("profile")
-        .update({
-          apartment: payload.apartment,
-          street_address: payload.street_address,
-          town_city: payload.town_city,
-          phone_number: payload.phone_number,
-        })
-        .eq("id", payload.userId)
-        .select()
-        .single();
-
-      if (error || !data) {
-        toast.error(error.message);
-      }
-
-      return data;
-    },
-    onSuccess: (data) => {
-      if (data) {
-        queryClient.invalidateQueries({
-          queryKey: ["current-user"],
-        });
-        toast.success("User Details Updated");
-      }
-    },
-  });
-
-  const onSubmit = (data) => {
-    if (!user.id) return toast.error("Please Login to update Info");
-    const payload = {
-      ...data,
-      userId: user.id,
-    };
-    mutate(payload);
-    // console.log(data);
-  };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 bg-white">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

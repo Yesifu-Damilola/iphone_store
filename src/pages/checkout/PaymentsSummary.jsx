@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useCart } from "../../hooks/useCart";
 import { Banknote, CreditCard, Truck } from "lucide-react";
-import atmcard from "../../assets/images/atmcard.png"
-import atmcard1 from "../../assets/images/atmcard1.png"
-import atmcard2 from "../../assets/images/atmcard2.png"
-import atmcard3 from "../../assets/images/atmcard3.png"
+import atmcard from "../../assets/images/atmcard.png";
+import atmcard1 from "../../assets/images/atmcard1.png";
+import atmcard2 from "../../assets/images/atmcard2.png";
+import atmcard3 from "../../assets/images/atmcard3.png";
+import { CheckOutForm } from "./CheckoutForm";
+
 
 export const PaymentsSummary = () => {
   const { state } = useCart();
@@ -66,22 +68,22 @@ export const PaymentsSummary = () => {
             onClick={() => setSelectedPayment("bank")}
           >
             <div className="flex">
-            <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center">
-              {selectedPayment === "bank" && (
-                <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
-              )}
-            </div>
-            <div className="ml-2 flex">
-              <CreditCard className="w-5 h-5 text-gray-600 mr-1" />
-              <span>Bank</span> 
-            </div>
-            </div>
-              <div className="flex gap-2 ">
-                <img src={atmcard} alt={atmcard} className="w-10 h-7" />
-                <img src={atmcard1} alt={atmcard1}  className="w-10 h-7"/>
-                <img src={atmcard2} alt={atmcard2} className="w-10 h-7" />
-                <img src={atmcard3} alt={atmcard3}  className="w-10 h-7"/>
+              <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center">
+                {selectedPayment === "bank" && (
+                  <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
+                )}
               </div>
+              <div className="ml-2 flex">
+                <CreditCard className="w-5 h-5 text-gray-600 mr-1" />
+                <span>Bank</span>
+              </div>
+            </div>
+            <div className="flex gap-2 ">
+              <img src={atmcard} alt={atmcard} className="w-10 h-7" />
+              <img src={atmcard1} alt={atmcard1} className="w-10 h-7" />
+              <img src={atmcard2} alt={atmcard2} className="w-10 h-7" />
+              <img src={atmcard3} alt={atmcard3} className="w-10 h-7" />
+            </div>
           </div>
 
           <div
@@ -114,14 +116,27 @@ export const PaymentsSummary = () => {
             className="flex-1 px-2 py-2 border rounded-lg focus:outline-none md:w-[300px] w-[150px]"
           />
           <button className="px-2 py-2 bg-primary text-white rounded-lg transition-colors w-[300px]">
-          Apply Coupon
+            Apply Coupon
           </button>
         </div>
 
-        <button className="md:w-[190px] w-full px-6 py-3 bg-primary text-white rounded-lg transition-colors flex items-center justify-center space-x-2">
+        {CheckOutForm() ? (
+          <button className="md:w-[190px] w-full px-6 py-3 bg-primary text-white rounded-lg transition-colors flex items-center justify-center space-x-2">
+            <Truck className="w-5 h-5" />
+            <span>Place Order</span>
+          </button>
+        ) : (
+          <button
+            onClick={() => alert("Please sign up first!")}
+            className="md:w-[190px] w-full px-6 py-3 bg-gray-400 text-white rounded-lg transition-colors flex items-center justify-center space-x-2"
+          >
+            <span>Proceed to Sign Up</span>
+          </button>
+        )}
+        {/* <button className="md:w-[190px] w-full px-6 py-3 bg-primary text-white rounded-lg transition-colors flex items-center justify-center space-x-2">
           <Truck className="w-5 h-5" />
           <span>Place Order</span>
-        </button>
+        </button> */}
       </div>
     </div>
   );
