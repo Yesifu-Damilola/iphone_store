@@ -9,7 +9,7 @@ const useUpdateUserDetails = () => {
   // Access the client
   const queryClient = useQueryClient();
   const { user } = UserAuth();
-  console.log(user, "hello");
+
   const {
     register,
     handleSubmit,
@@ -78,7 +78,7 @@ const useUpdateUserDetails = () => {
   return {
     register,
     handleSubmit,
-    errors,
+    formState: { errors },
     watch,
     isPending,
     onSubmit,

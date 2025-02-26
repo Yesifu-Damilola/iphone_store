@@ -16,7 +16,7 @@ const CartItems = () => {
       payload: { id, quantity: Number.parseInt(newQuantity, 10) },
     });
     toast.success("Item Quantity updated from cart", {
-      toastId: "Item Quantity updated from cart"
+      toastId: "Item Quantity updated from cart",
     });
   };
 
@@ -28,9 +28,10 @@ const CartItems = () => {
   };
 
   const handleClearCart = () => {
-   
     dispatch({ type: "CLEAR_CART" });
-    toast.success("Cart cleared successfully!", { toastId: "Cart cleared successfully!" });
+    toast.success("Cart cleared successfully!", {
+      toastId: "Cart cleared successfully!",
+    });
   };
 
   const calculateTotal = () => {
@@ -166,7 +167,11 @@ const CartItems = () => {
               <CustomButton
                 className="text-base font-medium px-4 py-3 sm:px-6 sm:py-3 md:px-8 md:py-4 lg:px-10 lg:py-4 text-white bg-primary"
                 text="Proceed to Checkout"
-                onClick={() => navigate("/checkout")}
+                onClick={() => {
+                  if (carts?.length === 0)
+                    return toast.info("Kindly Add Item to cart");
+                  navigate("/checkout");
+                }}
               />
             </div>
           </div>

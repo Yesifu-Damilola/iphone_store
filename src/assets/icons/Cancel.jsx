@@ -12,7 +12,7 @@ export const Cancel = ({ color = "#FAFAFA", ...res }) => {
         xmlns="http://www.w3.org/2000/svg"
         {...res}
       >
-        <g clip-path="url(#clip0_803_458)">
+        <g clipPath="url(#clip0_803_458)">
           <path
             d="M8 16L12 12M16 8L11.9992 12M11.9992 12L8 8M12 12L16 16"
             stroke={color}

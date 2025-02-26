@@ -1,24 +1,21 @@
-import { useState } from "react";
-import { useCart } from "../../hooks/useCart";
 import { Banknote, CreditCard, Truck } from "lucide-react";
 import atmcard from "../../assets/images/atmcard.png";
 import atmcard1 from "../../assets/images/atmcard1.png";
 import atmcard2 from "../../assets/images/atmcard2.png";
 import atmcard3 from "../../assets/images/atmcard3.png";
-import { CheckOutForm } from "./CheckoutForm";
-
+import { useOrders } from "../../hooks/useOrders";
 
 export const PaymentsSummary = () => {
-  const { state } = useCart();
-  const [selectedPayment, setSelectedPayment] = useState("bank");
-  const [couponCode, setCouponCode] = useState("");
-
-  const calculateTotal = () => {
-    return state.items.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
-  };
+  const {
+    isPending,
+    selectedPayment,
+    setCouponCode,
+    couponCode,
+    setSelectedPayment,
+    state,
+    calculateTotal,
+    handleOrder,
+  } = useOrders();
 
   return (
     <div className="bg-white py-6 px-2 space-y-8">
@@ -120,23 +117,14 @@ export const PaymentsSummary = () => {
           </button>
         </div>
 
-        {CheckOutForm() ? (
-          <button className="md:w-[190px] w-full px-6 py-3 bg-primary text-white rounded-lg transition-colors flex items-center justify-center space-x-2">
-            <Truck className="w-5 h-5" />
-            <span>Place Order</span>
-          </button>
-        ) : (
-          <button
-            onClick={() => alert("Please sign up first!")}
-            className="md:w-[190px] w-full px-6 py-3 bg-gray-400 text-white rounded-lg transition-colors flex items-center justify-center space-x-2"
-          >
-            <span>Proceed to Sign Up</span>
-          </button>
-        )}
-        {/* <button className="md:w-[190px] w-full px-6 py-3 bg-primary text-white rounded-lg transition-colors flex items-center justify-center space-x-2">
+        <button
+          className="md:w-[190px] w-full px-6 py-3 bg-primary text-white rounded-lg transition-colors flex items-center justify-center space-x-2"
+          disabled={isPending}
+          onClick={handleOrder}
+        >
           <Truck className="w-5 h-5" />
-          <span>Place Order</span>
-        </button> */}
+          <span>{isPending ? "Loading..." : "Place Order"}</span>
+        </button>
       </div>
     </div>
   );

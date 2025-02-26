@@ -4,7 +4,7 @@ export const CheckOutForm = () => {
   const {
     register,
     handleSubmit,
-    errors,
+    formState: { errors },
     watch,
     isPending,
     onSubmit,
@@ -23,14 +23,14 @@ export const CheckOutForm = () => {
           </label>
           <input
             {...register("street_address", {
-              required: "Street address is required",
+              required: "street_address is required",
             })}
             type="text"
             className="w-full md:w-[470px] p-2 border-none bg-secondary rounded-md focus:outline-none"
           />
-          {errors.streetAddress && (
+          {errors.street_address && (
             <p className="text-red-500 text-sm">
-              {errors.streetAddress.message}
+              {errors.street_address.message}
             </p>
           )}
         </div>
@@ -57,12 +57,12 @@ export const CheckOutForm = () => {
             Town/City*
           </label>
           <input
-            {...register("town_city", { required: "Town/City is required" })}
+            {...register("town_city", { required: "town_city is required" })}
             type="text"
             className="w-full md:w-[470px] p-2 border-none bg-secondary rounded-md focus:outline-none"
           />
           {errors.city && (
-            <p className="text-red-500 text-sm">{errors.city.message}</p>
+            <p className="text-red-500 text-sm">{errors.town_city.message}</p>
           )}
         </div>
 
@@ -84,8 +84,10 @@ export const CheckOutForm = () => {
             type="tel"
             className="w-full md:w-[470px] p-2 border-none bg-secondary rounded-md focus:outline-none"
           />
-          {errors.phoneNumber && (
-            <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>
+          {errors.phone_number && (
+            <p className="text-red-500 text-sm">
+              {errors.phone_number.message}
+            </p>
           )}
         </div>
 

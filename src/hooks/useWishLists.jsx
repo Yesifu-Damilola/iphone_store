@@ -21,7 +21,6 @@ export const useWishLists = (key, query) => {
       return data;
     },
     onSuccess: (data) => {
-    
       // Invalidate and refetch
       queryClient.invalidateQueries({
         queryKey: [key, query ?? ""],
