@@ -13,6 +13,6 @@ export const addOrders = async (values) => {
   return {
     success: true,
     message: "Order is placed successfully ",
-    data
+    data,
   };
 };
