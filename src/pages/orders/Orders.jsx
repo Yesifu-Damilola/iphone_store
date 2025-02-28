@@ -36,7 +36,7 @@ export const Orders = () => {
             <div className="border-t border-b border-gray-200 py-4 mb-6">
               <div className="flex justify-between mb-2">
                 <span className="text-gray-600">Order Number:</span>
-                <span className="font-medium">{order.id}</span>
+                <span className="font-normal text-base">{order.order_ref}</span>
               </div>
               <div className="flex justify-between mb-2">
                 <span className="text-gray-600">Date:</span>
@@ -78,6 +78,9 @@ export const Orders = () => {
                   <thead className="bg-gray-50">
                     <tr>
                       <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Images
+                      </th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Product
                       </th>
                       <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -92,9 +95,16 @@ export const Orders = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {order.items &&
-                      order.items.map((item) => (
+                    {order?.items &&
+                      order?.items.map((item) => (
                         <tr key={item.id}>
+                          <td className="px-4 py-3 text-sm text-gray-900">
+                            <img
+                              src={item?.product_images[0]}
+                              alt={item.product_name}
+                              className="w-9 h-9 md:w-9 md:h-7 pr-2"
+                            />
+                          </td>
                           <td className="px-4 py-3 text-sm text-gray-900">
                             {item.product_name}
                           </td>

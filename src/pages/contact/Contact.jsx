@@ -3,6 +3,7 @@ import { IoCallOutline } from "react-icons/io5";
 import { FiMail } from "react-icons/fi";
 import { CustomButton } from "../../components/custombutton/CustomButton";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const {
@@ -13,6 +14,9 @@ const Contact = () => {
 
   const onSubmit = (data) => {
     console.log("Form Data:", data);
+    toast.success(
+      "Your message is under review. You will be notified once it has been approved."
+    );
   };
 
   return (

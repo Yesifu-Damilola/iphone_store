@@ -4,7 +4,6 @@ import atmcard1 from "../../assets/images/atmcard1.png";
 import atmcard2 from "../../assets/images/atmcard2.png";
 import atmcard3 from "../../assets/images/atmcard3.png";
 import { useOrders } from "../../hooks/useOrders";
-import { Orders } from "../orders/Orders";
 
 export const PaymentsSummary = () => {
   const {
@@ -121,7 +120,7 @@ export const PaymentsSummary = () => {
         <button
           className="md:w-[190px] w-full px-6 py-3 bg-primary text-white rounded-lg transition-colors flex items-center justify-center space-x-2"
           disabled={isPending}
-          onClick={() => handleOrder(Orders)}
+          onClick={handleOrder}
         >
           <Truck className="w-5 h-5" />
           <span>{isPending ? "Loading..." : "Place Order"}</span>

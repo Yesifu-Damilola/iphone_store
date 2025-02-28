@@ -4,11 +4,8 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { useCart } from "./useCart";
 import { useCurrentUser } from "./auth/useCurrentUser";
-import { useNavigate } from "react-router-dom";
 
 export const useOrders = () => {
-  const navigate = useNavigate();
-
   const generateOrderRef = () => {
     const timestamp = Date.now(); // Get current timestamp
     const randomNum = Math.floor(Math.random() * 10000); // Generate a random 4-digit number
@@ -61,7 +58,7 @@ export const useOrders = () => {
         onSuccess: (data) => {
           // Assuming 'data' contains the inserted order details with an ID
           if (data?.id) {
-            navigate("/orders");
+            return;
           }
         },
         onError: (error) => {
