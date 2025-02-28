@@ -1,47 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, CheckCircle, Package } from "lucide-react";
-import { useCurrentUser } from "../../hooks/auth/useCurrentUser";
 import { Link } from "react-router-dom";
-import { fetchOrderDetails } from "../../services/orders/fetchOrderDetails";
 import SkeletonLoader from "../../components/SkeletonLoader";
+import { useOrdersConfirmation } from "../../hooks/useOrdersConfirmation";
 
 export const Orders = () => {
-  const { user } = useCurrentUser();
-
-  const {
-    data: orders,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["orders"],
-    queryFn: async () => {
-      if (!user?.id) return;
-      const res = await fetchOrderDetails(user?.id);
-      return res.map((order) => ({
-        ...order,
-        status: order.status || "pending",
-        shipping_address:
-          order.shipping_address || "123 Main St, Apt 4B, New York, NY",
-        estimated_delivery:
-          order.estimated_delivery ||
-          new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString(),
-      }));
-    },
-  });
-
-  const calculateTotal = () => {
-    if (!orders || !Array.isArray(orders)) return 0; // Handle case where orders is undefined
-    return orders.reduce((total, order) => {
-      if (!order.items) return; // If order has no items, skip
-      return (
-        total +
-        order.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
-      );
-    }, 0);
-  };
+  const { orders, isLoading, isError, error, calculateTotal } =
+    useOrdersConfirmation();
 
   console.log(orders, isLoading, isError, error);
+
   if (isError)
     return <p className="text-red-500">Error fetching order details.</p>;
 

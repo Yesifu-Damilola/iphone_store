@@ -10,6 +10,5 @@ export const fetchOrderDetails = async (userId) => {
   if (error || !data) {
     return toast.error(error);
   }
-  console.log("Fetched Order Data", data);
   return data;
 };
