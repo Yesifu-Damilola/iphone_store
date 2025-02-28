@@ -23,6 +23,8 @@ import ProductDetails from "./pages/productdetails/ProductDetails";
 import ProductRoot from "./pages/products/Root";
 import Products from "./pages/products/index";
 import { CheckOut } from "./pages/checkout/CheckOut";
+import { Orders } from "./pages/orders/Orders";
+
 // import { FlashSalesDetails } from "./pages/FlashSalesDetails";
 
 const App = () => {
@@ -46,6 +48,7 @@ const App = () => {
           </Route>
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<CheckOut />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path="wishlist" element={<WishList />} />
           <Route path="myaccount" element={<MyAccount />} />
           <Route path="products" element={<ProductRoot />}>

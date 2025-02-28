@@ -13,7 +13,7 @@ export const useCurrentUser = () => {
       return res;
     },
   });
-  console.log(data);
+
   useEffect(() => {
     if (data && status === "success") {
       setUser(data);
