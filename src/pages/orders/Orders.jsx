@@ -3,6 +3,7 @@ import { ArrowLeft, CheckCircle, Package } from "lucide-react";
 import { useCurrentUser } from "../../hooks/auth/useCurrentUser";
 import { Link } from "react-router-dom";
 import { fetchOrderDetails } from "../../services/orders/fetchOrderDetails";
+import SkeletonLoader from "../../components/SkeletonLoader";
 
 export const Orders = () => {
   const { user } = useCurrentUser();
@@ -46,35 +47,7 @@ export const Orders = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      {isLoading &&
-        [...Array(2)].map((_, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-lg shadow-md p-8 mb-6 animate-pulse"
-          >
-            <div className="flex flex-col items-center space-y-4">
-              <div className="w-16 h-16 bg-gray-300 rounded-full"></div>
-              <div className="h-6 w-48 bg-gray-300 rounded"></div>
-              <div className="h-4 w-32 bg-gray-300 rounded"></div>
-            </div>
-
-            <div className="border-t border-b border-gray-200 py-4 mt-6">
-              <div className="flex justify-between mb-2">
-                <span className="h-4 w-32 bg-gray-300 rounded"></span>
-                <span className="h-4 w-20 bg-gray-300 rounded"></span>
-              </div>
-              <div className="flex justify-between">
-                <span className="h-4 w-32 bg-gray-300 rounded"></span>
-                <span className="h-4 w-16 bg-gray-300 rounded"></span>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <div className="h-6 w-32 bg-gray-300 rounded mb-2"></div>
-              <div className="h-4 w-48 bg-gray-300 rounded"></div>
-            </div>
-          </div>
-        ))}
+      {isLoading && <SkeletonLoader count={1} width="896px" height={896} />}
       {!isLoading &&
         orders?.map((order) => (
           <div
@@ -188,7 +161,6 @@ export const Orders = () => {
             </div>
           </div>
         ))}
-
       <div className="text-center text-green-600">
         <Link to="/" className="inline-flex items-center">
           <ArrowLeft className="w-4 h-4 mr-2" />
