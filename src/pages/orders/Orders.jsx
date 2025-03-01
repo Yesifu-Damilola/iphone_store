@@ -1,7 +1,7 @@
 import { ArrowLeft, CheckCircle, Package } from "lucide-react";
 import { Link } from "react-router-dom";
-import SkeletonLoader from "../../components/SkeletonLoader";
 import { useOrdersConfirmation } from "../../hooks/useOrdersConfirmation";
+import OrderSkeletonLoader from "../../components/SkeletonLoader/OrderSkeletonLoader";
 
 export const Orders = () => {
   const { orders, isLoading, isError, error, calculateTotal } =
@@ -14,7 +14,7 @@ export const Orders = () => {
 
   return (
     <div className="max-w-4xl mx-auto py-6 px-2">
-      {isLoading && <SkeletonLoader count={1} width="896px" height={896} />}
+      {isLoading && <OrderSkeletonLoader count={1}/>}
       {!isLoading &&
         orders?.map((order) => (
           <div
