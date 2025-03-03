@@ -6,8 +6,9 @@ import { FaHeart, FaRegHeart, FaTruckFast } from "react-icons/fa6";
 import { RiLoopLeftFill } from "react-icons/ri";
 import { FlashSales } from "../../components/features/home/FlashSales";
 import { Link } from "react-router-dom";
+import ProductDetailsItemLoader from "../../components/SkeletonLoader/ProductDetailsItemLoader";
 
-const ProductDetailsItem = ({ products }) => {
+const ProductDetailsItem = ({ products, isPending, isError }) => {
   const [selectedImage, setSelectedImage] = useState(
     products?.product_images?.[0] || ""
   );
@@ -36,11 +37,13 @@ const ProductDetailsItem = ({ products }) => {
     setSelectedSize(size);
   };
 
-  if (!products) return <p>Product not found.</p>;
+  if (isPending) return <ProductDetailsItemLoader />;
+
+  if (isError) return <p>Product not found.</p>;
 
   return (
     <div className="container m-auto px-1">
-      <div className="mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[200px_minmax(0,_2fr)_1fr] gap-8">
+      <div className="mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[200px_minmax(0,_2fr)_1fr] gap-8 ">
         <div className="space-y-4">
           {products?.product_images?.map((image, id) => (
             <div
@@ -84,9 +87,6 @@ const ProductDetailsItem = ({ products }) => {
               <p className="text-2xl/6 text-left">${products.price}</p>
               <p className="text-sm/5 text-left w-full md:w-[373px] py-1">
                 {products.description}
-                {/* PlayStation 5 Controller Skin High quality vinyl with air
-                channel adhesive for easy bubble free install & mess free
-                removal Pressure sensitive. */}
               </p>
             </div>
             <div className="py-2 w-full md:w-[400px]">

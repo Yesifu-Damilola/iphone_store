@@ -15,9 +15,13 @@ const ProductDetails = () => {
     key: "id",
     value: id,
   });
- 
-  if (isPending) return <p className="text-center justify-center">Loading product...</p>;
-  if (isError) return <p className="text-center justify-center">Error fetching product!</p>;
+
+  // if (isPending)
+  //   return <p className="text-center justify-center">Loading product...</p>;
+  // if (isError)
+  //   return (
+  //     <p className="text-center justify-center">Error fetching product!</p>
+  //   );
 
   return (
     <div className="container mx-auto">
@@ -43,7 +47,11 @@ const ProductDetails = () => {
           Havic HV G-92 Gamepad
         </Link>
       </div>
-      <ProductDetailsItem products={products} />
+      <ProductDetailsItem
+        products={products}
+        isPending={isPending}
+        isError={isError}
+      />
     </div>
   );
 };

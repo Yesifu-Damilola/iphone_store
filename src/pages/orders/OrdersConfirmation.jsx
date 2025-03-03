@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useOrdersConfirmation } from "../../hooks/useOrdersConfirmation";
 import OrderSkeletonLoader from "../../components/SkeletonLoader/OrderSkeletonLoader";
 
-export const Orders = () => {
+export const OrdersConfirmation = () => {
   const { orders, isLoading, isError, error, calculateTotal } =
     useOrdersConfirmation();
 
