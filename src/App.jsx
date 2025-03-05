@@ -14,7 +14,7 @@ import NotFound from "./pages/notfound/NotFound";
 import { Cancellations } from "./components/account/Cancellations";
 import { Logout } from "./components/account/Logout";
 import { ManageAccount } from "./components/account/ManageAccount";
-import { Order } from "./components/account/Order";
+// import { Order } from "./components/account/Order";
 import { Reviews } from "./components/account/Reviews";
 import WishList from "./pages/wishlist/WishList";
 import Cart from "./pages/cart/Cart";
@@ -23,7 +23,7 @@ import ProductDetails from "./pages/productdetails/ProductDetails";
 import ProductRoot from "./pages/products/Root";
 import Products from "./pages/products/index";
 import { CheckOut } from "./pages/checkout/CheckOut";
-import { OrdersConfirmation } from "./pages/orders/OrdersConfirmation";
+import { Orders } from "./pages/orders/Orders";
 
 // import { FlashSalesDetails } from "./pages/FlashSalesDetails";
 
@@ -41,14 +41,14 @@ const App = () => {
           <Route path="about" element={<About />} />
           <Route path="account" element={<Account />}>
             <Route path="manage" element={<ManageAccount />} />
-            <Route path="orders" element={<Order />} />
+            {/* <Route path="orders" element={<Order />} /> */}
             <Route path="cancellations" element={<Cancellations />} />
             <Route path="reviews" element={<Reviews />} />
             <Route path="logout" element={<Logout />} />
           </Route>
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<CheckOut />} />
-          <Route path="/ordersConfirmation" element={<OrdersConfirmation />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path="wishlist" element={<WishList />} />
           <Route path="myaccount" element={<MyAccount />} />
           <Route path="products" element={<ProductRoot />}>

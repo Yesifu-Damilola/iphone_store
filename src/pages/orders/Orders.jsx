@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useOrdersConfirmation } from "../../hooks/useOrdersConfirmation";
 import OrderSkeletonLoader from "../../components/SkeletonLoader/OrderSkeletonLoader";
 
-export const OrdersConfirmation = () => {
+export const Orders = () => {
   const { orders, isLoading, isError, error, calculateTotal } =
     useOrdersConfirmation();
 
@@ -14,7 +14,7 @@ export const OrdersConfirmation = () => {
 
   return (
     <div className="max-w-4xl mx-auto py-6 px-2">
-      {isLoading && <OrderSkeletonLoader count={1}/>}
+      {isLoading && <OrderSkeletonLoader count={1} />}
       {!isLoading &&
         orders?.map((order) => (
           <div
