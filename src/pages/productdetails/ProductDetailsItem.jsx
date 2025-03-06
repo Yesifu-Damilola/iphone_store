@@ -61,7 +61,7 @@ const ProductDetailsItem = ({ products, isPending, isError }) => {
         </div>
         <div className="flex flex-col items-center justify-center bg-secondary w-full h-auto md:h-[600px] rounded px-2">
           <img
-            src={selectedImage}
+            src={selectedImage || products.product_images[0]}
             alt={selectedImage.product}
             className="w-[446px] h-[315px]"
           />
