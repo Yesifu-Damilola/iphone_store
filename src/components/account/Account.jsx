@@ -6,16 +6,9 @@ import { Cancellations } from "./Cancellations";
 import { Reviews } from "./Reviews";
 import { Logout } from "./Logout";
 
-const Account = ({
-  width = "max-w-full",
-  height = "",
-  text = "",
-  className = "",
-}) => {
+const Account = () => {
   return (
-    <div
-      className={`absolute right-0 md:right-5 bg-fuchsia-950 rounded p-4 ${width} ${height} ${text} ${className}`}
-    >
+    <div className="absolute right-0 md:right-5 bg-fuchsia-950 rounded p-4 max-w-full">
       <ManageAccount />
       <Order />
       <Cancellations />

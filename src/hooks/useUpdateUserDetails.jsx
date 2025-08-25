@@ -26,11 +26,11 @@ const useUpdateUserDetails = () => {
   });
 
   useEffect(() => {
-    if (user && user !== null) {
-      setValue("street_address", user?.street_address);
-      setValue("apartment", user?.apartment);
-      setValue("town_city", user?.town_city);
-      setValue("phone_number", user?.phone_number);
+    if (user) {
+      setValue("street_address", user?.street_address || "");
+      setValue("apartment", user?.apartment || "");
+      setValue("town_city", user?.town_city || "");
+      setValue("phone_number", user?.phone_number || "");
     }
   }, [user, setValue]);
 

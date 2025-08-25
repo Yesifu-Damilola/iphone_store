@@ -9,12 +9,10 @@ const SkeletonLoader = ({
   // direction = "horizontal",
 }) => {
   return (
-    <div className={"grid grid-cols-5 gap-6"}>
-      {Array(count)
-        .fill(null)
-        .map((_, index) => (
-          <Skeleton key={index} width={width} height={height} />
-        ))}
+    <div className="grid grid-cols-5 gap-6">
+      {Array.from({ length: count }, (_, index) => (
+        <Skeleton key={index} width={width} height={height} />
+      ))}
     </div>
   );
 };

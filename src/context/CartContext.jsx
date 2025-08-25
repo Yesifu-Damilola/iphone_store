@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 
 import { createContext, useReducer, useEffect } from "react";
-import PropTypes from "prop-types";
 
 const CartContext = createContext();
 
@@ -39,12 +38,12 @@ const cartReducer = (state, action) => {
         }, []),
       };
 
-      case "REMOVE_FROM_CART":
-        return {
-          ...state,
-          items: state.items.filter(item => item.id !== action.payload),
-        };
-      
+    case "REMOVE_FROM_CART":
+      return {
+        ...state,
+        items: state.items.filter((item) => item.id !== action.payload),
+      };
+
     case "UPDATE_CART":
       return {
         ...state,
@@ -56,7 +55,7 @@ const cartReducer = (state, action) => {
           )
           .filter((item) => item.quantity > 0),
       };
-      
+
     case "CLEAR_CART":
       return { ...state, items: [] };
     default:
@@ -81,6 +80,10 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
+import PropTypes from "prop-types";
+
+// Removed unused PropTypes import
 
 CartProvider.propTypes = {
   children: PropTypes.node.isRequired,

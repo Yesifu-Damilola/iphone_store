@@ -11,13 +11,7 @@ import SkeletonLoader from "../../SkeletonLoader";
 import { useFetch } from "../../../hooks/useFetch";
 import { fetchAllProducts } from "../../../services/products/fetchProduct";
 
-const strongElements = document.querySelectorAll("#timeContainer strong");
-
-strongElements.forEach((element, index) => {
-  if (index !== strongElements.length - 1) {
-    element.insertAdjacentHTML("afterend", "");
-  }
-});
+// Removed direct DOM manipulation. Use React for UI updates.
 
 export const FlashSales = ({
   title,
@@ -31,15 +25,12 @@ export const FlashSales = ({
   loaderCount = 5,
   query = "",
 }) => {
+  const navigate = useNavigate();
   const {
     data: products = [],
     status,
-    isError,
     error,
   } = useFetch(fetchAllProducts, "products", productFeatures, count);
-
-  // const { addToCart, cartItems } = useContext(Shopcontext);
-  const navigate = useNavigate();
 
   return (
     <>
@@ -61,7 +52,6 @@ export const FlashSales = ({
                 </div>
               )}
             </div>
-
             {type === "home" && productFeatures === "flash-sales" ? (
               <CountdownTimer targetDate={targetDate} />
             ) : null}
@@ -101,9 +91,9 @@ export const FlashSales = ({
           className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${className || ""}`}
         >
           {products &&
-            products?.length > 0 &&
+            products.length > 0 &&
             status === "success" &&
-            products?.map((item) => (
+            products.map((item) => (
               <FlashSalesItem
                 key={item.id}
                 item={item}
